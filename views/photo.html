@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}旅行笔记{% endblock %}
+{% block css %}
+<link type="text/css" rel="stylesheet" href="/css/photo.css"/>
+{% endblock %}
+
+{% block body %}
+
+{% include './common/cat-loading.html' %}
+
+
+<div class="print" id="write">
+    <p>时光不老，我们不散；繁华落幕，我陪你落日流年</p>
+</div>
+
+<script src="/js/photo/photo.js"></script>
+{% endblock %}

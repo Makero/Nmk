@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block css %}
+<link type="text/css" rel="stylesheet" href="/css/common/animate.min.css"/>
+<link type="text/css" rel="stylesheet" href="/css/FSVS.css"/>
+<link type="text/css" rel="stylesheet" href="/css/invitation.css"/>
+{% endblock %}
+
+{% block body %}
+<div id="fsvs-body">
+    <div class="slide">
+        <div class="animated zoomInDown" data-animate="zoomInDown">
+            <img src="/images/inv-bg.png" width="100%"/>
+            <div class="describe" id="write">
+                <p style="color:#fff">在这有着重大意义的一年</p>
+                <p style="color:#D66AB4">让我们一起放手一搏</p>
+                <p style="color:#fff">创业、创业、创业</p>
+                <p style="color:#8BD66A">来吧，一起组队</p>
+                <p style="color:#fff">相互成就</p>
+                <p style="color:#D6A26A">等你</p>
+                <p style="color:#fff">哦</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="content animated" data-animate="zoomInUp">
+            <i></i><i></i><i></i><i></i>
+            第一页
+
+            智能家居创业项目
+
+            招募小伙伴
+
+            1、技术开发3人
+            2、项目策划1人
+            3、运营1人
+        </div>
+    </div>
+    <div class="slide">
+        <div class="content animated" data-animate="zoomInLeft">
+            <i></i><i></i><i></i><i></i>
+            第二页
+
+            智能家居创业项目
+
+            招募小伙伴
+
+            1、技术开发3人
+            2、项目策划1人
+            3、运营1人
+        </div>
+    </div>
+    <div class="slide">
+        <div class="content animated" data-animate="zoomInRight">
+            <i></i><i></i><i></i><i></i>
+            <h3>报名方式</h3>
+            <p>长按下方二维码加入群聊</p>
+            <p>↓↓↓</p>
+            <img width="50%" src="/images/MK_INV_QR.png"/>
+        </div>
+    </div>
+</div>
+
+<script src="/js/common/FSVS.js"></script>
+<script src="/js/invitation.js"></script>
+{% endblock %}
