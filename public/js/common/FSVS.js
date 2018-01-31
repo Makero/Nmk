@@ -241,6 +241,7 @@
 		 * @return {[type]}   [description]
 		 */
 
+
 		var mouseWheelHandler = function( ev ) {
 			var e = window.event || ev;
 			var wheely = ( e.wheelDelta || -e.detail || e.originalEvent.detail );

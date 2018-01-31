@@ -1,14 +1,4 @@
-body:before {
-    content: ' ';
-    position: fixed;
-    z-index: -1;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background:#000 url(../images/bg.jpg) no-repeat center;
-    background-size: 100%;
-}
+body:before {content: ' ';position: fixed;z-index: -1;top: 0;right: 0;bottom: 0;left: 0;background:#000 url(../images/bg.jpg) no-repeat center;background-size: 100%;}
 .describe{text-align:center;font-size:14px;}
 .content{width:80%;height:85%;padding:10px;margin:8% auto;background-color:rgba(255, 255, 255, 0.4);background-image: url(../images/flower.png),url(../images/flower-bottom.png);background-repeat:no-repeat;background-position: top right,bottom right;background-size:100%;text-align:center;position:relative}
 .content i{position:absolute;background:#fff;opacity: .8}
