@@ -221,7 +221,7 @@
 							startY = null;
 						}
 					}
-					e.preventDefault();
+					//e.preventDefault();
 				}
 			});
 		};

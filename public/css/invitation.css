@@ -27,3 +27,5 @@ body:before {
 .sayContent p strong{color:#facc96;}
 
 .qrCode{position:absolute;bottom:40px;}
+.declare{width:100%;position:absolute;bottom:40px;}
+.declare p{text-align:center;font-size:16px!important;}
