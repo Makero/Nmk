@@ -22,4 +22,4 @@ body:before {content: ' ';position: fixed;z-index: -1;top: 0;right: 0;bottom: 0;
 .declare p{text-align:center;font-size:16px!important;}
 
 .olList li{margin-bottom:10px;}
-.olList li p{font-size:12px!important;width:80%;margin:0 auto;}
+.olList li p{font-size:12px!important;width:86%;margin:0 auto;}
