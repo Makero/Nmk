@@ -1,12 +1,23 @@
 const router = require('koa-router')();
 const api = require('../utils/weixinAPI_util');
+const wechatControl = require('../controller/wechat_controller');
+
 
 router.get('/', async (ctx, next) => {
-    let echostr = {code:-1,msg:"fail"};
+
+
+    wechatControl.getBaiDuCont({
+        params:{},
+        callback:(result) => {
+            console.log("ok!!");
+        }
+    });
+
+    /*let echostr = {code:-1,msg:"fail"};
     if(api.checkSignature(ctx.query)){
         echostr = ctx.query.echostr;
     }
-    ctx.body = echostr;
+    ctx.body = echostr;*/
 });
 
 router.post('/', async (ctx, next) => {

@@ -34,6 +34,7 @@ app.use(async (ctx, next) => {
     logUtil.logResponse(ctx, ms);//记录响应日志
   } catch (error) {
     ms = new Date() - start;
+    console.error(error);
     logUtil.logError(ctx, error, ms);//记录异常日志
   }
 });
