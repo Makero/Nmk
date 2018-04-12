@@ -1,6 +1,6 @@
 const router = require('koa-router')();
 const api = require('../utils/weixinAPI_util');
-const wechatControl = require('../controller/wechat_controller');
+const wechatControl = require('../controllers/wechat_controller');
 
 
 router.get('/', async (ctx, next) => {
