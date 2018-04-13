@@ -5,11 +5,13 @@ const wechatControl = require('../controllers/wechat_controller');
 
 router.get('/', async (ctx, next) => {
 
-
-    wechatControl.getBaiDuCont({
+    await wechatControl.getBaiDuCont({
         params:{},
-        callback:(result) => {
-            console.log("ok!!");
+        callback: (result) => {
+            console.log(result);
+            ctx.body = "ok";
+            console.log(ctx);
+            next();
         }
     });
 
