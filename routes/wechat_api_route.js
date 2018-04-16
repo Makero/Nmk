@@ -1,5 +1,5 @@
 const router = require('koa-router')();
-const api = require('../utils/weixinAPI_util');
+const api = require('../utils/wechat_api_util');
 const wechatControl = require('../controllers/wechat_controller');
 
 

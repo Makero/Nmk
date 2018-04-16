@@ -4,6 +4,6 @@ module.exports = {
 	'/photo'		: './routes/photo_route',
 	'/invitation'	: './routes/invitation_route',
 	'/upload'		: './routes/upload_route',
-	'/weixin'		: './routes/weixinAPI_route',
+	'/wechat'		: './routes/wechat_api_route',
 	'/towxy'		: './routes/wxy_route'
 };
