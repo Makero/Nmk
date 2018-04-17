@@ -1,50 +1,39 @@
 const request = require('request');
 const envConfig = require('../config/env_config');
 
+function requestOrderAPI(path,opt, method){
+
+    console.log("----------------\n" + method+" API:" + envConfig.api.url + path + "\n----------------");
+
+    return new Promise(function(resolve, reject) {
+        request({
+            method,
+            url: envConfig.api.url + path,
+            qs: opt.params,
+            json: opt.params ||true,
+            headers: {token: opt.token}
+        },function(err,res,body){
+            if(err){
+                console.error(err);
+                reject(err);
+                return;
+            }
+            resolve(body);
+        });
+    });
+}
 
 module.exports = {
 
-    GET_API_DATA : (path,opt) => {
+    GET_API_DATA : async (path,opt) => {
 
-        console.log("GET 调用API："+ envConfig.api.url + path);
-        request({
-            url : envConfig.api.url + path,
-            method: "GET",
-            qs : opt.params,
-            json : true,
-            headers : {
-                token : ''
-            },
-            timeout :envConfig.api.timeout
-        }, (err, res, body) => {
-            if (!err && res.statusCode == 200) {
-                opt.callback(body);
-            }else{
-                console.error(err);
-            }
-        })
+        opt.ctx.api = await requestOrderAPI(path, opt, 'GET');
 
     },
 
-    POST_API_DATA : (path,opt) => {
+    POST_API_DATA : async (path,opt) => {
 
-        console.log("POST 调用API："+ envConfig.api.url + path);
-        request({
-            url : envConfig.api.url + path,
-            method: "POST",
-            qs : opt.params,
-            json : true,
-            headers : {
-                token : ''
-            },
-            timeout :envConfig.api.timeout
-        }, (err, res, body) => {
-            if (!err && res.statusCode === 200) {
-                opt.callback(body);
-            }else{
-                console.error(err);
-            }
-        })
+        opt.ctx.api = await requestOrderAPI(path, opt, 'POST');
 
     }
 

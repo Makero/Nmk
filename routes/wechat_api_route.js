@@ -5,22 +5,23 @@ const wechatControl = require('../controllers/wechat_controller');
 
 router.get('/', async (ctx, next) => {
 
-    await wechatControl.getBaiDuCont({
-        params:{},
-        callback: (result) => {
-            console.log(result);
-            ctx.body = "ok";
-            console.log(ctx);
-            next();
-        }
+    if(!ctx.query.echostr){
+        ctx.body = "访问不正确！";
+        return;
+    }
+    await wechatControl.validateToken({
+        ctx,
+        params:ctx.query
     });
 
-    /*let echostr = {code:-1,msg:"fail"};
-    if(api.checkSignature(ctx.query)){
-        echostr = ctx.query.echostr;
+    if(ctx.api.data.bool){
+        ctx.body = ctx.query.echostr
+    }else{
+        ctx.body = {code:-1,msg:"fail"}
     }
-    ctx.body = echostr;*/
+
 });
+
 
 router.post('/', async (ctx, next) => {
     const content = await api.getMessage(ctx);
