@@ -2,7 +2,7 @@ const env = process.env.NODE_ENV || "production";
 const config = {
     production: {
         api: {
-            url: "http://www.20mk.cn:8000",
+            url: "http://www.20mk.cn:8089",
             timeout: 30000
 
         }

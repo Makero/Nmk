@@ -3,7 +3,7 @@ const envConfig = require('../config/env_config');
 
 function requestOrderAPI(path,opt, method){
 
-    console.log("----------------\n" + method+" API:" + envConfig.api.url + path + "\n----------------");
+    console.log("\n----------------\n" + method+" API:" + envConfig.api.url + path + "\n----------------");
 
     return new Promise(function(resolve, reject) {
         request({
