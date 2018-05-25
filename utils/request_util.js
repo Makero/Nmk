@@ -1,7 +1,7 @@
 const request = require('request');
 const envConfig = require('../config/env_config');
 
-function requestOrderAPI(path,opt, method){
+function requestOrderAPI(path, opt, method){
 
     console.log("\n----------------\n" + method+" API:" + envConfig.api.url + path + "\n----------------");
 
