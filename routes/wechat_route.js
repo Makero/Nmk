@@ -5,6 +5,7 @@ const wechatControl = require('../controllers/wechat_controller');
 
 router.get('/', async (ctx) => {
 
+    console.log(ctx.query);
     if(!ctx.query.echostr){
         ctx.body = "访问不正确！";
         return;
@@ -30,9 +31,6 @@ router.post('/', async (ctx) => {
         ctx,
         params: msg
     });
-
-    ctx.api.data.MediaId = 'uhZ8ggFG4FfZ-zCnUuNl3ej9XJRoA_7k6utvSV19A54poT_kkkoKkhwvDQlH7Ssk';
-    console.log(ctx.api.data);
 
     if(ctx.api.code === 200){
         message.send(ctx, ctx.api.data);
