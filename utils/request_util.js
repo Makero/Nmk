@@ -1,7 +1,7 @@
 const request = require('request');
 const envConfig = require('../config/env_config');
 
-function requestOrderAPI(path,opt, method){
+function requestOrderAPI(path, opt, method){
 
     console.log("\n----------------\n" + method+" API:" + envConfig.api.url + path + "\n----------------");
 
@@ -25,13 +25,13 @@ function requestOrderAPI(path,opt, method){
 
 module.exports = {
 
-    GET_API_DATA : async (path,opt) => {
+    GET_API_DATA : async (path, opt) => {
 
         opt.ctx.api = await requestOrderAPI(path, opt, 'GET');
 
     },
 
-    POST_API_DATA : async (path,opt) => {
+    POST_API_DATA : async (path, opt) => {
 
         opt.ctx.api = await requestOrderAPI(path, opt, 'POST');
 
