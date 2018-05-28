@@ -25,13 +25,13 @@ function requestOrderAPI(path, opt, method){
 
 module.exports = {
 
-    GET_API_DATA : async (path,opt) => {
+    GET_API_DATA : async (path, opt) => {
 
         opt.ctx.api = await requestOrderAPI(path, opt, 'GET');
 
     },
 
-    POST_API_DATA : async (path,opt) => {
+    POST_API_DATA : async (path, opt) => {
 
         opt.ctx.api = await requestOrderAPI(path, opt, 'POST');
 

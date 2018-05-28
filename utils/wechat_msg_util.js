@@ -1,23 +1,6 @@
-const crypto = require('crypto');
 const xml2js = require('xml2js');
 
 const wx = {
-    token : 'lkyn20180403',
-    signature : null,
-    bool : false,
-    getSignature : (timestamp,nonce) => {//获取token加密签名
-        let str = [wx.token,timestamp,nonce].sort().join('');//字典排序拼装成字符串
-        let sha1 = crypto.createHash('sha1');
-        sha1.update(str);
-        wx.signature = sha1.digest('hex');
-    },
-    checkSignature : (param) => {//检测token加密签名是否正确
-        wx.getSignature(param.timestamp,param.nonce);
-        if(wx.signature === param.signature){
-            wx.bool = true;
-        }
-        return wx.bool;
-    },
 
     xmlTempJson : (str) => {
         return new Promise((resolve, reject) => {
@@ -53,31 +36,19 @@ const wx = {
         const builder = new xml2js.Builder();
         return builder.buildObject(obj);
     },
-    getMessage : async (ctx) => {
+    get : async (ctx) => {//获取xml格式的消息，返回json数据包
         await wx.xmlToJson(ctx);
-        return ctx.req.body.xml.Content[0];
+        return ctx.req.body.xml;
     },
-    sendMessage : (ctx, content) => {
-        let msg,MsgType,result;
+    send : (ctx, data) => {//发送消息
+        let msg, result;
         msg = ctx.req.body ? ctx.req.body.xml : '';
         if(!msg){
             ctx.body = 'error request.';
             return;
         }
-        MsgType = msg.MsgType[0];
-        switch(MsgType){
-            case 'text': result = wx.jsonToXml({
-                xml:{
-                    ToUserName : msg.FromUserName,
-                    FromUserName : msg.ToUserName,
-                    CreateTime : Date.now(),
-                    MsgType : msg.MsgType,
-                    Content : content
-                }
-            });break;
-            default:
-                result = 'success';
-        }
+
+        result = wx.jsonToXml({xml: data});
         ctx.res.setHeader('Content-Type', 'text/xml');
         ctx.res.end(result);
     }
