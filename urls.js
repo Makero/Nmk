@@ -5,5 +5,7 @@ module.exports = {
 	'/invitation'	: './routes/invitation_route',
 	'/upload'		: './routes/upload_route',
 	'/wechat'		: './routes/wechat_route',
+
+	'/music' 		: './routes/music_route',
 	'/towxy'		: './routes/wxy_route'
 };

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Mk首页{% endblock %}
+{% block css %}
+<link type="text/css" rel="stylesheet" href="/css/wxy.css"/>
+{% endblock %}
+{% block body %}
+<div>
+    <p>{{ data.bitrate.show_link }}</p>
+    <audio src="{{ data.bitrate.show_link }}" controls="controls">
+        您的浏览器不支持 audio 标签。
+    </audio>
+</div>
+
+{% endblock %}
