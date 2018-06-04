@@ -6,7 +6,7 @@
 {% block body %}
 <div>
     <p>{{ data.bitrate.show_link }}</p>
-    <audio src="{{ data.bitrate.show_link }}" controls="controls">
+    <audio src="/music/play/{{data.songinfo.song_id}}?url={{ data.bitrate.show_link }}" controls="controls">
         您的浏览器不支持 audio 标签。
     </audio>
 </div>
