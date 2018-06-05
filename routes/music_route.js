@@ -7,7 +7,7 @@ router.get('/', async (ctx, next) => {
         ctx,
         params: ctx.query
     });
-
+    console.log(ctx.api);
     await ctx.render('music', {
         title: '音乐',
         data: ctx.api.data
