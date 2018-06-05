@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
-{% block title %}Mk首页{% endblock %}
+{% block title %}音乐{% endblock %}
 {% block css %}
-<link type="text/css" rel="stylesheet" href="/css/wxy.css"/>
+<link type="text/css" rel="stylesheet" href="/css/music.css"/>
 {% endblock %}
 {% block body %}
-<div>
-    <p>{{ data.bitrate.show_link }}</p>
-    <audio src="/music/play/{{data.songinfo.song_id}}?url={{ data.bitrate.show_link }}" controls="controls">
+<div class="music_box">
+    <h2>{{ data.songinfo.title }}</h2>
+    <p>- {{ data.songinfo.author }} -</p>
+    <!--<audio src="/play/music/{{ data.songinfo.song_id }}?url={{ data.bitrate.show_link }}" controls="controls">
         您的浏览器不支持 audio 标签。
-    </audio>
+    </audio>-->
 </div>
 
+<script src="/js/music.js"></script>
 {% endblock %}
