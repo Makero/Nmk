@@ -5,13 +5,14 @@
 {% endblock %}
 {% block body %}
 <div class="music_box">
+    <audio id="audio" class="hide" src="/play/music/{{ data.songinfo.song_id }}?url={{ data.bitrate.show_link }}" controls="controls"></audio>
     <h2 class="title">{{ data.songinfo.title }}</h2>
     <p>- {{ data.songinfo.author }} -</p>
     <!--<audio src="/play/music/{{ data.songinfo.song_id }}?url={{ data.bitrate.show_link }}" controls="controls">
         您的浏览器不支持 audio 标签。
     </audio>-->
     <div class="disc">
-        <div class="pic_radio">
+        <div class="pic_radio paused">
             <img src="{{ data.songinfo.pic_big }}"/>
         </div>
     </div>
