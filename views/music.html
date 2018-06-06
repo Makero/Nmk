@@ -5,7 +5,7 @@
 {% endblock %}
 {% block body %}
 <div class="music_box">
-    <audio id="audio" class="hide" src="/play/music/{{ data.songinfo.song_id }}?url={{ data.bitrate.show_link }}" autoplay></audio>
+    <audio id="audio" class="hide" src="/play/music/{{ data.songinfo.song_id }}?url={{ data.bitrate.show_link }}" autobuffer></audio>
     <h2 class="title">{{ data.songinfo.title }}</h2>
     <p>- {{ data.songinfo.author }} -</p>
     <!--<audio src="/play/music/{{ data.songinfo.song_id }}?url={{ data.bitrate.show_link }}" controls="controls">
@@ -15,6 +15,11 @@
         <div class="pic_radio paused">
             <img src="{{ data.songinfo.pic_big }}"/>
         </div>
+    </div>
+    <div class="time_progress">
+        <p id="loading">加载中，请稍后...</p>
+        <p class="time hide"><time id="current">00:00</time>/<time id="duration">00:00</time></p>
+        <p id="progress" class="progress"></p>
     </div>
     <div class="operator-btn">
         <ol>

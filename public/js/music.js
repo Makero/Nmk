@@ -1,15 +1,54 @@
-(() => {
 
-    $(".start").click(function(){
-        if($(this).hasClass("play")){
-            $(this).removeClass("play").addClass("pause");
+const Music = {
+    audio : $("#audio")[0],
+    timer : 0,
+    time : 0,
+    play : function(tag){
+        if(this.audio.paused){
+            $(tag).removeClass("play").addClass("pause");
             $(".pic_radio").removeClass("paused");
-            $("#audio")[0].play();
+            this.audio.play();
         }else{
-            $(this).removeClass("pause").addClass("play");
+            $(tag).removeClass("pause").addClass("play");
             $(".pic_radio").addClass("paused");
-            $("#audio")[0].pause();
+            this.audio.pause();
         }
-    });
+    },
+    format : function(t){
+        let minute = parseInt(t/60);
+        let sec = parseInt(t-(minute*60));
+        if(minute<10) minute = '0'+minute;
+        if(sec<10) sec = '0'+sec;
+        return minute+":"+sec
+    },
+    progress :function(tag){
+        const self = this;
+        clearInterval(self.timer);
+        this.timer = setInterval(function(){
+            let ctime = self.audio.currentTime;
+            let percent = ctime/self.time * 100;
+            $("#current").text(self.format(ctime));
+            if(!self.audio.ended){
+                $("#progress").width(percent+"%");
+            }else{
+                clearInterval(self.timer);
+                $(tag).removeClass("pause").addClass("play");
+                $(".pic_radio").addClass("paused");
+            }
 
+        },100);
+    }
+};
+
+(() => {
+    Music.audio.addEventListener("canplaythrough", () => {
+        $("#loading").addClass("hide");
+        $(".time").removeClass("hide");
+        Music.time = Music.audio.duration;
+        $("#duration").text(Music.format(Music.time));
+        $(".start").click(function(){
+            Music.play(this);
+            Music.progress(this);
+        });
+    }, false);
 })();
