@@ -5,7 +5,7 @@
 {% endblock %}
 {% block body %}
 <div class="music_box">
-    <audio id="audio" class="hide" src="/play/music/{{ data.songinfo.song_id }}?url={{ data.bitrate.show_link }}" controls="controls"></audio>
+    <audio id="audio" class="hide" src="/play/music/{{ data.songinfo.song_id }}?url={{ data.bitrate.show_link }}" autoplay></audio>
     <h2 class="title">{{ data.songinfo.title }}</h2>
     <p>- {{ data.songinfo.author }} -</p>
     <!--<audio src="/play/music/{{ data.songinfo.song_id }}?url={{ data.bitrate.show_link }}" controls="controls">
