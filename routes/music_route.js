@@ -8,7 +8,7 @@ router.get('/', async (ctx, next) => {
         params: ctx.query
     });
     console.log(ctx.api);
-    await ctx.render('music', {
+    await ctx.render('music/music', {
         title: '音乐',
         data: ctx.api.data
     })
@@ -19,6 +19,7 @@ router.get('/ajax/lrc', async(ctx, next) => {
         ctx,
         params: ctx.query
     });
-    console.log(ctx.api.data);
+    console.log(ctx.api.data.lrcContent);
+    await ctx.render('music/part/lrc', {data: ctx.api.data});
 });
 module.exports = router;

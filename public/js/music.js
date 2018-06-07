@@ -43,8 +43,8 @@ const Music = {
             url : "/music/ajax/lrc",
             type : 'get',
             data : {songid : $("#songid").val()},
-            success : function(){
-
+            success : function(result){
+                console.log(result);
             }
         })
     }

@@ -8,6 +8,7 @@ body{background: linear-gradient(#051232, #70525C);}
 .pic_radio img{width:100%;animation:rotate 30s linear infinite;}
 @keyframes rotate{ 0% {transform:rotate(0deg);} 100%{transform:rotate(360deg);} }
 .pic_radio.paused img{animation-play-state:paused;}
+.lrc-box{width:100%;height:160px;background:#ccc;position:fixed;bottom:100px;}
 .time_progress{width:100%;position:fixed;bottom:60px;}
 .time_progress .time{width:100%;text-align:center;}
 .time_progress .progress{width:0;height:1px;background:rgba(255,255,255,.6);}

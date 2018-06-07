@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends '../base.html' %}
 {% block title %}音乐{% endblock %}
 {% block css %}
 <link type="text/css" rel="stylesheet" href="/css/music.css"/>
@@ -16,6 +16,9 @@
         <div class="pic_radio paused">
             <img src="{{ data.songinfo.pic_big }}"/>
         </div>
+    </div>
+    <div class="lrc-box">
+
     </div>
     <div class="time_progress">
         <p id="loading" data-load="加载中，请稍后..."></p>
