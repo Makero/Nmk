@@ -37,11 +37,30 @@ const Music = {
             }
 
         },100);
+    },
+    lrc : function(){
+        $.ajax({
+            url : "/music/ajax/lrc",
+            type : 'get',
+            data : {songid : $("#songid").val()},
+            success : function(){
+
+            }
+        })
     }
 };
 
 (() => {
+    const loading = $("#loading").attr("data-load");
+    let n = 3;
+    const timer = setInterval(function(){
+        if(n===-1) n = 3;
+        $("#loading").text(loading.substring(0,loading.length-n));
+        n--;
+    },500);
+    Music.lrc();
     Music.audio.addEventListener("canplaythrough", () => {
+        clearInterval(timer);
         $("#loading").addClass("hide");
         $(".time").removeClass("hide");
         Music.time = Music.audio.duration;

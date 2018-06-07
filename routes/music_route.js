@@ -14,4 +14,11 @@ router.get('/', async (ctx, next) => {
     })
 });
 
+router.get('/ajax/lrc', async(ctx, next) => {
+    await songController.getSongLRC({
+        ctx,
+        params: ctx.query
+    });
+    console.log(ctx.api.data);
+});
 module.exports = router;

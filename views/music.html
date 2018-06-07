@@ -4,6 +4,7 @@
 <link type="text/css" rel="stylesheet" href="/css/music.css"/>
 {% endblock %}
 {% block body %}
+<input id="songid" type="hidden" value="{{ data.songinfo.song_id }}"/>
 <div class="music_box">
     <audio id="audio" class="hide" src="/play/music/{{ data.songinfo.song_id }}?url={{ data.bitrate.show_link }}" autobuffer></audio>
     <h2 class="title">{{ data.songinfo.title }}</h2>
@@ -17,7 +18,7 @@
         </div>
     </div>
     <div class="time_progress">
-        <p id="loading">加载中，请稍后...</p>
+        <p id="loading" data-load="加载中，请稍后..."></p>
         <p class="time hide"><time id="current">00:00</time>/<time id="duration">00:00</time></p>
         <p id="progress" class="progress"></p>
     </div>
