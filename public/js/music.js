@@ -44,7 +44,7 @@ const Music = {
             type : 'get',
             data : {songid : $("#songid").val()},
             success : function(result){
-                console.log(result);
+                $("#lrc").html(result);
             }
         })
     }
