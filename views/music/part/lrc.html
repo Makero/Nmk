@@ -1,3 +1,8 @@
-
-
-<p>{{ data.lrcContent }}</p>
+{% if list.length != 0 %}
+    <p></p><p></p>
+    {% for arr in list %}
+    <p data-time="{{ arr[0] }}">{{ arr[1] }}</p>
+    {% endfor %}
+{% else %}
+    <p>本歌曲暂无歌词</p>
+{% endif %}
