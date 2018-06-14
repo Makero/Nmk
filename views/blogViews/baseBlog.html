@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{data.theme}}-{{data.title}}</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="author" content="Maker" />
+
+    <link type="text/css" rel="stylesheet" href="/blogStatic/css/common.css">
+    <link type="text/css" rel="stylesheet" href="/blogStatic/css/base.css">
+    {% block link %}{% endblock %}
+</head>
+<body>
+{% block nav %}
+<nav class="top">
+    <ul>
+        <li><a href="/">主页</a></li>
+        <li><a {% if data.index == 4 %} class="cur" {% endif %} href="/about">关于我</a></li>
+        <li><a {% if data.index == 3 %} class="cur" {% endif %} href="/lway">长路漫漫</a></li>
+        <li><a {% if data.index == 2 %} class="cur" {% endif %} href="/life">慢生活</a></li>
+        <li><a {% if data.index == 1 %} class="cur" {% endif %} href="/recollect">记·忆</a></li>
+        <li><a {% if data.index == 0 %} class="cur" {% endif %} href="/mood">碎言碎语</a></li>
+    </ul>
+</nav>
+<div class="clearFix"></div>
+{% endblock %}
+<div class="wrapper rel">
+    {% block wrapper %}
+    <div class="content clear">
+        <h1 class="reflect fl f20">{{data.theme}}</h1>
+        {% if data.stitle %}
+        <h6 class="abs" style="top:70px;font-size:16px;color:#9DCB1C;">{{data.stitle}}</h6>
+        {% endif %}
+        <p class="line f12">{% if data.talk != "" %}{{data.talk}}{% else %}<em>您当前的位置：</em><a href="/">主页</a>&gt;<a href="{{data.url}}">{{data.urlname}}</a>&gt;<a>{{data.theme}}</a>{% endif %}</p>
+        {% block content %}
+        <div class="left fl">
+            {% block content_left %}{% endblock %}
+        </div>
+        <div class="right fr">
+            {% block content_right %}{% endblock %}
+        </div>
+        {% endblock %}
+    </div>
+    {% endblock %}
+</div>
+{% block talk %}
+<div class="IwantToSayToYou dis">
+    <h3>我想对你说</h3>
+    <p><em>陈蜜</em>，最近过的还<em>好</em>吗？好久没有你的消息，还是挺<em>想你</em>的。</p>
+    <p>网站还没有做手机版的适配，所以请使用电脑访问博客主页吧！</p>
+    <p>如果以后还有机会，再做个手机版适配。</p>
+    <p>一直以来，都没有给你太多的帮助，不过你还是靠自己的努力总算也学会了很多东西，我希望这个网站可以给你带来更多的帮助，也希望你能好好体会整个网站的开发过程，然后自己照着写一遍。当然，如果你<em>遇见</em>问题了，<em>你</em>还可以来问<em>我</em>，如果你还能原谅我的话，我会<em>很高兴</em>的。</p>
+    <p>这么久了，都没你的消息，好怀念曾经的我们，可以那样一直关心着你，和你说说话，现在都已经没有勇气去面对你，感觉自己好多的无助，明明那么喜欢你，却不敢和你联系。我知道，我有很多的不好，每次和你打电话和视频我都不知道和你说什么，总是支支吾吾，你一定很不开心吧，但真的好希望我们还能回到最初。这段时间里，每天都会想起你，想起你那开心的样子。</p>
+    <p>还记得我们以前说的那些吗？我一直都记得，你说以后带你出去玩要给你拍好多好多照片，我说要带你去海边看日出，做好多好多好吃的给你吃；我还说以后会去找你的，你说要我记得我说的，要去找你。还有好多好多，如果你还能原谅我的话，我会一个个去实现的。我会为了你改变自己所有不好的，把最好的都留给你。</p>
+    <p>说了这么多，不管以后怎样，我都希望你能过的开心。现在最希望的就是你能顺利找到实习，然后好好工作，工作上遇到问题了或者生活上有什么难处，记得还有我，一定要告诉我，我都会尽量帮你的，不要觉得不好意思对我有所亏欠，那都是一个爱你的人所要去做的事情。好好努力吧，为了自己明天更好的生活，加油啊！</p>
+    <div class="foot"><a class="button" href="/boss">进入后台管理系统</a></div>
+</div>
+{% endblock %}
+<div class="footer f14">
+    本网站由 <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=lccm722@yahoo.com" target="_bank">lccm722@yahoo.com</a> 提供技术支持
+</div>
+</body>
+<script type="text/javascript" src="/blogStatic/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="/blogStatic/js/common.js"></script>
+{% block script %}{% endblock %}
+</html>
