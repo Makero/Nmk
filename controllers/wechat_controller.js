@@ -7,6 +7,9 @@ module.exports = {
     },
     msgHandle: async(opt) => {
         await request.POST_API_DATA("/api/msg_handle", opt)
+    },
+    msgTalk: async(opt) => {
+        await request.POST_API_DATA("/api/msg_talk", opt)
     }
 
 };

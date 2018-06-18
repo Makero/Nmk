@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block css %}
+<link type="text/css" rel="stylesheet" href="/css/talk.css"/>
+{% endblock %}
+{% block body %}
+<div>
+    <audio id="audio" src="/play/speech?talk={{data.talk}}" autoplay></audio>
+</div>
+<div>
+    <input id="talk"/>
+    <button id="sub">提交</button>
+</div>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="/js/talk.js"></script>
+{% endblock %}

@@ -1,0 +1,22 @@
+.wrapper .content .left h2{text-align:center;}
+.wrapper .content .left .artMess{margin:20px 0;height:26px;line-height:26px;text-align:center;font-size:12px;border:1px dashed #ccc;}
+.wrapper .content .left .artMess span{margin-right:10px;}
+
+.wrapper .content .right .newList{border-top:2px solid #ccc;margin-top:20px;padding-top:20px;position:relative;}
+.wrapper .content .right .newList h6{font-size:16px;width:80px;height:30px;line-height:30px;color:#999;background:#fff;position:absolute;top:-16px;}
+.wrapper .content .right .newList h6 em{color:#FCB657;font-weight:600;}
+.wrapper .content .right .newList li{font-size:14px;height:26px;line-height:26px;margin-left:10px;text-indent:1em;max-width:260px;position:relative;text-overflow:ellipsis; overflow:hidden; white-space:nowrap;}
+.wrapper .content .right .newList li:before{content:"";position:absolute;top:12px;left:0;width:4px;height:4px;background:#999;}
+.wrapper .content .right .newList li a{color:#333;transition: all 1s;}
+.wrapper .content .right .newList li a:hover{text-decoration:underline; margin-left:3em;color:#999;}
+
+.wrapper .content .right .photoList{border-top:2px solid #ccc;margin-top:20px;padding-top:20px;position:relative;}
+.wrapper .content .right .photoList h6{font-size:16px;width:80px;height:30px;line-height:30px;color:#999;background:#fff;position:absolute;top:-16px;}
+.wrapper .content .right .photoList h6 em{color:#EB59A4;font-weight:600;}
+.wrapper .content .right .photoList ul:nth-child(1){width:140px;float:left;}
+.wrapper .content .right .photoList ul:nth-child(1) li{float:left;}
+.wrapper .content .right .photoList ul:nth-child(2){width:140px;float:right;}
+.wrapper .content .right .photoList ul:nth-child(2) li{float:right;}
+.wrapper .content .right .photoList li{float:left;width:130px;min-height:60px;margin-bottom:10px;padding:2px 2px 3px 2px;border:1px solid #ccc;box-shadow:2px 2px 8px rgba(0,0,0,.1);transition: all .5s;}
+.wrapper .content .right .photoList li:hover{border-color:#EB59A4;box-shadow:6px 6px 8px rgba(0,0,0,.2);}
+.wrapper .content .right .photoList li img{width:100%;}

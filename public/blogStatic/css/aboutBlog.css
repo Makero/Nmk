@@ -1,0 +1,7 @@
+.wrapper .content .left p{text-indent:2em;font-size:18px;line-height:30px;font-weight:600;font-family:myFont2;}
+.wrapper .content .left .talk a{color:#333;}
+.wrapper .content .left .talk a:hover{color:#ccc;}
+.wrapper .content .right li{height:30px;line-height:30px;}
+.wrapper .content .right a{color:#000;}
+.wrapper .content .right a:hover{color:#999;}
+.wrapper .content .right .imgMe{margin-top:60px;height:420px;background:url(../images/bg4.jpg) no-repeat center;}
