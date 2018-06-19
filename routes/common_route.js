@@ -1,6 +1,7 @@
 const router = require('koa-router')();
 const request = require('request');
 const client = require('../utils/speech_util');
+const fs = require('fs');
 
 
 function requestOrderAPI(path,obj){
@@ -35,8 +36,14 @@ router.get('/play/music/:id', async (ctx, netx) => {
 
 /** 语音合成 **/
 router.get('/play/speech', async (ctx, next) => {
-    const result = await client.text2audio(ctx.query.talk, {pit: 8, per: 4});
-    ctx.status = 200;ctx.type = 'mp3';ctx.body = result.data;
+    try{
+        const result = await client.text2audio(ctx.query.talk, {pit: 8, per: 4});
+        ctx.status = 200;ctx.type = 'mp3';ctx.body = result.data;
+    }catch(error){
+        console.error("网络异常");
+        const stream = fs.createReadStream(process.cwd()+'/public/audio/dropline.mp3');
+        ctx.body = stream
+    }
 });
 
 module.exports = router;

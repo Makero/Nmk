@@ -10,6 +10,12 @@ module.exports = {
     },
     msgTalk: async(opt) => {
         await request.POST_API_DATA("/api/msg_talk", opt)
+    },
+    qykTalk: async(opt) => {
+        await request.POST_API_DATA("/api/qing_yun_ke", opt)
+    },
+    wxConfig: async(opt) => {
+        await request.POST_API_DATA("/api/wx_config", opt)
     }
 
 };
