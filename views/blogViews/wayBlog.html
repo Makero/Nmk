@@ -12,7 +12,7 @@
     <li>
         <h4><a href="/{% if art.type == '1' %}lway{% else %}life{% endif %}/blog?id={{art.Id}}">{{art.title}}</a></h4>
         <div class="artMess clear">
-            <dl><dd>发表时间：<time>{{art.time|date('Y-m-d', -480)}}</time></dd><dd>作者：陈蜜</dd><dd>
+            <dl><dd>发表时间：<time>{{art.time|date('Y-m-d', -480)}}</time></dd><dd>作者：Maker</dd><dd>
                 {% if data.stitle == "" %}
                 [<a href="/{% if art.type == '1' %}lway{% else %}life{% endif %}/type?name={{art.typenm}}">
                 {{art.typenm}}</a>]
