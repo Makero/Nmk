@@ -17,7 +17,7 @@
             });
 
             wx.error(function(res){
-                console.error(res);
+                alert("抱歉，暂无法使用该功能");
             });
 
             wx.checkJsApi({
