@@ -33,7 +33,7 @@ nav.top ul li a:hover{color:#999;}
 	.IwantToSayYou{display:block;width:80%;margin:20px auto;font-size:20px;font-family: myFont2,myFont;padding-bottom:60px;}
 	.IwantToSayYou h3{text-align:center;font-size:32px;font-weight:300;margin-bottom:20px;text-shadow: 3px 3px 2px #999;}
 	.IwantToSayYou em{font-size:1.4em;text-shadow: 2px 2px 2px #999;}
-	.IwantToSayYou p{text-indent:1em;}
+	.IwantToSayYou p{text-align:center;}
 	.IwantToSayYou .foot{width:100%;height:60px;box-shadow:0 -2px 4px rgba(0,0,0,.1);position:fixed;bottom:0;left:0;background:#F5AAE8;animation: changeColor 10s infinite;}
 	.IwantToSayYou .foot .button{display:block;width:200px;margin:12px auto;font-size:16px;height:36px;line-height:36px;color:#fff;border-radius:3px;text-align:center;border:1px solid #fff;}
 }
