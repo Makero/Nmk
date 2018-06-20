@@ -6,7 +6,7 @@
 {% block body %}
 <input id="songid" type="hidden" value="{{ data.songinfo.song_id }}"/>
 <div class="music_box">
-    <audio id="audio" class="hide" src="/play/music/{{ data.songinfo.song_id }}?url={{ data.bitrate.show_link }}" autobuffer></audio>
+    <audio id="audio" class="hide" src="/play/music/{{ data.songinfo.song_id }}?url={{ data.bitrate.file_link }}" autobuffer></audio>
     <h2 class="title">{{ data.songinfo.title }}</h2>
     <p>- {{ data.songinfo.author }} -</p>
     <!--<audio src="/play/music/{{ data.songinfo.song_id }}?url={{ data.bitrate.show_link }}" controls="controls">
