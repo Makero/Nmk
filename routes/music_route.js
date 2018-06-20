@@ -7,7 +7,6 @@ router.get('/', async (ctx, next) => {
         ctx,
         params: {songid:ctx.query.songid.split(',')[0]}
     });
-    console.log(ctx.api);
     await ctx.render('music/music', {
         title: '音乐',
         data: ctx.api.data
@@ -19,7 +18,7 @@ router.get('/ajax/lrc', async(ctx, next) => {
         ctx,
         params: ctx.query
     });
-    let arr = '';
+    let arr = '',lrcArr = [];
     if(!ctx.api.data.error_code){
         /** 将歌词文本转化成数组类型 **/
         arr = ctx.api.data.lrcContent.replace(/\r/g,'').split('\n');
@@ -27,16 +26,16 @@ router.get('/ajax/lrc', async(ctx, next) => {
             arr[n].replace(/(\[.*\])/, function(rs, $1, offset, source){
                 let lrc = source.replace($1,'');
                 let time = $1.replace('[','').replace(']','');
-                let temp = time.split(".");
-                if(temp[1].length === 1) temp[1] = "0"+temp[1];
-                time = temp[0] +"."+ temp[1];
-                arr[n] = [time, lrc];
+                if (!RegExp(/[a-z]/g).test(time)){
+                    let temp = time.split(".");
+                    if(temp[1].length === 1) temp[1] = "0"+temp[1];
+                    time = temp[0] +"."+ temp[1];
+                    lrcArr.push([time, lrc]);
+                }
+
             });
-            if(typeof(arr[n]) === "string"){
-                arr[n] = [0, arr[n]];
-            }
         }
     }
-    await ctx.render('music/part/lrc', {list: arr});
+    await ctx.render('music/part/lrc', {list: lrcArr});
 });
 module.exports = router;
