@@ -12,7 +12,7 @@ router.get('/', async (ctx, next) => {
     data.stitle = "";
     let adata   = [];
 
-    await ctx.render('blogViews/aboutBlog',{data,mess:adata})
+    await ctx.render('blog/aboutBlog',{data,mess:adata})
 });
 
 module.exports = router;

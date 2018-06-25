@@ -18,11 +18,11 @@ const upload = multer({ storage: storage });
 
 
 router.get('/', async (ctx, next) => {
-    await ctx.render('upload')
+    await ctx.render('wechat/upload')
 });
 
 router.post('/', upload.single('file'), async (ctx, next) => {
 
-    await ctx.render('uploadSuccess',{result:ctx.req.file.filename});
+    await ctx.render('wechat/uploadSuccess',{result:ctx.req.file.filename});
 });
 module.exports = router;

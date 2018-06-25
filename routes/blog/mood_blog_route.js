@@ -11,7 +11,7 @@ router.get('/', async (ctx, next) => {
     let date = new Date();
     let dt     = date.getDay();
     let week = ['日','一','二','三','四','五','六'];
-    await ctx.render('blogViews/moodBlog',{data:data,dat:dat,date:date,week:week[dt],sear:0});
+    await ctx.render('blog/moodBlog',{data:data,dat:dat,date:date,week:week[dt],sear:0});
 });
 
 module.exports = router;

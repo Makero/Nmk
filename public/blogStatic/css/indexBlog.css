@@ -28,7 +28,7 @@ body{background:#F7FAF3;}
 /*模块2*/
 .modelOne .img{min-width:1200px;}
 .modelOne{height:680px;background:rgba(0,0,0,.5);overflow:hidden;}
-.modelOne nav{left:24%;top:120px;z-index:12;}
+.modelOne nav{left:22%;top:120px;z-index:12;}
 .modelOne nav li{float:left;width:30px;text-align:center;border:1px solid #fff;box-shadow:0 0 8px rgba(255,255,255,.6);cursor:pointer;transition: all .3s;}
 .modelOne nav li a{color:#fff;float:left;height:100%;}
 .modelOne nav li:nth-child(1){height:180px;padding-top:100px;background:rgba(237,87,163,.9);margin-top:20px;}
@@ -41,7 +41,7 @@ body{background:#F7FAF3;}
 .modelOne nav li:nth-child(3):hover{height:240px;padding-top:160px;margin-top:-40px;}
 .modelOne nav li:nth-child(4):hover{height:260px;padding-top:160px;margin-top:-40px;}
 .modelOne nav li:nth-child(5):hover{height:180px;padding-top:100px;margin-top:20px;}
-.magic{top:120px;left:38%;width:400px;height:400px;z-index:11;transform: rotate(45deg);}
+.magic{top:120px;left:46%;width:400px;height:400px;z-index:11;transform: rotate(45deg);}
 .magic li{float:left;width:120px;height:120px;margin:5px;overflow:hidden;box-shadow:1px 1px 6px rgba(0,0,0,.3);}
 .magic li span{display:block;width:170px;height:170px;line-height:170px;text-align:center;margin:-25px;transform: rotate(-45deg);position:relative;}
 .magic li span:before{display:block;width:100%;height:100%;position:absolute;top:-170px;color:#fff;background:rgba(0,0,0,.5);transition: top .5s;}
@@ -83,7 +83,7 @@ body{background:#F7FAF3;}
 .car{width:510px;height:232px;background:url(../images/car.png) no-repeat left center;position:absolute;z-index:100;bottom:30px;left:-10px;transition: left 10s;}
 .car:before{content:"";position:absolute;background:url(../images/car_lun.png) no-repeat center;width:66px;height:66px;left:64px;bottom:15px;transform: rotate(0deg);transition: transform 10s;}
 .car:after{content:"";position:absolute;background:url(../images/car_lun.png) no-repeat center;width:66px;height:66px;right:69px;bottom:15px;transform: rotate(0deg);transition: transform 10s;}
-.road:hover .car{left:1500px;}
+.road:hover .car{left:100%;}
 .road:hover .car:before{transform: rotate(1640deg);}
 .road:hover .car:after{transform: rotate(1640deg);}
 

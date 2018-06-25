@@ -1,11 +1,10 @@
 const router = require('koa-router')();
-const message = require('../utils/wechat_msg_util');
-const wechatControl = require('../controllers/wechat_controller');
+const message = require('../../utils/wechat_msg_util');
+const wechatControl = require('../../controllers/wechat_controller');
 
 
 router.get('/', async (ctx) => {
 
-    console.log(ctx.query);
     if(!ctx.query.echostr){
         ctx.body = "访问不正确！";
         return;

@@ -1,6 +1,6 @@
 const router = require('koa-router')();
 const request = require('request');
-const client = require('../utils/speech_util');
+const client = require('../../utils/speech_util');
 const fs = require('fs');
 
 
@@ -25,7 +25,7 @@ function requestOrderAPI(path,obj){
 
 
 router.get('/', async (ctx, next) => {
-  await ctx.render('index');
+  await ctx.render('wechat/index');
 });
 
 /** 音乐播放 **/
