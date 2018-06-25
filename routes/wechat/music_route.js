@@ -2,11 +2,19 @@ const router = require('koa-router')();
 const songController = require('../../controllers/music_controller');
 
 router.get('/', async (ctx, next) => {
-    console.log(ctx.query);
+    console.log(ctx.query.songid);
+    if(ctx.query.songid === undefined){
+        ctx.body = "参数错误！";
+        return;
+    }
     await songController.getSong({
         ctx,
         params: {songid:ctx.query.songid.split(',')[0]}
     });
+    if(ctx.api.data.errno){
+        ctx.body = "音乐不存在";
+        return;
+    }
     await ctx.render('wechat/music/music', {
         title: '音乐',
         data: ctx.api.data

@@ -48,7 +48,7 @@ const Music = {
     },
     lrc : function(){//获取歌词
         $.ajax({
-            url : "/music/ajax/lrc",
+            url : "/wechat/music/ajax/lrc",
             type : 'get',
             data : {songid : $("#songid").val()},
             success : function(result){

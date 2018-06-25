@@ -41,8 +41,7 @@ router.get('/play/speech', async (ctx, next) => {
         ctx.status = 200;ctx.type = 'mp3';ctx.body = result.data;
     }catch(error){
         console.error("网络异常");
-        const stream = fs.createReadStream(process.cwd()+'/public/audio/dropline.mp3');
-        ctx.body = stream
+        ctx.body = fs.createReadStream(process.cwd()+'/public/audio/dropline.mp3');
     }
 });
 
