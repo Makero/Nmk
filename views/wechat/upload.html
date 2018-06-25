@@ -4,7 +4,7 @@
 <style>
     .formBox{margin-top:40px;text-align:center;}
     .formBox h1{font-size:20px;margin-bottom:100px;}
-    .formBox button{width:100px;height:100px;border-radius:500px;border:0;background:#ddd url(/images/upload-ico.png) no-repeat center;background-size:80%;}
+    .formBox button{width:100px;height:100px;border-radius:500px;border:0;background:#ddd url(/wechatStatic/images/upload-ico.png) no-repeat center;background-size:80%;}
     .formBox button:active{background-color:#efefef;}
 </style>
 {% endblock %}
@@ -14,7 +14,7 @@
     <h1>邀请函的群聊二维码上传</h1>
 
     <button id="fileBtn"></button>
-    <form action="/upload" method="post" enctype="multipart/form-data">
+    <form action="/wechat/upload" method="post" enctype="multipart/form-data">
         <input style="display:none;" id="inpFile" type="file" name="file"/>
         <input style="display:none;" type="submit" id="sub"/>
     </form>
