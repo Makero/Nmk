@@ -1,9 +1,12 @@
 (() => {
     $.ajax({
-        url: '/talk/ajax/wxConfig',
+        url: '/wechat/talk/ajax/wxConfig',
         type: 'post',
         success: function(result){
-            console.log(result);
+            if(result === 'error'){
+                console.log("不能调用微信jssdk,没有签名");
+                return;
+            }
             wx.config({
                 debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                 appId: result.appid, // 必填，公众号的唯一标识
@@ -34,25 +37,22 @@
 
     document.body.addEventListener('touchstart', function () { });
     window.ontouchstart = function(e) {
-        e.preventDefault();
+        const event = e || window.event;
+        event.preventDefault();
     };
 
-    var tag = $("#start")[0];
+    const tag = $("#start")[0];
 
     tag.addEventListener('touchstart',touch, false);
     tag.addEventListener('touchend',touch, false);
 
-    function touch (event){
-        var event = event || window.event;
-
-
+    function touch (eve){
+        const event = eve || window.event;
         switch(event.type){
             case "touchstart":
-                console.log("1");
                 wx.startRecord();
                 break;
             case "touchend":
-                console.log("2");
                 wx.stopRecord({
                     success: function (res) {
                         localId = res.localId;
@@ -61,7 +61,7 @@
                             isShowProgressTips: 1, // 默认为1，显示进度提示
                             success: function (res) {
                                 $.ajax({
-                                    url: "/talk/ajax/qyk",
+                                    url: "/wechat/talk/ajax/qyk",
                                     type: 'post',
                                     data: {talk:res.translateResult},   // 语音识别的结果
                                     success: function(result){
@@ -76,7 +76,6 @@
         }
 
     }
-
 
 
 })();

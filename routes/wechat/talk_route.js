@@ -1,10 +1,14 @@
 const router = require('koa-router')();
+const talkConfig = require('../../config/talk_config');
 const wechatController = require('../../controllers/wechat_controller');
 
+getRandomNum = (max, min) => {
+    return Math.round(Math.random()*(max - min));
+};
+const n = talkConfig.length;
 router.get('/', async (ctx, next) => {
     await ctx.render('wechat/talk', {
-        title: '和晗晗对话',
-        data: {talk:"你来啦，我等你好久了呢，咱们开始聊天吧"}
+        data: {talk:talkConfig[getRandomNum(n, 0)]}
     })
 });
 
@@ -16,7 +20,8 @@ router.post('/ajax/wxConfig', async (ctx, next) => {
     if(ctx.api.code === 200){
         ctx.body = ctx.api.data;
     }else{
-        ctx.body = '失败了';
+        console.error(ctx.api);
+        ctx.body = 'error';
     }
 });
 

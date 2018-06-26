@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
-{% block title %}{{ title }}{% endblock %}
+{% block title %}聊天{% endblock %}
 {% block css %}
 <link type="text/css" rel="stylesheet" href="/wechatStatic/css/talk.css"/>
 {% endblock %}
 {% block body %}
 <div>
-    <audio id="audio" src="/play/speech?talk={{data.talk}}" autoplay></audio>
+    <audio id="audio" src="/play/speech?talk={{data.talk}}" autoplay ></audio>
 </div>
 <div>
-    <br/><dr/>
-    <button id="start" style="user-select:none;margin-top:100px;padding:20px;">录音</button>
+    <span class="girl"></span>
+    <span id="start" class="btn"></span>
 </div>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script src="/wechatStatic/js/talk.js"></script>
