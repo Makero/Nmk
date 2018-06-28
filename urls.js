@@ -1,5 +1,5 @@
 module.exports = {
-	'/' 						: './routes/wechat/common_route',
+	'/' 						: './routes/common_route',
     '/wechat'					: './routes/wechat/wechat_route',
 	'/wechat/photo'				: './routes/wechat/photo_route',
 	'/wechat/invitation'		: './routes/wechat/invitation_route',

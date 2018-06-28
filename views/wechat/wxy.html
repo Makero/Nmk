@@ -2,10 +2,23 @@
 {% block title %}Mk首页{% endblock %}
 {% block css %}
 <link type="text/css" rel="stylesheet" href="/wechatStatic/css/wxy.css"/>
+<style>
+    .editor{}
+</style>
 {% endblock %}
 {% block body %}
 <div>
-    <p>傻大白</p>
+    {% include '../plugin/simditor.html' with {type:'article', name: '发布'} %}
+<!--<button id="ask">提问</button>
+    <div class="editor fn-hide">
+
+
+    </div>-->
 </div>
 
+<script>
+    $("#ask").click(function(){
+        $(".editor").removeClass("fn-hide");
+    });
+</script>
 {% endblock %}

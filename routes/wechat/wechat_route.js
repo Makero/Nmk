@@ -39,4 +39,9 @@ router.post('/', async (ctx) => {
     }
 });
 
+
+router.get('/test', async (ctx, next) => {
+    await ctx.render('test');
+});
+
 module.exports = router;

@@ -1,6 +1,6 @@
 const router = require('koa-router')();
 const request = require('request');
-const client = require('../../utils/speech_util');
+const client = require('../utils/speech_util');
 const fs = require('fs');
 
 
@@ -23,9 +23,14 @@ function requestOrderAPI(path,obj){
     });
 }
 
-
+/** 网站首页 **/
 router.get('/', async (ctx, next) => {
   await ctx.render('wechat/index');
+});
+
+/** 文章保存 **/
+router.post('/article/save', async (ctx, netx) => {
+    await ctx.render();
 });
 
 /** 音乐播放 **/

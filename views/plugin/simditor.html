@@ -1,0 +1,96 @@
+<!--
+*
+*   编辑器插件说明 http://baijiahao.baidu.com/s?id=1585227558481915576&wfr=spider&for=pc
+*   使用方法说明 https://blog.csdn.net/Wing_93/article/details/78826576
+*
+-->
+
+<link rel="stylesheet" type="text/css" href="/plugin/simditor/css/simditor.css" />
+<link rel="stylesheet" type="text/css" href="/plugin/simditor/css/simditor-emoji.css" />
+<script type="text/javascript" src="/plugin/simditor/js/module.min.js"></script>
+<script type="text/javascript" src="/plugin/simditor/js/hotkeys.min.js"></script>
+<script type="text/javascript" src="/plugin/simditor/js/uploader.min.js"></script>
+<script type="text/javascript" src="/plugin/simditor/js/simditor.min.js"></script>
+<script type="text/javascript" src="/plugin/simditor/js/simditor-emoji.min.js"></script>
+{% set btnName = name or '提交' %}
+{% set bgColor = color or '#52BCAA' %}
+{% if type == 'article' %}<!-- 文章 -->
+    <script type="text/javascript" src="/plugin/simditor/js/autosave.min.js"></script>
+    <input id="messType" type="hidden" value="article"/>
+    <div class="simditor-editor-float">
+        <div class="simditor-textarea fn-clearfix" style="border-color:{{bgColor}}">
+            <h1 class="title"><input type="text" placeholder="请输入标题" name="title"/></h1>
+            <textarea id="editor" placeholder="请输入文章内容" autofocus></textarea>
+            <button id="submit" class="simditor-submit" style="background:{{bgColor}}">{{btnName}}</button>
+        </div>
+    </div>
+{% elseif type == 'comment' %}<!-- 评论 -->
+    <input id="messType" type="hidden" value="comment"/>
+    <textarea id="editor" placeholder="你想说点什么" autofocus></textarea>
+    <button id="submit" class="simditor-submit" style="background:{{bgColor}}">{{btnName}}</button>
+{% elseif type == 'mood' %}<!-- 心情 -->
+    <input id="messType" type="hidden" value="mood"/>
+    <textarea id="editor" placeholder="此刻心情如何？" autofocus></textarea>
+    <button id="submit" class="simditor-submit" style="background:{{bgColor}}">{{btnName}}</button>
+{% else %}
+    <textarea id="editor" placeholder="请输入文字内容" autofocus></textarea>
+    <button id="submit" class="simditor-submit" style="background:{{bgColor}}">{{btnName}}</button>
+{% endif %}
+<script>
+
+    let tools = ['bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'emoji', 'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment'];
+    if($("#device").val() === "wx"){
+        tools = ['bold', 'italic', 'underline', 'color', '|', 'emoji', 'link'];
+    }
+    const type = $("#messType").val();
+    switch(type){
+        case 'article': tools = ['bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment'];break;
+        case 'comment': tools = ['bold', 'italic', 'underline', 'color', '|', 'emoji', 'link'];break;
+        case 'mood':    tools = ['emoji', 'bold', 'color', 'link'];break;
+    }
+    const editor = new Simditor({
+        textarea: $('#editor'),
+        autosave: 'editor-content',
+        toolbar:  tools, //工具条都包含哪些内容
+        pasteimage: false,
+        upload : {
+            url : 'richtext_img_upload.do', //文件上传的接口地址
+            params: null, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交
+            fileKey: 'upload_file', //服务器端获取文件数据的参数名
+            connectionCount: 3,
+            leaveConfirm: '正在上传文件'
+        },
+        emoji: {
+            imagePath: '/plugin/simditor/images/emoji/'
+        }
+    });
+    $(".simditor-toolbar li a").click(function(){
+        $(".simditor-body").focus();
+    });
+    $("#submit").click(function(){
+        const title = $("input[name='title']").val();
+        const content = editor.getValue();
+        if(content.length === 0){
+            return;
+        }
+        if(title === undefined){
+            submit({
+                content: content
+            });
+        }else{
+
+        }
+
+    });
+
+    function submit(data){
+        $.ajax({
+            url: $("#simditorUrl").val(),
+            type: 'post',
+            data: data,
+            success: function(result){
+
+            }
+        })
+    }
+</script>
