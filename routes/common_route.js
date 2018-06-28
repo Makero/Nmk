@@ -30,7 +30,7 @@ router.get('/', async (ctx, next) => {
 
 /** 文章保存 **/
 router.post('/article/save', async (ctx, netx) => {
-    await ctx.render();
+    /*await ctx.render();*/
 });
 
 /** 音乐播放 **/
