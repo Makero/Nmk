@@ -2,6 +2,7 @@ const router = require('koa-router')();
 const request = require('request');
 const client = require('../utils/speech_util');
 const fs = require('fs');
+const wechatController = require('../controllers/wechat_controller');
 
 
 function requestOrderAPI(path,obj){
@@ -26,6 +27,21 @@ function requestOrderAPI(path,obj){
 /** 网站首页 **/
 router.get('/', async (ctx, next) => {
   await ctx.render('wechat/index');
+});
+
+/** 获取jsapi签名 **/
+router.post('/ajax/wxConfig', async (ctx, next) => {
+    await wechatController.wxConfig({
+        ctx,
+        params: ctx.request.body
+    });
+    if(ctx.api.code === 200){
+        console.log(ctx.api.data);
+        ctx.body = ctx.api.data;
+    }else{
+        console.error(ctx.api);
+        ctx.body = 'error';
+    }
 });
 
 /** 文章保存 **/
