@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}用户认证{% endblock %}
+{% block css %}
+<style>
+    .auth{text-align:center;}
+</style>
+{% endblock %}
+{% block body %}
+<div class="auth">
+    <h1>公众号用户认证</h1>
+    <input id="authKey" placeholder="输入认证密钥" />
+    <button id="submit">认 证</button>
+</div>
+
+<script src="/commonStatic/js/common.js"></script>
+<script>
+
+    $("#submit").click(function () {
+        const key = $("#authKey").val().replace(/\s+/g,'');
+        if(key.length){
+            $.ajax({
+                url: '/wechat/auth/ajax/key',
+                type: 'post',
+                data: {authKey: key},
+                success: function(result){
+                    if(result.openid){
+                        setCookie('openid', result.openid, 365);
+                        alert("认证成功");
+                    }else{
+                        alert("认证失败");
+                    }
+
+                }
+            })
+        }
+    });
+
+</script>
+{% endblock %}

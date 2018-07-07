@@ -5,6 +5,14 @@ const fs = require('fs');
 const wechatController = require('../controllers/wechat_controller');
 
 
+router.get('/s1', async (ctx, next) => {
+    await ctx.render('socket1');
+});
+
+router.get('/s2', async (ctx, next) => {
+    await ctx.render('socket2');
+});
+
 function requestOrderAPI(path,obj){
     return new Promise(function(resolve, reject) {
         request({

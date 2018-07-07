@@ -54,6 +54,8 @@ var port = normalizePort(process.env.PORT || '3000');
 
 var server = http.createServer(app.callback());
 
+var io = require('socket.io').listen(server);
+
 /**
  * Listen on provided port, on all network interfaces.
  */
@@ -61,6 +63,24 @@ var server = http.createServer(app.callback());
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+var arrAllSocket = {};
+//socket部分
+io.on('connection', function(socket) {
+
+    socket.on('join', function (userName){
+        arrAllSocket[userName] = socket;
+    });
+    //接收并处理客户端发送的 私有消息 事件
+    socket.on('private_message', function(from, to, msg) {
+        var target = arrAllSocket[to];
+        target.emit("pmsg",from,to,msg);
+    });
+
+    socket.on('public_message', function(msg){
+        socket.broadcast.emit('message', msg);
+    });
+});
 
 /**
  * Normalize a port into a number, string, or false.

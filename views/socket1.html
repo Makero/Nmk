@@ -1,0 +1,14 @@
+扫码后的页面
+
+<textarea id="content"></textarea><br/>
+<label>名字：<input id="name"/></label><button id="login">登录</button><br/>
+<button id="sendBtn">发送消息</button>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io.connect();//与服务器进行连接
+    socket.emit('join', 'Maker');
+
+    socket.emit("private_message",'Maker','12345678abc', "openid");
+
+</script>
