@@ -17,4 +17,5 @@ module.exports = {
 	'/blog/personal'	: './routes/blog/about_blog_route',
 	'/blog/article'		: './routes/blog/article_blog_route',
 	'/blog/way'			: './routes/blog/way_blog_route',
+
 };

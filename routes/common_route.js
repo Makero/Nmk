@@ -5,14 +5,6 @@ const fs = require('fs');
 const wechatController = require('../controllers/wechat_controller');
 
 
-router.get('/s1', async (ctx, next) => {
-    await ctx.render('socket1');
-});
-
-router.get('/s2', async (ctx, next) => {
-    await ctx.render('socket2');
-});
-
 function requestOrderAPI(path,obj){
     return new Promise(function(resolve, reject) {
         request({
@@ -35,6 +27,16 @@ function requestOrderAPI(path,obj){
 /** 网站首页 **/
 router.get('/', async (ctx, next) => {
   await ctx.render('wechat/index');
+});
+
+/** 网站登录 **/
+router.get('/login', async (ctx, next) => {
+
+    await ctx.render('login');
+});
+/** 二维码登录处理 **/
+router.get('/handle_qrcode', async (ctx, next) => {
+    await ctx.render('handleQRcode');
 });
 
 /** 获取jsapi签名 **/

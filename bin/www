@@ -71,9 +71,14 @@ io.on('connection', function(socket) {
     socket.on('join', function (userName){
         arrAllSocket[userName] = socket;
     });
+    socket.on('exit', function (userName){
+        delete  arrAllSocket[userName];
+        console.log(arrAllSocket);
+    });
     //接收并处理客户端发送的 私有消息 事件
     socket.on('private_message', function(from, to, msg) {
         var target = arrAllSocket[to];
+
         target.emit("pmsg",from,to,msg);
     });
 

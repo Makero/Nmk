@@ -8,6 +8,22 @@
 //
 //==============================================================
 
+/** 自定义方法 **/ //2018-07-08
+$.fn.extend({
+    //盒子居中
+    'BoxCenter':function(){
+        const _self = this;
+        $(window).resize(function(){
+            let l = ($(window).width() - $(_self).width()) / 2;
+            let t = ($(window).height() - $(_self).height()) / 2;
+            $(_self).css({"top":t+"px","left":l+"px"});
+        });
+        $(window).resize();
+        $(_self).css('opacity',1);
+    }
+});
+
+
 /*************************/
 /*2016-05-20             */
 /*************************/
@@ -77,15 +93,6 @@ var DateTime = {
 	}
 };
 
-//盒子居中
-function BoxCenter(id){
-	$(window).resize(function(){
-		var l = ($(window).width() - $(id).width()) / 2;
-		var t = ($(window).height() - $(id).height()) / 2;
-		$(id).css({"top":t+"px","left":l+"px"});
-	});
-	$(window).resize();
-}
 
 /*************************/
 /*2016-05-22/26          */
@@ -245,14 +252,47 @@ Touch.prototype.end  = function(callback){
 	this.id.addEventListener("touchend", callback, false);
 };
 
+/** 中文转码 **/
+function toUtf8(str) {
+    var out, i, len, c;
+    out = "";
+    len = str.length;
+    for (i = 0; i < len; i++) {
+        c = str.charCodeAt(i);
+        if ((c >= 0x0001) && (c <= 0x007F)) {
+            out += str.charAt(i);
+        } else if (c > 0x07FF) {
+            out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
+            out += String.fromCharCode(0x80 | ((c >> 6) & 0x3F));
+            out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+        } else {
+            out += String.fromCharCode(0xC0 | ((c >> 6) & 0x1F));
+            out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+        }
+    }
+    return out;
+}
 
+/** 获取url参数 **/
+function getRequest(path) {
+    var url = path || window.location.search; //获取url中"?"符后的字串
+    var theRequest = new Object();
+    if (url.indexOf("?") != -1) {
+        var str = url.substr(1);
+        strs = str.split("&");
+        for(var i = 0; i < strs.length; i ++) {
+            theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+        }
+    }
+    return theRequest;
+}
 
 //设置cookie
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + "; " + expires;
+    document.cookie = cname + "=" + cvalue + "; " + expires +";path=/";
 }
 //获取cookie
 function getCookie(cname) {
@@ -268,4 +308,16 @@ function getCookie(cname) {
 //清除cookie
 function clearCookie(name) {
     setCookie(name, "", -1);
+}
+
+/** 随机生成字符串 **/
+function randomString(len) {
+    len = len || 8;
+    const $chars = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890';    /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
+    const maxPos = $chars.length;
+    let pwd = '';
+    for (i = 0; i < len; i++) {
+        pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return pwd;
 }
