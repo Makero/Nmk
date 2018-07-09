@@ -31,13 +31,27 @@ router.get('/', async (ctx, next) => {
 
 /** 网站登录 **/
 router.get('/login', async (ctx, next) => {
-
     await ctx.render('login');
 });
 /** 二维码登录处理 **/
 router.get('/handle_qrcode', async (ctx, next) => {
     await ctx.render('handleQRcode');
 });
+/** 登录 身份校验 **/
+router.post('/ajax/identityCheck', async (ctx, next) => {
+    await wechatController.identityCheck({
+        ctx,
+        params: ctx.request.body
+    });
+
+    if(ctx.api.code === 200){
+        ctx.body = ctx.api.data;
+    }else{
+        console.error(ctx.api);
+        ctx.body = 'error';
+    }
+});
+
 
 /** 获取jsapi签名 **/
 router.post('/ajax/wxConfig', async (ctx, next) => {

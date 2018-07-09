@@ -16,6 +16,9 @@ module.exports = {
     },
     wxConfig: async(opt) => {
         await request.POST_API_DATA("/api/wx_config", opt)
-    }
+    },
+    identityCheck: async(opt) => {
+        await request.POST_API_DATA("/api/identity_check", opt)
+    },
 
 };

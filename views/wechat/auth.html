@@ -23,8 +23,9 @@
                 type: 'post',
                 data: {authKey: key},
                 success: function(result){
-                    if(result.openid){
-                        setCookie('openid', result.openid, 365);
+                    if(result.openID){
+                        setCookie('openID', result.openID, 365);
+                        setCookie('secretKey', result.secretKey, 365);
                         alert("认证成功");
                     }else{
                         alert("认证失败");

@@ -32,15 +32,12 @@
 <script type="text/javascript">
 
     const ident = randomString(16);
+    console.log(ident);
     const msg = toUtf8("请使用公众号提供的扫码进行扫码登录");
     const g = toUtf8("微信公众号：namehanr722");
-    const socket = io.connect();//与服务器进行连接
-    socket.emit('join', ident);
-    socket.on('pmsg', function (from,to,openid){
-        const reqData = getRequest();
-        window.location.href = reqData.redirectURL;
-    });
+
     $("#loginBox").BoxCenter();
+
     $('#qrcode').qrcode({
         render: "canvas", //也可以替换为table
         width: 200,
@@ -48,6 +45,24 @@
         foreground: "#333",
         background: "#FFF",
         text: "login=="+ident+"==\n"+msg+"\n"+g
+    });
+
+    const socket = io.connect();//与服务器进行连接
+    socket.emit('join', ident);
+
+    socket.on('pmsg', function (from, msg){
+        console.log(msg);
+        $.ajax({
+            url: "/ajax/identityCheck",
+            type: "post",
+            data: msg,
+            success: function(result){
+                setCookie('authToken', result.authToken, 5);
+                const reqData = getRequest();
+                window.location.href = reqData.redirectURL || '/';
+            }
+
+        });
     });
 </script>
 </body>

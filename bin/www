@@ -65,11 +65,20 @@ server.on('error', onError);
 server.on('listening', onListening);
 
 const arrAllSocket = {};
+const userAllSocket = {};
 //socket部分
 io.on('connection', function(socket) {
+    // 这里监听 disconnect，就可以知道谁断开连接了
+    socket.on('disconnect', function () {
+        const userName = userAllSocket[socket.id];
+        delete arrAllSocket[userName];
+        delete userAllSocket[socket.id];
+    });
     //用户加入
     socket.on('join', function (userName){
         arrAllSocket[userName] = socket;
+        userAllSocket[socket.id] = userName;
+        console.log(userName);
     });
     //用户退出
     socket.on('exit', function (userName){
@@ -78,8 +87,12 @@ io.on('connection', function(socket) {
     //接收并处理客户端发送的 私有消息 事件
     socket.on('private_message', function(from, to, msg) {
         const target = arrAllSocket[to];
-
-        target.emit("pmsg",from,to,msg);
+        try {
+            target.emit("pmsg", from, msg);
+        } catch (error) {
+            console.error(to+'已经断开连接！');
+            arrAllSocket[from].emit('errmsg','已断开，无法发送消息');
+        }
     });
     //公共消息
     socket.on('public_message', function(msg){
