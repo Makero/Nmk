@@ -1,10 +1,9 @@
-const request = require('../utils/request_util'),
-    path = request.apiPath;
+const request = require('../utils/request');
 
 module.exports = {
 
     isAuth : async (opt) => {
-        await request.POST_API_DATA(path.wechat+"/auth", opt);
+        await request.POST_API("wechat", "/auth", opt);
     }
 
 };

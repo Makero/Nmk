@@ -1,6 +1,6 @@
 const router = require('koa-router')();
 const request = require('request');
-const client = require('../utils/speech_util');
+const client = require('../utils/speech');
 const fs = require('fs');
 const wechatController = require('../controllers/wechat_controller');
 
@@ -33,23 +33,14 @@ router.get('/', async (ctx, next) => {
 router.get('/login', async (ctx, next) => {
     await ctx.render('login');
 });
-/** 二维码登录处理 **/
-router.get('/handle_qrcode', async (ctx, next) => {
-    await ctx.render('handleQRcode');
-});
+
 /** 登录 身份校验 **/
-router.post('/ajax/identityCheck', async (ctx, next) => {
-    await wechatController.identityCheck({
+router.post('/ajax/loginCheck', async (ctx, next) => {
+    await wechatController.loginCheck({
         ctx,
         params: ctx.request.body
     });
-
-    if(ctx.api.code === 200){
-        ctx.body = ctx.api.data;
-    }else{
-        console.error(ctx.api);
-        ctx.body = 'error';
-    }
+    ctx.body = ctx.api;
 });
 
 

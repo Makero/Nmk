@@ -1,5 +1,5 @@
 const router = require('koa-router')();
-const message = require('../../utils/wechat_msg_util');
+const message = require('../../utils/wechat_msg');
 const wechatControl = require('../../controllers/wechat_controller');
 
 

@@ -53,13 +53,21 @@
     socket.on('pmsg', function (from, msg){
         console.log(msg);
         $.ajax({
-            url: "/ajax/identityCheck",
+            url: "/ajax/loginCheck",
             type: "post",
             data: msg,
-            success: function(result){
-                setCookie('authToken', result.authToken, 5);
-                const reqData = getRequest();
-                window.location.href = reqData.redirectURL || '/';
+            success: (result) => {
+                if(result.code === '20001'){
+                    setCookie('authToken', result.authToken, 5);
+                    const reqData = getRequest();
+                    window.location.href = reqData.redirectURL || '/';
+                }else{
+                    alert(result.msg);
+                }
+
+            },
+            error: (err) => {
+                console.log(err);
             }
 
         });

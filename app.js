@@ -4,8 +4,8 @@ const views = require('koa-views');
 const json = require('koa-json');
 const onerror = require('koa-onerror');
 const bodyparser = require('koa-bodyparser')();
-const logger = require('koa-logger');
-const logUtil = require('./utils/log_util');
+const koa_logger = require('koa-logger');
+const logger = require('./utils/logger');
 const urls = require('./urls');
 
 
@@ -15,7 +15,7 @@ onerror(app);
 // middlewares
 app.use(bodyparser);
 app.use(json());
-app.use(logger());
+app.use(koa_logger());
 app.use(require('koa-static')(__dirname + '/public'));
 
 app.use(views(__dirname + '/views', {
@@ -31,11 +31,11 @@ app.use(async (ctx, next) => {
     await next();//开始进入到下一个中间件
     ms = new Date() - start;
 	console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
-    logUtil.logResponse(ctx, ms);//记录响应日志
+    logger.logResponse(ctx, ms);//记录响应日志
   } catch (error) {
     ms = new Date() - start;
     console.error(error);
-    logUtil.logError(ctx, error, ms);//记录异常日志
+    logger.logError(ctx, error, ms);//记录异常日志
   }
 });
 

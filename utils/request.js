@@ -23,21 +23,21 @@ function requestOrderAPI(path, opt, method){
     });
 }
 
+URL = {
+    web: '/api',
+    wechat: '/api/wx'
+};
 module.exports = {
-    apiPath: {
-        web: '/api',
-        wechat: '/api/wx'
-    },
 
-    GET_API_DATA : async (path, opt) => {
+    GET_API : async (apiName, path, opt) => {
 
-        opt.ctx.api = await requestOrderAPI(path, opt, 'GET');
+        opt.ctx.api = await requestOrderAPI(URL[apiName]+path, opt, 'GET');
 
     },
 
-    POST_API_DATA : async (path, opt) => {
+    POST_API : async (apiName, path, opt) => {
 
-        opt.ctx.api = await requestOrderAPI(path, opt, 'POST');
+        opt.ctx.api = await requestOrderAPI(URL[apiName]+path, opt, 'POST');
 
     }
 
