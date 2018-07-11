@@ -24,6 +24,10 @@ function requestOrderAPI(path, opt, method){
 }
 
 module.exports = {
+    apiPath: {
+        web: '/api',
+        wechat: '/api/wx'
+    },
 
     GET_API_DATA : async (path, opt) => {
 
