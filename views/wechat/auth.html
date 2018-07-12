@@ -2,27 +2,30 @@
 {% block title %}身份认证{% endblock %}
 {% block css %}
 <style>
-    body{background:url("/commonStatic/images/bg-auth.jpg") no-repeat center;background-size:100%;}
-    .auth{position:absolute;top:10%;padding:10px;bottom:10%;left:10%;right:10%;background:rgba(0,0,0,.6);}
-    .auth li{width:90%;height:60px;margin:10px auto;border-bottom:1px solid #6A6A6A;color:#efefef;font-size:18px;}
-    .auth li input{width:100%;height:40px;font-size:14px;text-align:center;background:none;border:none;}
+    body{background:url("/commonStatic/images/bg-auth.jpg") no-repeat center;background-size:100%;background-attachment:fixed;}
+    .auth{min-height:400px;position:absolute;top:10%;padding:10px;bottom:10%;left:10%;right:10%;background:rgba(0,0,0,.5);}
+    .auth li{width:90%;height:60px;margin:10px auto;border-bottom:1px solid #888;color:#efefef;font-size:18px;}
+    .auth li input{width:100%;height:40px;color:#efefef;font-size:14px;text-align:center;background:none;border:none;}
     .auth li span{display:block;height:40px;text-align: center;position:relative;}
     .auth li span em{display:inline-block;width:30px;height:30px;color:rgba(0,0,0,0);background:url("/commonStatic/images/sex-ico.png") no-repeat;}
     .auth li span em:first-child{background-position:0 -30px;}
     .auth li span i{font-style:normal;display:inline-block;width:60px;color:#999;}
     .auth li span i.reelect{position:absolute;right:0;height:30px;font-size:12px;}
     .auth li span i.reelect:after{content:"更改";display:block;}
-    .sub-btn{display:block;width:80%;height:40px;color:#fff;border-radius:4px;background:#0f769f;margin:80px auto;border:0;}
-    button[disabled]{background:#999;}
+    .sub-btn{display:block;width:80%;height:40px;color:#fff;border-radius:4px;background:#0f769f;margin:80px auto;border:0;transition: all .5s;}
+    button[disabled]{background: #809b9f;}
+    input::-webkit-input-placeholder{color:#999;}
 </style>
 {% endblock %}
 {% block body %}
 <div class="auth">
-    <ol>
-        <li><label>昵称：<input placeholder="取个好听的名字哟~" maxlength="12"/></label></li>
-        <li><label>性别：<input type="hidden" id="sex"/><span id="sexBtn"><em data-value="M">男</em><i></i><em data-value="W">女</em></span></label></li>
-        <li><label>密钥：<input id="authKey" placeholder="在公众号里获取哦~" /></label></li>
-    </ol>
+    <form id="form">
+        <ol>
+            <li><label>昵称：<input id="name" placeholder="取个好听的名字哟~" maxlength="12" name="userName"/></label></li>
+            <li><label>性别：<input id="sex" type="hidden" name="sex"/><span id="sexBtn"><em data-value="M">男</em><i></i><em data-value="W">女</em></span></label></li>
+            <li><label>密钥：<input id="authKey" placeholder="在公众号里获取哦~" name="authKey"/></label></li>
+        </ol>
+    </form>
     <button id="submit" class="sub-btn">认&nbsp;&nbsp;证</button>
 </div>
 {% endblock %}
@@ -45,26 +48,67 @@
         $(this).removeClass('reelect');
     });
 
-    $("#submit").click(function () {
-        const key = $("#authKey").val().replace(/\s+/g,'');
-        if(key.length){
-            $(this).attr("disabled", "true");
-            $.ajax({
-                url: '/wechat/auth/ajax/register',
-                type: 'post',
-                data: {authKey: key},
-                success: function(result){
-                    if(result.openID){
-                        setCookie('openID', result.openID, COOKIE_VALIDITY_PERIOD);
-                        setCookie('secretKey', result.secretKey, COOKIE_VALIDITY_PERIOD);
-                        alert("认证成功");
-                    }else{
-                        alert("认证失败");
-                    }
-
+    $("#submit").click(function(){
+        const data = $("form").serializeJSON();
+        console.log(data);
+        for(const key in data){
+            if(!data[key].length){
+                let msg = '';
+                switch (key){
+                    case 'userName': msg = '昵称还没有告诉我呢~';break;
+                    case 'sex': msg = '麻烦选择一下你的性别哦~';break;
+                    case 'authKey': msg = '密钥也要输入哟~';break;
                 }
-            })
+                spop({
+                    template: msg,
+                    position  : 'bottom-center',
+                    style: 'warning',
+                    autoclose: 3000,
+                    onOpen: () => {
+                        $(this).attr("disabled", "true");
+                    },
+                    onClose: () => {
+                        $(this).removeAttr("disabled");
+                    }
+                });
+                return;
+            }
         }
+        $(this).attr("disabled", "true");
+        $.ajax({
+            url: '/wechat/auth/ajax/register',
+            type: 'post',
+            datatype: 'json',
+            data,
+            success: (result) => {
+                if(result.code === '40001'){
+                    spop({
+                        template: "认证失败,密钥不正确哟！",
+                        position: 'bottom-center',
+                        style: 'error',
+                        autoclose: 3000,
+                        onClose: () => {
+                            $(this).removeAttr("disabled");
+                        }
+                    });
+                    return;
+                }
+                if(result.code === '20001'){
+                    setCookie('openID', result.openID, COOKIE_VALIDITY_PERIOD);
+                    setCookie('secretKey', result.secretKey, COOKIE_VALIDITY_PERIOD);
+                    spop({
+                        template: "恭喜(＾Ｕ＾)ノ，认证成功啦~",
+                        position: 'bottom-center',
+                        style: 'success',
+                        autoclose: 3000,
+                        onClose: () => {
+                            window.close();
+                        }
+                    });
+                }
+
+            }
+        })
     });
 
 </script>

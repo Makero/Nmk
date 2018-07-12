@@ -20,7 +20,14 @@ $.fn.extend({
         });
         $(window).resize();
         $(_self).css('opacity',1);
-    }
+    },
+    'serializeJSON':function(){
+        let serializeObj={};
+        $(this.serializeArray()).each(function(){
+            serializeObj[this.name]=this.value.replace(/\s+/g,'');
+        });
+        return serializeObj;
+	}
 });
 
 

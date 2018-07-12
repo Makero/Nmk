@@ -12,7 +12,7 @@ router.post('/ajax/register', async (ctx, next) => {
         params: ctx.request.body
     });
     console.log(ctx.api);
-    ctx.body = ctx.api.data
+    ctx.body = ctx.api;
 });
 
 module.exports = router;
