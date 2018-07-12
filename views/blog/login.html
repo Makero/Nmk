@@ -1,23 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>登录</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="screen-orientation" content="portrait">
-    <meta name="x5-orientation" content="portrait">
-    <meta name="MobileOptimized" content="320">
-    <meta name="format-detection" content="telephone=no">
-    <style>
-        body{background:#333;}
-        .login-box{width:300px;height:380px;text-align:center;background:#fff;position:absolute;opacity:0;transition:opacity 1s;}
-        .qrcode-box{width:200px;margin:50px auto;position:relative;}
-        .qrcode-box img{width:50px;height:50px;border-radius:25px;box-shadow: 0 0 6px #333;position:absolute;left:75px;top:75px;}
-        .qrcode{width:200px;height:200px;}
-        .red{color:#FF2A2C;}
-    </style>
-</head>
-<body>
+{% extends 'baseBlog.html' %}
+
+{% block title%}登录{% endblock %}
+{% block link %}
+<style>
+    body{background:#333;}
+    .login-box{width:300px;height:380px;text-align:center;background:#fff;position:absolute;opacity:0;transition:opacity 1s;}
+    .qrcode-box{width:200px;margin:50px auto;position:relative;}
+    .qrcode-box img{width:50px;height:50px;border-radius:25px;box-shadow: 0 0 6px #333;position:absolute;left:75px;top:75px;}
+    .qrcode{width:200px;height:200px;}
+    .red{color:#FF2A2C;}
+</style>
+{% endblock %}
+
+{% block body %}
 <div id="loginBox" class="login-box">
     <div class="qrcode-box">
         <img src="/commonStatic/images/wechat_ico.jpg"/>
@@ -25,9 +20,10 @@
     </div>
     <p>使用微信<span class="red">公众号</span>扫码登录</p>
 </div>
-<script type="text/javascript" src="/commonStatic/js/jquery-1.12.4.min.js"></script>
+{% endblock %}
+
+{% block script %}
 <script type="text/javascript" src="/commonStatic/js/jquery.qrcode.min.js"></script>
-<script type="text/javascript" src="/commonStatic/js/common.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script type="text/javascript">
 
@@ -73,5 +69,4 @@
         });
     });
 </script>
-</body>
-</html>
+{% endblock %}

@@ -10,11 +10,16 @@
     <meta name="format-detection" content="telephone=no">
     <link type="text/css" rel="stylesheet" href="/wechatStatic/css/base.css"/>
     {% block css %} {% endblock %}
-    <script type="text/javascript" src="/commonStatic/js/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="/commonStatic/js/effects-mk.js"></script>
 </head>
 <body>
 <input id="device" type="hidden" value="pc"/>
+{% block body %}
+
+{% endblock %}
+<script type="text/javascript" src="/commonStatic/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="/commonStatic/js/effects-mk.js"></script>
+<script type="text/javascript" src="/wechatStatic/js/constant.js"></script>
+{% block script %}{% endblock %}
 <script>
     function is_weixin() {
         const ua = navigator.userAgent.toLowerCase();
@@ -31,8 +36,5 @@
 
     }
 </script>
-{% block body %}
-
-{% endblock %}
 </body>
 </html>

@@ -5,8 +5,8 @@ router.get('/', async (ctx, next) => {
     await ctx.render('wechat/auth');
 });
 
-router.post('/ajax/key', async (ctx, next) => {
-    console.log("=====");
+router.post('/ajax/register', async (ctx, next) => {
+
     await authController.isAuth({
         ctx,
         params: ctx.request.body

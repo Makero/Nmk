@@ -3,6 +3,7 @@
 {% block css %}
 <link type="text/css" rel="stylesheet" href="/wechatStatic/css/talk.css"/>
 {% endblock %}
+
 {% block body %}
 <div>
     <audio id="audio" src="/play/speech?talk={{data.talk}}" autoplay ></audio>
@@ -11,6 +12,9 @@
     <span class="girl"></span>
     <span id="start" class="btn"></span>
 </div>
+{% endblock %}
+
+{% block script %}
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script src="/wechatStatic/js/talk.js"></script>
 {% endblock %}

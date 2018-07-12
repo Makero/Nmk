@@ -1,7 +1,13 @@
-{% extends 'base.html' %} {% block title %}{{ title }}{% endblock %} {% block css %}
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block css %}
 <link type="text/css" rel="stylesheet" href="/wechatStatic/css/common/animate.min.css" />
 <link type="text/css" rel="stylesheet" href="/wechatStatic/css/FSVS.css" />
-<link type="text/css" rel="stylesheet" href="/wechatStatic/css/invitation.css" /> {% endblock %} {% block body %}
+<link type="text/css" rel="stylesheet" href="/wechatStatic/css/invitation.css" />
+{% endblock %}
+
+{% block body %}
 <div id="fsvs-body">
     <div class="slide">
         <div class="animated" data-animate="zoomInDown">
@@ -77,7 +83,9 @@
         </div>
     </div>
 </div>
+{% endblock %}
 
+{% block script %}
 <script src="/wechatStatic/js/common/FSVS.js"></script>
 <script src="/wechatStatic/js/invitation.js"></script>
 {% endblock %}

@@ -29,9 +29,10 @@ router.get('/', async (ctx, next) => {
   await ctx.render('wechat/index');
 });
 
+
 /** 网站登录 **/
 router.get('/login', async (ctx, next) => {
-    await ctx.render('login');
+    await ctx.render('blog/login');
 });
 
 /** 登录 身份校验 **/

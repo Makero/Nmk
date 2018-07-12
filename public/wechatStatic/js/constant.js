@@ -1,0 +1,1 @@
+const COOKIE_VALIDITY_PERIOD = 365; //cookie有效期

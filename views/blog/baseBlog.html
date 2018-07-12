@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>{{data.theme}}-{{data.title}}</title>
+    <title>{% block title%} {{data.theme}}-{{data.title}} {% endblock %}</title>
     <meta charset="utf-8">
     <meta name="keywords" content="" />
     <meta name="description" content="" />
@@ -10,97 +10,98 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="author" content="Maker" />
-
-    <link type="text/css" rel="stylesheet" href="/blogStatic/css/common.css">
     <link type="text/css" rel="stylesheet" href="/blogStatic/css/base.css">
+    <link type="text/css" rel="stylesheet" href="/blogStatic/css/common.css">
     {% block link %}{% endblock %}
 </head>
 <body>
-{% block nav %}
-<nav class="top">
-    <ul>
-        <li><a href="/blog">主页</a></li>
-        <li><a {% if data.index == 4 %} class="cur" {% endif %} href="/blog/personal">个人中心</a></li>
-        <li><a {% if data.index == 3 %} class="cur" {% endif %} href="/blog/way">长路漫漫</a></li>
-        <li><a {% if data.index == 2 %} class="cur" {% endif %} href="/blog/life">慢生活</a></li>
-        <li><a {% if data.index == 1 %} class="cur" {% endif %} href="/blog/recollect">记·忆</a></li>
-        <li><a {% if data.index == 0 %} class="cur" {% endif %} href="/blog/mood">碎言碎语</a></li>
-    </ul>
-</nav>
-<div class="clearFix"></div>
-{% endblock %}
-<div class="wrapper rel">
-    {% block wrapper %}
-    <div class="content clear">
-        <h1 class="reflect fl f20">{{data.theme}}</h1>
-        {% if data.stitle %}
-        <h6 class="abs" style="top:70px;font-size:16px;color:#9DCB1C;">{{data.stitle}}</h6>
-        {% endif %}
-        <p class="line f12">{% if data.talk != "" %}{{data.talk}}{% else %}<em>您当前的位置：</em><a href="/">主页</a>&gt;<a href="{{data.url}}">{{data.urlname}}</a>&gt;<a>{{data.theme}}</a>{% endif %}</p>
-        {% block content %}
-        <div class="left fl">
-            {% block content_left %}{% endblock %}
-        </div>
-        <div class="right fr">
-            {% block content_right %}{% endblock %}
+{% block body %}
+    {% block nav %}
+    <nav class="top">
+        <ul>
+            <li><a href="/blog">主页</a></li>
+            <li><a {% if data.index == 4 %} class="cur" {% endif %} href="/blog/personal">个人中心</a></li>
+            <li><a {% if data.index == 3 %} class="cur" {% endif %} href="/blog/way">长路漫漫</a></li>
+            <li><a {% if data.index == 2 %} class="cur" {% endif %} href="/blog/life">慢生活</a></li>
+            <li><a {% if data.index == 1 %} class="cur" {% endif %} href="/blog/recollect">记·忆</a></li>
+            <li><a {% if data.index == 0 %} class="cur" {% endif %} href="/blog/mood">碎言碎语</a></li>
+        </ul>
+    </nav>
+    <div class="clearFix"></div>
+    {% endblock %}
+    <div class="wrapper rel">
+        {% block wrapper %}
+        <div class="content clear">
+            <h1 class="reflect fl f20">{{data.theme}}</h1>
+            {% if data.stitle %}
+            <h6 class="abs" style="top:70px;font-size:16px;color:#9DCB1C;">{{data.stitle}}</h6>
+            {% endif %}
+            <p class="line f12">{% if data.talk != "" %}{{data.talk}}{% else %}<em>您当前的位置：</em><a href="/">主页</a>&gt;<a href="{{data.url}}">{{data.urlname}}</a>&gt;<a>{{data.theme}}</a>{% endif %}</p>
+            {% block content %}
+            <div class="left fl">
+                {% block content_left %}{% endblock %}
+            </div>
+            <div class="right fr">
+                {% block content_right %}{% endblock %}
+            </div>
+            {% endblock %}
         </div>
         {% endblock %}
     </div>
+    {% block talk %}
+    <div class="IwantToSayYou dis">
+        <h3>诚实的想你</h3>
+
+        <p>世界忽然变形忽然很安静</p>
+        <p>无助的我一秒间失去重心</p>
+        <p>听你不停为我担心</p>
+        <p>看你不停离我而去</p>
+        <p>你要我照顾自己</p>
+        <p>是我做了什么让天使生气</p>
+        <p>还是忘了做什么让幸福远离</p>
+        <p>也许该要真的相信</p>
+        <p>有种爱叫远远关心</p>
+        <p>痛却又哽住呼吸</p>
+        <p>我用狂奔用无力用恶梦去想你</p>
+        <p>我讨厌命运骄傲的神情</p>
+        <p>嘲笑我没半点权利决定</p>
+        <p>我用痛哭用回忆用深爱去想你</p>
+        <p>去体会什么是迫不得已</p>
+        <p>越懂才越有勇气</p>
+        <p>诚实地想你</p>
+        <p>是我做了什么让天使生气</p>
+        <p>还是忘了做什么让幸福远离</p>
+        <p>也许应该要真的相信</p>
+        <p>是有种爱叫远远关心</p>
+        <p>痛却又哽住呼吸</p>
+        <p>我用狂奔用无力用恶梦去想你</p>
+        <p>我讨厌命运骄傲的神情</p>
+        <p>嘲笑我没半点权利决定</p>
+        <p>我用痛哭用回忆用深爱去想你</p>
+        <p>去体会什么是迫不得已</p>
+        <p>越懂才越有勇气</p>
+        <p>诚实地想你</p>
+        <p>是不是担心我怕黑不敢前进</p>
+        <p>那颗本来没坠落的流星</p>
+        <p>才拼命烧亮了自己</p>
+        <p>我用狂奔用无力用恶梦去想你</p>
+        <p>我讨厌命运骄傲的神情</p>
+        <p>嘲笑我没半点权利决定</p>
+        <p>我用痛哭用回忆用深爱去想你</p>
+        <p>去体会什么是迫不得已</p>
+        <p>越懂才越有勇气</p>
+        <p>诚实地想你</p>
+        </pre>
+
+        <div class="foot"><a class="button" href="/boss">进入后台管理系统</a></div>
+    </div>
     {% endblock %}
-</div>
-{% block talk %}
-<div class="IwantToSayYou dis">
-    <h3>诚实的想你</h3>
-
-    <p>世界忽然变形忽然很安静</p>
-    <p>无助的我一秒间失去重心</p>
-    <p>听你不停为我担心</p>
-    <p>看你不停离我而去</p>
-    <p>你要我照顾自己</p>
-    <p>是我做了什么让天使生气</p>
-    <p>还是忘了做什么让幸福远离</p>
-    <p>也许该要真的相信</p>
-    <p>有种爱叫远远关心</p>
-    <p>痛却又哽住呼吸</p>
-    <p>我用狂奔用无力用恶梦去想你</p>
-    <p>我讨厌命运骄傲的神情</p>
-    <p>嘲笑我没半点权利决定</p>
-    <p>我用痛哭用回忆用深爱去想你</p>
-    <p>去体会什么是迫不得已</p>
-    <p>越懂才越有勇气</p>
-    <p>诚实地想你</p>
-    <p>是我做了什么让天使生气</p>
-    <p>还是忘了做什么让幸福远离</p>
-    <p>也许应该要真的相信</p>
-    <p>是有种爱叫远远关心</p>
-    <p>痛却又哽住呼吸</p>
-    <p>我用狂奔用无力用恶梦去想你</p>
-    <p>我讨厌命运骄傲的神情</p>
-    <p>嘲笑我没半点权利决定</p>
-    <p>我用痛哭用回忆用深爱去想你</p>
-    <p>去体会什么是迫不得已</p>
-    <p>越懂才越有勇气</p>
-    <p>诚实地想你</p>
-    <p>是不是担心我怕黑不敢前进</p>
-    <p>那颗本来没坠落的流星</p>
-    <p>才拼命烧亮了自己</p>
-    <p>我用狂奔用无力用恶梦去想你</p>
-    <p>我讨厌命运骄傲的神情</p>
-    <p>嘲笑我没半点权利决定</p>
-    <p>我用痛哭用回忆用深爱去想你</p>
-    <p>去体会什么是迫不得已</p>
-    <p>越懂才越有勇气</p>
-    <p>诚实地想你</p>
-    </pre>
-
-    <div class="foot"><a class="button" href="/boss">进入后台管理系统</a></div>
-</div>
+    <div class="footer f14">
+        本网站由 <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=lccm722@yahoo.com" target="_bank">lccm722@yahoo.com</a> 提供技术支持
+    </div>
 {% endblock %}
-<div class="footer f14">
-    本网站由 <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=lccm722@yahoo.com" target="_bank">lccm722@yahoo.com</a> 提供技术支持
-</div>
-</body>
 <script type="text/javascript" src="/commonStatic/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="/commonStatic/js/common.js"></script>
 {% block script %}{% endblock %}
+</body>
 </html>

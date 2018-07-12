@@ -6,6 +6,7 @@
     .editor{}
 </style>
 {% endblock %}
+
 {% block body %}
 <div>
     {% include '../plugin/simditor.html' with {type:'article', name: '发布'} %}
@@ -15,7 +16,9 @@
 
     </div>-->
 </div>
+{% endblock %}
 
+{% block script %}
 <script>
     $("#ask").click(function(){
         $(".editor").removeClass("fn-hide");
