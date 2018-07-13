@@ -2,8 +2,8 @@ const request = require('../utils/request');
 
 module.exports = {
 
-    getSong : async (opt) => {
-        await request.GET_API("wechat", "/music", opt);
+    getSongURL : async (opt) => {
+        await request.GET_API("wechat", "/music_url", opt);
     },
     getSongLRC : async (opt) => {
         await request.GET_API("wechat", "/music_lrc", opt);

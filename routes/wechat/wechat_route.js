@@ -13,7 +13,6 @@ router.get('/', async (ctx) => {
         ctx,
         params: ctx.query
     });
-
     if(ctx.api.data.bool){
         ctx.body = ctx.query.echostr
     }else{
@@ -31,7 +30,7 @@ router.post('/', async (ctx) => {
         params: msg
     });
 
-    if(ctx.api.code === 200){
+    if(ctx.api.code === '20001'){
         message.send(ctx, ctx.api.data);
     }else{
         console.error(`状态码：${ctx.api.code}`);
@@ -43,5 +42,6 @@ router.post('/', async (ctx) => {
 router.get('/test', async (ctx, next) => {
     await ctx.render('test');
 });
+
 
 module.exports = router;

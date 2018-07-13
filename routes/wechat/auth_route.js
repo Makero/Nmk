@@ -1,9 +1,11 @@
 const router = require('koa-router')();
 const authController = require('../../controllers/auth_controller');
 
+
 router.get('/', async (ctx, next) => {
     await ctx.render('wechat/auth');
 });
+
 
 router.post('/ajax/register', async (ctx, next) => {
 
@@ -14,5 +16,6 @@ router.post('/ajax/register', async (ctx, next) => {
     console.log(ctx.api);
     ctx.body = ctx.api;
 });
+
 
 module.exports = router;

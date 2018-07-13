@@ -9,7 +9,7 @@ const config = {
     },
     development: {
         api: {
-            url: "http://localhost:8000",
+            url: "http://localhost:8080",
             timeout: 30000
         }
     }

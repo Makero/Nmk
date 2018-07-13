@@ -24,6 +24,7 @@ function requestOrderAPI(path,obj){
     });
 }
 
+
 /** 网站首页 **/
 router.get('/', async (ctx, next) => {
   await ctx.render('wechat/index');
@@ -34,6 +35,7 @@ router.get('/', async (ctx, next) => {
 router.get('/login', async (ctx, next) => {
     await ctx.render('blog/login');
 });
+
 
 /** 登录 身份校验 **/
 router.post('/ajax/loginCheck', async (ctx, next) => {
@@ -51,25 +53,32 @@ router.post('/ajax/wxConfig', async (ctx, next) => {
         ctx,
         params: ctx.request.body
     });
-    if(ctx.api.code === 200){
-        console.log(ctx.api.data);
+
+    if(ctx.api.code === '20001'){
+
         ctx.body = ctx.api.data;
+
     }else{
+
         console.error(ctx.api);
         ctx.body = 'error';
+
     }
 });
+
 
 /** 文章保存 **/
 router.post('/article/save', async (ctx, netx) => {
     /*await ctx.render();*/
 });
 
+
 /** 音乐播放 **/
 router.get('/play/music/:id', async (ctx, netx) => {
     const buffer = await requestOrderAPI(ctx.query.url, {});
     ctx.status = 200;ctx.type = 'mp3';ctx.body = buffer;
 });
+
 
 /** 语音合成 **/
 router.get('/play/speech', async (ctx, next) => {
@@ -81,5 +90,6 @@ router.get('/play/speech', async (ctx, next) => {
         ctx.body = fs.createReadStream(process.cwd()+'/public/audio/dropline.mp3');
     }
 });
+
 
 module.exports = router;

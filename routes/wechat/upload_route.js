@@ -14,6 +14,7 @@ const storage = multer.diskStorage({
     }
 });
 
+
 const upload = multer({ storage: storage });
 
 
@@ -21,8 +22,11 @@ router.get('/', async (ctx, next) => {
     await ctx.render('wechat/upload')
 });
 
+
 router.post('/', upload.single('file'), async (ctx, next) => {
 
     await ctx.render('wechat/uploadSuccess',{result:ctx.req.file.filename});
 });
+
+
 module.exports = router;

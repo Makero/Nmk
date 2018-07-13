@@ -3,6 +3,7 @@
 {% block css %}
 <link type="text/css" rel="stylesheet" href="/wechatStatic/css/music.css"/>
 {% endblock %}
+
 {% block body %}
 <input id="songid" type="hidden" value="{{ data.songinfo.song_id }}"/>
 <div class="music_box">
@@ -33,6 +34,8 @@
         </ol>
     </div>
 </div>
+{% endblock %}
 
+{% block script %}
 <script src="/wechatStatic/js/music.js"></script>
 {% endblock %}

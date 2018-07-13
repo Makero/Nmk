@@ -1,16 +1,18 @@
 const router = require('koa-router')();
 const songController = require('../../controllers/music_controller');
 
+
 router.get('/', async (ctx, next) => {
-    console.log(ctx.query.songid);
+
     if(ctx.query.songid === undefined){
         ctx.body = "参数错误！";
         return;
     }
-    await songController.getSong({
+    await songController.getSongURL({
         ctx,
         params: {songid:ctx.query.songid.split(',')[0]}
     });
+
     if(ctx.api.data.errno){
         ctx.body = "音乐不存在";
         return;
@@ -20,6 +22,7 @@ router.get('/', async (ctx, next) => {
         data: ctx.api.data
     })
 });
+
 
 router.get('/ajax/lrc', async(ctx, next) => {
     await songController.getSongLRC({
@@ -46,4 +49,6 @@ router.get('/ajax/lrc', async(ctx, next) => {
     }
     await ctx.render('wechat/music/part/lrc', {list: lrcArr});
 });
+
+
 module.exports = router;
