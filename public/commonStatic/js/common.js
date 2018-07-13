@@ -12,15 +12,16 @@
 $.fn.extend({
     //盒子居中
     'BoxCenter':function(){
-        const _self = this;
+        const self = this;
         $(window).resize(function(){
-            let l = ($(window).width() - $(_self).width()) / 2;
-            let t = ($(window).height() - $(_self).height()) / 2;
-            $(_self).css({"top":t+"px","left":l+"px"});
+            let l = ($(window).width() - $(self).width()) / 2;
+            let t = ($(window).height() - $(self).height()) / 2;
+            $(self).css({"top":t+"px","left":l+"px"});
         });
         $(window).resize();
-        $(_self).css('opacity',1);
+        $(self).css('opacity',1);
     },
+	//表单数据格式化
     'serializeJSON':function(){
         let serializeObj={};
         $(this.serializeArray()).each(function(){
@@ -30,28 +31,6 @@ $.fn.extend({
 	}
 });
 
-
-/*************************/
-/*2016-05-20             */
-/*************************/
-//表单
-var Form = {
-	//获取要提交的表单数据
-	getData : function(tag){
-		var count  = 0;
-		var array  = new Array;
-		$(tag).each(function(){
-			var object = new Object;
-			var data = $(this).serializeArray();
-			for(key in data){
-				object[data[key].name] = data[key].value;
-			}
-			array[count++] = object;
-		});
-		
-		return JSON.stringify(array);
-	}
-}
 
 /*************************/
 /*2016-05-21             */

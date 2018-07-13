@@ -19,21 +19,28 @@
 {% endblock %}
 {% block body %}
 <div class="auth">
-    <form id="form">
-        <ol>
-            <li><label>昵称：<input id="name" placeholder="取个好听的名字哟~" maxlength="12" name="userName"/></label></li>
-            <li><label>性别：<input id="sex" type="hidden" name="sex"/><span id="sexBtn"><em data-value="M">男</em><i></i><em data-value="W">女</em></span></label></li>
-            <li><label>密钥：<input id="authKey" placeholder="在公众号里获取哦~" name="authKey"/></label></li>
-        </ol>
-    </form>
-    <button id="submit" class="sub-btn">认&nbsp;&nbsp;证</button>
+    <div id="formBox" class="fn-hide">
+        <form>
+            <ol>
+                <li><label>昵称：<input id="name" placeholder="你的昵称哦~" maxlength="12" name="userName"/></label></li>
+                <li><label>性别：<input id="sex" type="hidden" name="sex"/><span id="sexBtn"><em data-value="M">男</em><i></i><em data-value="W">女</em></span></label></li>
+                <li><label>密钥：<input id="authKey" placeholder="在公众号里获取呢~" name="authKey"/></label></li>
+            </ol>
+        </form>
+        <a style="float:right;color:#F27162;" href="http://mp.weixin.qq.com/s?__biz=MzI0NDU1MTM4MA==&mid=100000036&idx=1&sn=387bb76c5b70bce7eaa179da41550ac3&chksm=695d5a9f5e2ad389dfb7b4da32cdf62e4cc1f567e3a9d526ebe8b7136f58246b5cb8709a0c7f#rd">如何获取密钥？</a>
+        <button id="submit" class="sub-btn">认&nbsp;&nbsp;证</button>
+    </div>
 </div>
 {% endblock %}
 
 {% block script %}
-<script src="/commonStatic/js/common.js"></script>
 <script>
-
+    const openid = getCookie("openID");
+    if(openid){
+        $(".auth").html("<p style='font-size:18px;color:#fff;text-align:center;margin-top:60px;'>你已认证，无需再认证</p>");
+    }else{
+        $("#formBox").show();
+    }
     $("#sexBtn em").click(function(){
         $("#sexBtn em").hide();
         $(this).show();
@@ -50,28 +57,35 @@
 
     $("#submit").click(function(){
         const data = $("form").serializeJSON();
-        console.log(data);
-        for(const key in data){
-            if(!data[key].length){
-                let msg = '';
-                switch (key){
-                    case 'userName': msg = '昵称还没有告诉我呢~';break;
-                    case 'sex': msg = '麻烦选择一下你的性别哦~';break;
-                    case 'authKey': msg = '密钥也要输入哟~';break;
-                }
-                spop({
-                    template: msg,
-                    position  : 'bottom-center',
-                    style: 'warning',
-                    autoclose: 3000,
-                    onOpen: () => {
-                        $(this).attr("disabled", "true");
-                    },
-                    onClose: () => {
-                        $(this).removeAttr("disabled");
+        for(let key in data){
+            if(data.hasOwnProperty(key)) {//过滤掉原型属性
+                if (!data[key].length) {
+                    let msg = '';
+                    switch (key) {
+                        case 'userName':
+                            msg = '昵称还没有告诉我呢~';
+                            break;
+                        case 'sex':
+                            msg = '性别还没有选呢~';
+                            break;
+                        case 'authKey':
+                            msg = '密钥也要输入哟~';
+                            break;
                     }
-                });
-                return;
+                    spop({
+                        template: msg,
+                        position: 'bottom-center',
+                        style: 'warning',
+                        autoclose: CLOSE_MSG_BOX_TIME,
+                        onOpen: () => {
+                            $(this).attr("disabled", "true");
+                        },
+                        onClose: () => {
+                            $(this).removeAttr("disabled");
+                        }
+                    });
+                    return;
+                }
             }
         }
         $(this).attr("disabled", "true");
@@ -86,7 +100,19 @@
                         template: "认证失败,密钥不正确哟！",
                         position: 'bottom-center',
                         style: 'error',
-                        autoclose: 3000,
+                        autoclose: CLOSE_MSG_BOX_TIME,
+                        onClose: () => {
+                            $(this).removeAttr("disabled");
+                        }
+                    });
+                    return;
+                }
+                if(result.code === '40002'){
+                    spop({
+                        template: "你之前有认证过，所以要使用之前的昵称哦~",
+                        position: 'bottom-center',
+                        style: 'error',
+                        autoclose: CLOSE_MSG_BOX_TIME,
                         onClose: () => {
                             $(this).removeAttr("disabled");
                         }
@@ -94,15 +120,15 @@
                     return;
                 }
                 if(result.code === '20001'){
-                    setCookie('openID', result.openID, COOKIE_VALIDITY_PERIOD);
-                    setCookie('secretKey', result.secretKey, COOKIE_VALIDITY_PERIOD);
+                    setCookie('openID', result.data.openID, COOKIE_VALIDITY_PERIOD);
+                    setCookie('secretKey', result.data.secretKey, COOKIE_VALIDITY_PERIOD);
                     spop({
                         template: "恭喜(＾Ｕ＾)ノ，认证成功啦~",
                         position: 'bottom-center',
                         style: 'success',
-                        autoclose: 3000,
+                        autoclose: CLOSE_MSG_BOX_TIME,
                         onClose: () => {
-                            window.close();
+                            wx.closeWindow();
                         }
                     });
                 }
