@@ -28,9 +28,8 @@
 <script type="text/javascript">
 
     const ident = randomString(16);
-    console.log(ident);
-    const msg = toUtf8("请使用公众号提供的扫码进行扫码登录");
-    const g = toUtf8("微信公众号：namehanr722");
+    const msg = toUtf8(WX_QR_MSG);
+    const g = toUtf8(WX_NUMBER);
 
     $("#loginBox").BoxCenter();
 
@@ -54,7 +53,7 @@
             data: msg,
             success: (result) => {
                 if(result.code === '20001'){
-                    setCookie('authToken', result.authToken, 5);
+                    setCookie('authToken', result.authToken, AUTH_TOKEN_VALIDITY_PERIOD);
                     const reqData = getRequest();
                     window.location.href = reqData.redirectURL || '/';
                 }else{
