@@ -30,7 +30,7 @@ router.post('/ajax/qyk', async (ctx, next) => {
         ctx,
         params: ctx.request.body
     });
-    ctx.body = ctx.api.content;
+    ctx.body = ctx.api.data.content;
 });
 
 

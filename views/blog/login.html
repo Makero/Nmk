@@ -27,6 +27,10 @@
 <script src="/socket.io/socket.io.js"></script>
 <script type="text/javascript">
 
+    const authToken = getCookie("authToken");
+    if(authToken){
+        window.location.href="/";
+    }
     const ident = randomString(16);
     const msg = toUtf8(WX_QR_MSG);
     const g = toUtf8(WX_NUMBER);
@@ -46,14 +50,14 @@
     socket.emit('join', ident);
 
     socket.on('pmsg', function (from, msg){
-        console.log(msg);
+
         $.ajax({
             url: "/ajax/loginCheck",
             type: "post",
             data: msg,
             success: (result) => {
                 if(result.code === '20001'){
-                    setCookie('authToken', result.authToken, AUTH_TOKEN_VALIDITY_PERIOD);
+                    setCookie('authToken', result.data.authToken, AUTH_TOKEN_VALIDITY_PERIOD);
                     const reqData = getRequest();
                     window.location.href = reqData.redirectURL || '/';
                 }else{

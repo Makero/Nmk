@@ -21,17 +21,33 @@
 {% block script %}
 <script type="text/javascript" src="/wechatStatic/js/handle.qrcode.js"></script>
 <script>
-    wxCheckConfig('tools', ['scanQRCode']);
-    $("#qrcode").click(function(){
-        wx.scanQRCode({
-            needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
-            scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
-            success: function (res) {
-                const result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
-                const data = result.split("==");
-                handleQRcode(data);
+    const openID = getCookie('openID');
+    if(!openID){
+        spop({
+            template: "没有身份认证哦，即将跳转认证页面~",
+            position: 'bottom-center',
+            style: 'warning',
+            autoclose: CLOSE_MSG_BOX_TIME,
+            onOpen: () => {
+                $(this).attr("disabled", "true");
+            },
+            onClose: () => {
+                window.location.href = "/wechat/auth";
             }
         });
-    });
+    }else {
+        wxCheckConfig('tools', ['scanQRCode']);
+        $("#qrcode").click(function () {
+            wx.scanQRCode({
+                needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+                scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+                success: function (res) {
+                    const result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+                    const data = result.split("==");
+                    handleQRcode(data);
+                }
+            });
+        });
+    }
 </script>
 {% endblock %}
