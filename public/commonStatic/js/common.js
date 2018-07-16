@@ -11,7 +11,7 @@
 /** 自定义方法 **/ //2018-07-08
 $.fn.extend({
     //盒子居中
-    'BoxCenter':function(){
+    'BoxCenter':function(params){
         const self = this;
         $(window).resize(function(){
             let l = ($(window).width() - $(self).width()) / 2;
@@ -20,6 +20,9 @@ $.fn.extend({
         });
         $(window).resize();
         $(self).css('opacity',1);
+        if(params && params.animate){
+            $("#animate").addClass(params.animate);
+		}
     },
 	//表单数据格式化
     'serializeJSON':function(){

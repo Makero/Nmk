@@ -2,8 +2,11 @@
 
 {% block title%}登录{% endblock %}
 {% block link %}
+<link type="text/css" rel="stylesheet" href="/commonStatic/css/animate.css">
 <style>
-    body{background:#333;}
+
+    .animate-left{position:absolute;top:0;bottom:0;left:0;right:50%;background:#333;transition:right 1s;}
+    .animate-right{position:absolute;top:0;bottom:0;left:50%;right:0;background:#333;transition:left 1s;}
     .login-box{width:300px;height:380px;text-align:center;background:#fff;position:absolute;opacity:0;transition:opacity 1s;}
     .qrcode-box{width:200px;margin:50px auto;position:relative;}
     .qrcode-box img{width:50px;height:50px;border-radius:25px;box-shadow: 0 0 6px #333;position:absolute;left:75px;top:75px;}
@@ -13,12 +16,21 @@
 {% endblock %}
 
 {% block body %}
-<div id="loginBox" class="login-box">
-    <div class="qrcode-box">
-        <img src="/commonStatic/images/wechat_ico.jpg"/>
-        <div id="qrcode" class="qrcode"></div>
+<div class="box">
+    <div class="animate-left"></div>
+    <div class="animate-right"></div>
+    <div id="animate" class="animated">
+        <div id="loginBox" class="login-box">
+            <div class="qrcode-box">
+                <img src="/commonStatic/images/wechat_ico.jpg"/>
+                <div id="qrcode" class="qrcode"></div>
+            </div>
+            <p>使用微信<span class="red">公众号</span>扫码登录</p>
+        </div>
     </div>
-    <p>使用微信<span class="red">公众号</span>扫码登录</p>
+</div>
+<div>
+    登录成功！
 </div>
 {% endblock %}
 
@@ -27,15 +39,11 @@
 <script src="/socket.io/socket.io.js"></script>
 <script type="text/javascript">
 
-    const authToken = getCookie("authToken");
-    if(authToken){
-        window.location.href="/";
-    }
     const ident = randomString(16);
     const msg = toUtf8(WX_QR_MSG);
     const g = toUtf8(WX_NUMBER);
 
-    $("#loginBox").BoxCenter();
+    $("#loginBox").BoxCenter({animate:'zoomInUp'});
 
     $('#qrcode').qrcode({
         render: "canvas", //也可以替换为table
@@ -59,7 +67,12 @@
                 if(result.code === '20001'){
                     setCookie('authToken', result.data.authToken, AUTH_TOKEN_VALIDITY_PERIOD);
                     const reqData = getRequest();
-                    window.location.href = reqData.redirectURL || '/';
+                    if(reqData.redirectURL){
+                        window.location.href = reqData.redirectURL;
+                    }else{
+                        animated();
+                    }
+
                 }else{
                     alert(result.msg);
                 }
@@ -71,5 +84,14 @@
 
         });
     });
+
+    //登录成功后动画
+    const animated = () => {
+        $("#animate").addClass("zoomOutUp");
+        setTimeout(()=>{
+            $('.animate-left').css('right','100%');
+            $('.animate-right').css('left','100%');
+        },1000);
+    };
 </script>
 {% endblock %}
