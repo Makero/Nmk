@@ -3,7 +3,7 @@ const request = require('../utils/request');
 module.exports = {
 
     validateToken : async (opt) => {
-        await request.GET_API("wechat", "/validate_token", opt);
+        await request.GET_API("wechat", "/validate_token", opt)
     },
     msgHandle: async(opt) => {
         await request.POST_API("wechat", "/msg_handle", opt)
