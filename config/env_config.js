@@ -4,7 +4,6 @@ const config = {
         api: {
             url: "http://www.20mk.cn:8089",
             timeout: 30000
-
         }
     },
     development: {
