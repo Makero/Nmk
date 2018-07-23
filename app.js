@@ -3,11 +3,12 @@ const app = new Koa();
 const views = require('koa-views');
 const json = require('koa-json');
 const onerror = require('koa-onerror');
+const session = require('koa-session');
 const bodyparser = require('koa-bodyparser')();
 const koa_logger = require('koa-logger');
 const logger = require('./utils/logger');
 const urls = require('./urls');
-const session = require('koa-session');
+
 
 // error handler
 onerror(app);
@@ -22,13 +23,14 @@ app.use(views(__dirname + '/views', {
   extension: 'html',
   map:{html: 'swig'}
 }));
-app.keys = ['somesecrethurr'];
+
+app.keys = ['SESSION_MK'];
 const CONFIG = {
     key: 'koa:sess', /** (string) cookie key (default is koa:sess) */
     /** (number || 'session') maxAge in ms (default is 1 days) */
     /** 'session' will result in a cookie that expires when session/browser is closed */
     /** Warning: If a session cookie is stolen, this cookie will never expire */
-    maxAge: 86400000,
+    maxAge: 30 * 60 * 1000,
     overwrite: true, /** (boolean) can overwrite or not (default true) */
     httpOnly: true, /** (boolean) httpOnly or not (default true) */
     signed: true, /** (boolean) signed or not (default true) */

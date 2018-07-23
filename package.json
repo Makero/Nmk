@@ -20,6 +20,7 @@
     "koa-multer": "*",
     "koa-onerror": "^1.2.1",
     "koa-router": "^7.1.1",
+    "koa-session": "*",
     "koa-static": "^3.0.0",
     "koa-views": "^5.2.1",
     "log4js": "^1.1.1",
