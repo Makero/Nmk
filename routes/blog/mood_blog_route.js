@@ -15,7 +15,7 @@ router.get('/', isLogin, async (ctx, next) => {
     let week = ['日','一','二','三','四','五','六'];
     await moodController.getMood({
         ctx,
-        token:'5a5d4b9ca8d7f20544adfa2b8faaa791',
+        token:ctx.session.token,
         params:{page_size:10, page: 1, min_date: date.toLocaleDateString()}
     });
     console.log(ctx.api);

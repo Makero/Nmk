@@ -2,6 +2,10 @@ const checkController = require('../controllers/check_controller');
 
 
 module.exports = async (ctx, next)=>{
+    if(ctx.session && ctx.session.name){
+        await next();
+        return;
+    }
     const authToken = ctx.cookies.get('authToken');
     if(!authToken){
         ctx.redirect("/login?redirectURL=" + ctx.originalUrl);
@@ -15,9 +19,15 @@ module.exports = async (ctx, next)=>{
             // authToken无效
             ctx.redirect("/login?redirectURL=" + ctx.originalUrl);
         }else{
-            console.log(ctx.api);
-            // authToken有效 保存用户信息
-            //................
+            // authToken有效 保存用户信息到session中
+            ctx.session = {
+                id: ctx.api.data.id,
+                name: ctx.api.data.user,
+                sex: ctx.api.data.sex,
+                introduction: ctx.api.data.introduction,
+                head_path: ctx.api.data.head_path,
+                token: authToken
+            };
             await next();
         }
     }

@@ -3,9 +3,9 @@ const app = new Koa();
 const views = require('koa-views');
 const json = require('koa-json');
 const onerror = require('koa-onerror');
+const session = require('koa-session');
 const bodyparser = require('koa-bodyparser')();
 const koa_logger = require('koa-logger');
-const session = require('client-sessions');
 const logger = require('./utils/logger');
 const urls = require('./urls');
 
@@ -24,12 +24,20 @@ app.use(views(__dirname + '/views', {
   map:{html: 'swig'}
 }));
 
-app.use(session({
-    cookieName: 'session',
-    secret: 'random_string_goes_here',
-    duration: 30 * 60 * 1000,
-    activeDuration: 5 * 60 * 1000,
-}));
+app.keys = ['SESSION_MK'];
+const CONFIG = {
+    key: 'koa:sess', /** (string) cookie key (default is koa:sess) */
+    /** (number || 'session') maxAge in ms (default is 1 days) */
+    /** 'session' will result in a cookie that expires when session/browser is closed */
+    /** Warning: If a session cookie is stolen, this cookie will never expire */
+    maxAge: 30 * 60 * 1000,
+    overwrite: true, /** (boolean) can overwrite or not (default true) */
+    httpOnly: true, /** (boolean) httpOnly or not (default true) */
+    signed: true, /** (boolean) signed or not (default true) */
+    rolling: false, /** (boolean) Force a session identifier cookie to be set on every response. The expiration is reset to the original maxAge, resetting the expiration countdown. (default is false) */
+    renew: false, /** (boolean) renew session when session is nearly expired, so we can always keep user logged in. (default is false)*/
+};
+app.use(session(CONFIG, app));
 
 // logger **
 app.use(async (ctx, next) => {
