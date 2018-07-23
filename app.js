@@ -5,6 +5,7 @@ const json = require('koa-json');
 const onerror = require('koa-onerror');
 const bodyparser = require('koa-bodyparser')();
 const koa_logger = require('koa-logger');
+const session = require('client-sessions');
 const logger = require('./utils/logger');
 const urls = require('./urls');
 
@@ -21,6 +22,13 @@ app.use(require('koa-static')(__dirname + '/public'));
 app.use(views(__dirname + '/views', {
   extension: 'html',
   map:{html: 'swig'}
+}));
+
+app.use(session({
+    cookieName: 'session',
+    secret: 'random_string_goes_here',
+    duration: 30 * 60 * 1000,
+    activeDuration: 5 * 60 * 1000,
 }));
 
 // logger **

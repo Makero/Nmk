@@ -2,7 +2,6 @@ const checkController = require('../controllers/check_controller');
 
 
 module.exports = async (ctx, next)=>{
-
     const authToken = ctx.cookies.get('authToken');
     if(!authToken){
         ctx.redirect("/login?redirectURL=" + ctx.originalUrl);
@@ -16,6 +15,7 @@ module.exports = async (ctx, next)=>{
             // authToken无效
             ctx.redirect("/login?redirectURL=" + ctx.originalUrl);
         }else{
+            console.log(ctx.api);
             // authToken有效 保存用户信息
             //................
             await next();
