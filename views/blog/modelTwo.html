@@ -1,6 +1,6 @@
 <header class="spring">
 	<div class="title abs">
-		<h1 class="blogTitle">{{title}}</h1>
+		<h1>{{data.title}}</h1>
 		<p class="motto">{{data.motto}}</p>
 	</div>
 	<div style="width:100%;height:265px;"><canvas id="animate" style="position: absolute;left: 50%;margin-left: -388px;"></canvas></div>
@@ -12,7 +12,7 @@
 		<p class="cat cat2 abs"><img src="/blogStatic/images/cat/tiantiansifangmao-14.png"></p>
 		<p class="cat cat3 abs"><img src="/blogStatic/images/cat/tiantiansifangmao-15.png"></p>
 		<div class="personal abs">
-			<a class="portrait rel" href="/blog/personal"><img src="/blogStatic/images/portrait/myhead.png"><span class="name abs">{{data.name}}</span></a>
+			<a class="portrait rel" href="/blog/personal"><img src="{{userData.head_path}}"><span class="name abs">{{userData.name}}</span></a>
 		</div>
 
 		<ul class="abs">
