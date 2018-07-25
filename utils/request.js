@@ -18,7 +18,7 @@ function requestOrderAPI(path, opt, method){
                 reject(err);
                 return;
             }
-            console.log(body);
+
             resolve(body);
         });
     });
