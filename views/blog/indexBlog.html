@@ -24,7 +24,7 @@
                     <h4><a href="/{% if art.type == '1' %}lway{% else %}life{% endif %}/blog?id={{art.id}}">{{art.title}}</a></h4>
                     <div class="artCont clear">
                         <a href="/{% if art.type == '1' %}lway{% else %}life{% endif %}/blog?id={{art.id}}" class="img"><img src="{{art.imgpath}}"></a>
-                        <p>{{art.content}}</p>
+                        <p>{{art.content|striptags}}</p>
                         <a href="/{% if art.type == '1' %}lway{% else %}life{% endif %}/blog?id={{art.id}}" class="button">阅读全文</a>
                     </div>
                     <div class="artMess">
