@@ -9,6 +9,7 @@ module.exports = {
     '/wechat/music' 			: './routes/wechat/music_route',
     '/wechat/towxy'				: './routes/wechat/wxy_route',
 	'/wechat/auth'				: './routes/wechat/auth_route',
+	'/wechat/home'				: './routes/wechat/home_route',
     '/wechat/tools'				: './routes/wechat/tools_route',
 
 	'/blog'				: './routes/blog/index_blog_route',
