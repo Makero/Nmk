@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %} {{title}} {% endblock %}
+{% block css %}
+<link type="text/css" rel="stylesheet" href="/wechatStatic/css/home.css"/>
+{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="user-top">
+        <div class="user-top-cont">
+            <div class="user-btn">
+                <button id="setBtn" class="set"></button>
+                <button id="newsBtn" class="news"></button>
+            </div>
+            <div class="user-top-portrait">
+                <span>Lv8</span>
+            </div>
+            <div class="user-name-mess">
+                <p class="name">爱丽丝~<i class="woman"></i></p>
+                <p class="mess">努力，是为了能有一个让人羡慕的未来。</p>
+            </div>
+            <div class="user-top-cont-data">
+                <ol>
+                    <li><a href="#">690</a><span>积分</span></li>
+                    <li><a>59</a><span>关注</span></li>
+                    <li><a>189</a><span>粉丝</span></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-btn">
+        <ol id="nav">
+            <li><a href="/wechat/tools"><i>T</i>常用工具</a></li>
+            <li><a><i>F</i>慢生活</a></li>
+            <li><a><i>L</i>长路漫漫</a></li>
+            <li><a><i>M</i>积分商城</a></li>
+        </ol>
+    </div>
+
+    <div class="user-list">
+        <ol>
+            <li><a><label><span></span>我的收藏</label><i></i></a></li>
+            <li><a><label><span></span>我的知识</label><i></i></a></li>
+            <li><a><label><span></span>我的群组</label><i></i></a></li>
+            <li><a><label><span></span>我的活动</label><i></i></a></li>
+            <li><a><label><span></span>我的好友</label><i></i></a></li>
+            <li><a><label><span></span>个人信息</label><i></i></a></li>
+        </ol>
+    </div>
+
+    <div class="set-box fn-hide">
+        <div class="set-box-cont animated">
+            <div class="set-cont-title"><span id="closeSet"></span>设 置</div>
+            <ol>
+                <li><label><span></span>消息推送</label><strong id="offBtn" class=""></strong></li>
+                <li><label><span></span>更换皮肤</label><i></i></li>
+                <li><label><span></span>意见反馈</label><i></i></li>
+                <li><label><span></span>关于平台</label><i></i></li>
+            </ol>
+            <button id="logout" class="return-btn">退出登录</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    $("#offBtn").click(function(){
+        if($(this).hasClass("cover")){
+            $(this).removeClass("cover");
+        }else{
+            $(this).addClass("cover");
+        }
+    });
+    $("#setBtn").click(function(){
+        $(".set-box").show();
+        $(".animated").removeClass("bounceOutLeft").addClass("bounceInLeft");
+        $("body").css("overflow","hidden");
+    });
+
+    $("#closeSet").click(function(){
+        $(".animated").removeClass("bounceInLeft").addClass("bounceOutLeft");
+        setTimeout(function(){
+            $(".set-box").hide();
+        },500);
+        $("body").css("overflow","auto");
+    });
+    $("#logout").click(function(){
+        window.location.href = "/login";
+    });
+</script>
+{% endblock %}
