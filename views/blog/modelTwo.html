@@ -1,34 +1,40 @@
 <header class="spring">
-		<div class="title abs">
-			<h1 class="blogTitle">{{title}}</h1>
-			<p class="motto">{{data.motto}}</p>
-		</div>
-		<embed id="ls" class="willow abs" src="/blogStatic/images/flash/willow.swf" width="600" height="400" wmode=transparent type='application/x-shockwave-flash'></embed>
-	
-		<embed id="swf" src="/blogStatic/images/flash/top.swf" width="100%" height="265" wmode=transparent type='application/x-shockwave-flash'></embed>
-		<div class="listBar rel">
-			<p class="cat cat1 abs"><img src="/blogStatic/images/cat/tiantiansifangmao-06.png"></p>
-			<p class="cat cat2 abs"><img src="/blogStatic/images/cat/tiantiansifangmao-14.png"></p>
-			<p class="cat cat3 abs"><img src="/blogStatic/images/cat/tiantiansifangmao-15.png"></p>
-			<div class="personal abs">
-				<a class="portrait rel" href="/blog/personal"><img src="/blogStatic/images/portrait/myhead.png"><span class="name abs">{{data.name}}</span></a>
-			</div>
-			
-			<ul class="abs">
-				<li><a class="four" href="/blog/personal">个人<br/>中心</a></li>
-				<li><a class="four" href="/blog/way">长路<br/>漫漫</a></li>
-				<li><a href="/blog/life">慢生活</a></li>
-				<li><a href="/blog/recollect">记·忆</a></li>
-				<li><a class="four" href="/blog/mood">碎言<br/>碎语</a></li>
-			</ul>
-		</div><!--listBar 结束-->
-	</header>
-	<div class="road">
-		<ul>
-			<li class="line"></li>
-			<li class="tree tree1"></li>
-			<li class="tree tree2"></li>
-			<li class="tree tree3"></li>
-			<li class="car"></li>
-		</ul>
+	<div class="title abs">
+		<h1>{{data.title}}</h1>
+		<p class="motto">{{data.motto}}</p>
 	</div>
+	<div style="width:100%;height:265px;"><canvas id="animate" style="position: absolute;left: 50%;margin-left: -388px;"></canvas></div>
+	<!--<embed id="ls" class="willow abs" src="/blogStatic/images/flash/willow.swf" width="600" height="400" wmode=transparent type='application/x-shockwave-flash'></embed>
+
+	<embed id="swf" src="/blogStatic/images/flash/top.swf" width="100%" height="265" wmode=transparent type='application/x-shockwave-flash'></embed>-->
+	<div class="listBar rel">
+		<p class="cat cat1 abs"><img src="/blogStatic/images/cat/tiantiansifangmao-06.png"></p>
+		<p class="cat cat2 abs"><img src="/blogStatic/images/cat/tiantiansifangmao-14.png"></p>
+		<p class="cat cat3 abs"><img src="/blogStatic/images/cat/tiantiansifangmao-15.png"></p>
+		<div class="personal abs">
+			<a class="portrait rel" href="/blog/personal"><img src="{{userData.head_path}}"><span class="name abs">{{userData.name}}</span></a>
+		</div>
+
+		<ul class="abs">
+			<li><a class="four" href="/blog/personal">个人<br/>中心</a></li>
+			<li><a class="four" href="/blog/way">长路<br/>漫漫</a></li>
+			<li><a href="/blog/life">慢生活</a></li>
+			<li><a href="/blog/recollect">记·忆</a></li>
+			<li><a class="four" href="/blog/mood">碎言<br/>碎语</a></li>
+		</ul>
+	</div><!--listBar 结束-->
+</header>
+<div class="road">
+	<ul>
+		<li class="line"></li>
+		<li class="tree tree1"></li>
+		<li class="tree tree2"></li>
+		<li class="tree tree3"></li>
+		<li class="car"></li>
+	</ul>
+</div>
+<script src="/plugin/swfToCanvas/fanvas3-min.js"></script>
+<script src="/plugin/swfToCanvas/swfData.js"></script>
+<script>
+    fanvas.play('animate', swfData, {scale:0.85});
+</script>

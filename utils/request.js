@@ -18,6 +18,7 @@ function requestOrderAPI(path, opt, method){
                 reject(err);
                 return;
             }
+
             resolve(body);
         });
     });
