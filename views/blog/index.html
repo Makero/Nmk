@@ -7,7 +7,7 @@
 {% block body %}
 <div class="container loading">
     <div id="part"></div>
-    <div class="notice"></div>
+    <!--<div class="notice" data-name=""></div>-->
     <main>
         <section class="content content--c1">
             <div class="pater">
@@ -24,8 +24,8 @@
                     <span class="pater__title">导航</span>
                     <span class="pater__more">鼠标滑入查看更多</span>
                     <div class="pater__hover">
-                        <ol>
-                            <li>欢迎</li>
+                        <ol id="nav">
+                            <li style="margin-bottom:10px;">欢迎</li>
                             <li><a>分享知识</a></li>
                             <li><a>读书笔记</a></li>
                             <li><a>想法记录</a></li>
@@ -80,6 +80,12 @@
                 duration: 400,
                 easing: 'easeOutExpo'
             });
+        });
+
+        $("#nav li").hover(function(){
+            $(".notice").attr("data-name",$(this).text());
+        },function(){
+            $(".notice").attr("data-name","");
         });
     })();
 </script>

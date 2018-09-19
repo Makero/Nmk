@@ -1,0 +1,71 @@
+<style>
+    body{min-width:1366px;min-height:768px;background:url(blogStatic/images/login/bg.jpg) no-repeat;background-size:100%;overflow:hidden;}
+    .flower li{width:40px;height:40px;background-image:url(blogStatic/images/login/snowflake1.png);background-repeat: no-repeat;background-position: left top;
+        animation:flower 2s linear infinite;position:absolute;left:0px;top:0px;
+    }
+    @keyframes flower{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+
+    .wrapper{ position: relative; width: 1300px; margin: 0 auto;}
+    .poabs{ position: absolute;}
+    .cus{cursor: pointer;}
+    .faqbox{opacity:0; z-index: 1; background: url(blogStatic/images/login/faq.png) no-repeat; width: 139px; height: 87px; top: 55px; left: 100px;}
+    .faqbox:hover{ background: url(blogStatic/images/login/faqhover.png)0 -1px no-repeat;}
+    .titl{opacity:0; top: 55px; left:0; width: 1300px; text-align: center;}
+    .video{opacity:0; z-index: 1; background: url(blogStatic/images/login/video.png) no-repeat; width: 218px; height: 88px; top: 55px; right: 100px;}
+    .video:hover{ background: url(blogStatic/images/login/videohover.png) no-repeat;}
+    .zi{z-index: 1;}
+    .cp{ top:858px; left: 210px;}
+    .cpdap{ top: 868px; left: 50px;}
+    .yu{opacity:0; top: 795px; left: 290px;}
+    .ui{ top:858px; left: 680px;}
+    .uidap{ top:868px; left: 520px;}
+    .qd{ top:858px; right: 155px;}
+    .qddap{ top:868px; right: 55px;}
+    .ht{ top:1090px; left: 410px;}
+    .htdap{ top:1090px; left: 200px;}
+    .cs{ top:1090px; right: 210px;}
+    .csdap{ top:1090px; right: 200px;}
+</style>
+<div class="flower">
+    <ul></ul>
+</div>
+
+<!-- 干活篇 -->
+<div class="work ">
+    <div class="wrapper">
+        <div class="faqbox poabs cus"></div>
+        <div class="titl poabs"><img src="blogStatic/images/login/gh.png"></div>
+        <div class="video poabs cus"></div>
+        <div class="yu poabs"><img src="blogStatic/images/login/jingy.png"></div>
+
+        <!---产品-->
+        <div class="dai cus cpBlk">
+            <div class="zi poabs cp"><img src="blogStatic/images/login/cp.png"></div>
+            <div class="dao poabs cpdap"><img src="blogStatic/images/login/cpdao.png"></div>
+        </div>
+
+        <!--UI-->
+        <div class="dai cus uiBlk">
+            <div class="zi poabs ui"><img src="blogStatic/images/login/ui.png"></div>
+            <div class="dao poabs uidap"><img src="blogStatic/images/login/uidao.png"></div>
+        </div>
+
+        <!--前端-->
+        <div class="dai cus qdBlk">
+            <div class="zi poabs qd"><img src="blogStatic/images/login/qd.png"></div>
+            <div class="dao poabs qddap"><img src="blogStatic/images/login/qddao.png"></div>
+        </div>
+
+        <!--开发-->
+        <div class="dai cus kfBlk">
+            <div class="zi poabs ht"><img src="blogStatic/images/login/ht.png"></div>
+            <div class="dao poabs htdap"><img src="blogStatic/images/login/htdao.png"></div>
+        </div>
+
+        <!--测试-->
+        <div class="dai cus csBlk">
+            <div class="zi poabs cs"><img src="blogStatic/images/login/cs.png"></div>
+            <div class="dao poabs csdap"><img src="blogStatic/images/login/csdao.png"></div>
+        </div>
+    </div>
+</div>

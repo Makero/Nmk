@@ -2,7 +2,7 @@
 
 {% block title%}登录{% endblock %}
 {% block css %}
-<link type="text/css" rel="stylesheet" href="/commonStatic/css/animate.css">
+<link type="text/css" rel="stylesheet" href="/commonStatic/css/animate.min.css">
 <style>
 
     .animate-left{position:absolute;top:0;bottom:0;left:0;right:50%;background:#333;transition:right 1s;}
@@ -30,13 +30,16 @@
     </div>
 </div>
 <div>
-    登录成功！
+    {% include 'part/loginSuccess.html' %}
 </div>
 {% endblock %}
 
 {% block script %}
 <script type="text/javascript" src="/commonStatic/js/jquery.qrcode.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
+<script src="blogStatic/js/login/myFunc.js"></script>
+<script src="blogStatic/js/login/move.js"></script>
+<script src="blogStatic/js/login/choose.js"></script>
 <script type="text/javascript">
 
     const ident = randomString(16);
@@ -92,6 +95,12 @@
             $('.animate-left').css('right','100%');
             $('.animate-right').css('left','100%');
         },1000);
+        setTimeout(()=>{
+            setInterval(function(){
+                Flower.Init();
+            },600);
+            Work();
+        },1500);
     };
 </script>
 {% endblock %}

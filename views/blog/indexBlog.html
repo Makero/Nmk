@@ -6,7 +6,7 @@
 
 {% block nav %}{% endblock %}
 {% block wrapper %}
-{% if data.model == '1' %}
+{% if data.model == '2' %}
 {% include 'modelOne.html' %}
 {% else %}
 {% include 'modelTwo.html' %}
@@ -21,14 +21,14 @@
             <ul>
                 {% for art in artic %}
                 <li>
-                    <h4><a href="/{% if art.type == '1' %}lway{% else %}life{% endif %}/blog?id={{art.id}}">{{art.title}}</a></h4>
+                    <h4><a href="/blog/article/{{art.id}}/detail">{{art.title}}</a></h4>
                     <div class="artCont clear">
-                        <a href="/{% if art.type == '1' %}lway{% else %}life{% endif %}/blog?id={{art.id}}" class="img"><img src="{{art.imgpath}}"></a>
-                        <p>{{art.content|striptags}}</p>
-                        <a href="/{% if art.type == '1' %}lway{% else %}life{% endif %}/blog?id={{art.id}}" class="button">阅读全文</a>
+                        <a href="/blog/article/{{art.id}}/detail" class="img"><img src="/blogStatic/images/article/c-01.jpg"></a>
+                        <p>{{art.abstract|striptags}}</p>
+                        <a href="/blog/article/{{art.id}}/detail" class="button">阅读全文</a>
                     </div>
                     <div class="artMess">
-                        <dl><dd><time>{{art.create_time|date('Y-m-d', -480)}}</time></dd><dd>作者：{{art.author}}/dd><dd>个人博客：[<a href="/{% if art.type == '1' %}lway{% else %}life{% endif %}/type?name={{art.type}}">
+                        <dl><dd><time>{{art.create_time|date('Y-m-d', -480)}}</time></dd><dd>作者：{{art.author}}</dd><dd>个人博客：[<a href="/blog/article?name={{art.type}}">
                             {{art.type}}</a>]</dd></dl>
                     </div>
                 </li>
