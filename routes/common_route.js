@@ -28,7 +28,12 @@ function requestOrderAPI(path,obj){
 
 /** 网站首页 **/
 router.get('/', async (ctx) => {
-    await ctx.render('blog/index');
+    const authToken = ctx.cookies.get('authToken');
+    let status = 1;
+    if(authToken){
+        status = 0;
+    }
+    await ctx.render('blog/index', {status});
 });
 
 

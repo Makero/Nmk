@@ -7,7 +7,7 @@ const data = {
     title:"Makerの博客"
 };
 /* GET home page. */
-router.get('/', isLogin, async (ctx, next) => {
+router.get('/', async (ctx, next) => {
     data.theme = "碎言碎语";
     data.index = 0;
     let date = new Date();

@@ -2,13 +2,85 @@
 {% block title %}Mk首页{% endblock %}
 {% block css %}
 <link type="text/css" rel="stylesheet" href="/blogStatic/css/index.css"/>
+<link type="text/css" rel="stylesheet" href="/blogStatic/css/pater.css"/>
 {% endblock %}
 {% block body %}
-<div>
-    <h1>首页</h1>
+<div class="container loading">
+    <div id="part"></div>
+    <div class="notice"></div>
+    <main>
+        <section class="content content--c1">
+            <div class="pater">
+                <svg class="pater__svg" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 280 800" data-path-hover="M 0,0 280,0 280,800 0,800 Z">
+                    <clipPath id="pater-clip">
+                        <path d="M 0,0 280,0 280,400 600,800 Z" overflow="visible"></path>
+                    </clipPath>
+                    <g class="pater__clip" clip-path="url(#pater-clip)">
+                        <image overflow="visible" width="100%" height="100%" preserveAspectRatio="xMinYMin slice" xlink:href="/blogStatic/images/sponsor/bg.jpg"></image>
+                    </g>
+                </svg>
+                <div class="pater__content">
+                    <img class="pater__logo" src="/blogStatic/images/sponsor/jupiter_logo.svg" alt="Jupiter Logo">
+                    <span class="pater__title">导航</span>
+                    <span class="pater__more">鼠标滑入查看更多</span>
+                    <div class="pater__hover">
+                        <ol>
+                            <li>欢迎</li>
+                            <li><a>分享知识</a></li>
+                            <li><a>读书笔记</a></li>
+                            <li><a>想法记录</a></li>
+                            {% if status %}
+                            <li class="login"><a href="/login">登录</a></li>
+                            {% else %}
+                            <li><a href="/blog">我的空间</a></li>
+                            <li><a>积分商城</a></li>
+                            {% endif %}
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 </div>
 
-<div class="footer">
+<div class="footer hide">
     <a href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备17032808号-1</a>
 </div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="/commonStatic/js/particles.min.js"></script>
+<script src="/commonStatic/js/imagesloaded.pkgd.min.js"></script>
+<script src="/commonStatic/js/anime.min.js"></script>
+
+<script>
+    (function() {
+        ParticleStart('part');
+        // Preload all images.
+        var pater = document.querySelector('.pater'),
+            paterSVG = pater.querySelector('.pater__svg'),
+            pathEl = paterSVG.querySelector('path'),
+            paths = {default: pathEl.getAttribute('d'), active: paterSVG.getAttribute('data-path-hover')};
+
+        pater.addEventListener('mouseenter', function() {
+            anime.remove(pathEl);
+            anime({
+                targets: pathEl,
+                d: paths.active,
+                duration: 400,
+                easing: 'easeOutQuad'
+            });
+        });
+
+        pater.addEventListener('mouseleave', function() {
+            anime.remove(pathEl);
+            anime({
+                targets: pathEl,
+                d: paths.default,
+                duration: 400,
+                easing: 'easeOutExpo'
+            });
+        });
+    })();
+</script>
 {% endblock %}
