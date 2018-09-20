@@ -9,7 +9,7 @@ Flower = {
 		$(".flower ul").append("<li></li>");
 		$flower = $(".flower ul li:last-child");
 		this.obj = $flower;
-		$flower.css({"background-image":"url(blogStatic/images/login/snowflake"+n+".png)","top":this.top+"px","left":this.left+"px","transition":"all 10s linear"});
+		$flower.css({"background-image":"url(blogStatic/images/navigation/snowflake"+n+".png)","top":this.top+"px","left":this.left+"px","transition":"all 10s linear"});
 		return this;
 	},
 	Animation:function(){

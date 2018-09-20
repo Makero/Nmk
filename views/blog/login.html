@@ -37,9 +37,6 @@
 {% block script %}
 <script type="text/javascript" src="/commonStatic/js/jquery.qrcode.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
-<script src="blogStatic/js/login/myFunc.js"></script>
-<script src="blogStatic/js/login/move.js"></script>
-<script src="blogStatic/js/login/choose.js"></script>
 <script type="text/javascript">
 
     const ident = randomString(16);
@@ -94,6 +91,7 @@
         setTimeout(()=>{
             $('.animate-left').css('right','100%');
             $('.animate-right').css('left','100%');
+            window.history.pushState('', '', 'navigation');
         },1000);
         setTimeout(()=>{
             setInterval(function(){
