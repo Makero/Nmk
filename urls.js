@@ -1,5 +1,6 @@
 module.exports = {
 	'/' 						: './routes/common_route',
+
     '/wechat'					: './routes/wechat/wechat_route',
 	'/wechat/photo'				: './routes/wechat/photo_route',
 	'/wechat/invitation'		: './routes/wechat/invitation_route',
@@ -12,6 +13,7 @@ module.exports = {
 	'/wechat/home'				: './routes/wechat/home_route',
     '/wechat/tools'				: './routes/wechat/tools_route',
 
+    '/mall'				: './routes/blog/mall_route',
 	'/blog'				: './routes/blog/index_blog_route',
 	'/blog/mood'		: './routes/blog/mood_blog_route',
 	'/blog/recollect'	: './routes/blog/recollect_blog_route',

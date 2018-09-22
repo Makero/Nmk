@@ -73,6 +73,7 @@ a{text-decoration: none;}
 .rel{position:relative;}
 .fix{position:fixed;}
 
+.hide{display:none;}
 /*提示框*/
 .messBox{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.8);z-index:99999;}
 .contBox{position:absolute;left:8%;top:20%;height:40%;width:80%;max-width:480px;max-height:280px;min-height:260px;background:#fff;border-radius:4px;text-align:center;}

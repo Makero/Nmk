@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block wrapper %}
+<canvas id="canvas"></canvas>
 <div class="content rel cover">
     {% if sear == 0 %}
     <div class="date">
@@ -44,7 +45,7 @@
                     </time>
                     <em>{{obj.content}}</em>
                 </p>
-                <p class="img"><img src="{{obj.imagepath}}"></p>
+                <p class="img"><img src="/blogStatic/images/mood/c-02.jpg"></p>
             </li>
             {% endfor %}
         </ul>

@@ -1,0 +1,75 @@
+<style>
+    body{min-width:1366px;min-height:768px;background:url(blogStatic/images/navigation/bg.jpg) no-repeat;background-size:100% 100%;overflow:hidden;}
+    .flower li{width:40px;height:40px;background-image:url(blogStatic/images/navigation/snowflake1.png);background-repeat: no-repeat;background-position: left top;
+        animation:flower 2s linear infinite;position:absolute;left:0;top:0;
+    }
+    @keyframes flower{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+
+    .wrapper{ position: relative; width: 1300px; margin: 0 auto;}
+    .poabs{ position: absolute;}
+    .cus{cursor: pointer;}
+    .faqbox{opacity:0; z-index: 1; background: url(blogStatic/images/navigation/room.png) no-repeat; width: 218px; height: 88px; top: 55px; left: 100px;}
+    .faqbox:hover{ background: url(blogStatic/images/navigation/room_hover.png) no-repeat 0 -1px;}
+    .titl{opacity:0; top: 55px; left:0; width: 1300px; text-align: center;}
+    .video{opacity:0; z-index: 1; background: url(blogStatic/images/navigation/mall.png) no-repeat; width: 218px; height: 88px; top: 55px; right: 100px;}
+    .video:hover{ background: url(blogStatic/images/navigation/mall_hover.png) no-repeat;}
+    .zi{z-index: 1;}
+    .cp{ top:1400px; left: 210px;}
+    .cpdap{ top: 1400px; left: 50px;}
+    .yu{opacity:0; top: 795px; left: 290px;}
+    .ui{ top:1400px; left: 600px;}
+    .uidap{ top:1400px; left: 520px;}
+    .qd{ top:1400px; right: 155px;}
+    .qddap{ top:1400px; right: 55px;}
+    .ht{ top:1400px; left: 380px;}
+    .htdap{ top:1400px; left: 200px;}
+    .cs{ top:1400px; right: 210px;}
+    .csdap{ top:1400px; right: 200px;}
+</style>
+<div class="flower">
+    <ul></ul>
+</div>
+
+<!-- 干活篇 -->
+<div class="work ">
+    <div class="wrapper">
+        <a class="faqbox poabs cus" href="/blog"></a>
+        <div class="titl poabs"><img src="blogStatic/images/navigation/struggle.png"></div>
+        <a class="video poabs cus" href="/mall"></a>
+        <div class="yu poabs"><img src="blogStatic/images/navigation/jingy.png"></div>
+
+        <!---心情-->
+        <div class="dai cus cpBlk">
+            <div class="zi poabs cp"><img src="blogStatic/images/navigation/mood.png"></div>
+            <div class="dao poabs cpdap"><img src="blogStatic/images/navigation/mood_isle.png"></div>
+        </div>
+
+        <!--分享-->
+        <div class="dai cus uiBlk">
+            <div class="zi poabs ui"><img src="blogStatic/images/navigation/share.png"></div>
+            <div class="dao poabs uidap"><img src="blogStatic/images/navigation/share_isle.png"></div>
+        </div>
+
+        <!--前端-->
+        <div class="dai cus qdBlk">
+            <div class="zi poabs qd"><img src="blogStatic/images/navigation/activity.png"></div>
+            <div class="dao poabs qddap"><img src="blogStatic/images/navigation/activity_isle.png"></div>
+        </div>
+
+        <!--笔记-->
+        <div class="dai cus kfBlk">
+            <div class="zi poabs ht"><img src="blogStatic/images/navigation/note.png"></div>
+            <div class="dao poabs htdap"><img src="blogStatic/images/navigation/note_isle.png"></div>
+        </div>
+
+        <!--测试-->
+        <div class="dai cus csBlk">
+            <div class="zi poabs cs"><img src="blogStatic/images/navigation/QA.png"></div>
+            <div class="dao poabs csdap"><img src="blogStatic/images/navigation/QA_isle.png"></div>
+        </div>
+    </div>
+</div>
+
+<script src="blogStatic/js/navigation/myFunc.js"></script>
+<script src="blogStatic/js/navigation/move.js"></script>
+<script src="blogStatic/js/navigation/choose.js"></script>

@@ -1,4 +1,5 @@
-.wrapper{background:#7A6A81 url(../images/stabg1.png);}
+body {background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAI0lEQVQIW2NkwAT/GdHE/gP5jMiCYAGQIpggXAAmiCIAEgQAAE4FBbECyZcAAAAASUVORK5CYII=) #222;}
+canvas{position:fixed;}
 .wrapper .content{background:#EEE;}
 .wrapper .content .date{height:60px;padding-top:10px;}
 .wrapper .content .date p.time{margin-top:20px;width:160px;text-indent:.5em;line-height:26px;color:#fff;background:#D53D26;}

@@ -1,1 +1,10 @@
+body{background:#333;}
 .footer{position:fixed;bottom:0;width:100%;}
+
+.container{height:100%;overflow:hidden;}
+.notice{width:40%;height:60%;background:rgba(255,255,255,.8);box-shadow:-2px 2px 6px rgba(0,0,0,.6);position:absolute;top:20%;left:50%;margin-left:-20%;}
+.notice:before{content:attr(data-name); width:60px;height:60%;color:#fff;font-size:50px;position:absolute;left:-160px;top:0;}
+.pater__hover{margin-left:30px;}
+.pater__hover li a{display:block;color:#efefef;text-align:center;line-height:40px;}
+.pater__hover li a:hover{background:rgba(255,255,255,.4);color:#fff;}
+.login a{width:80%;height:40px;color:#fff;border:1px solid #efefef;border-radius:4px;position:absolute;top:360px;left:50%;margin-left:-40%;}

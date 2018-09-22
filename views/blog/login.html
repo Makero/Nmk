@@ -2,7 +2,7 @@
 
 {% block title%}登录{% endblock %}
 {% block css %}
-<link type="text/css" rel="stylesheet" href="/commonStatic/css/animate.css">
+<link type="text/css" rel="stylesheet" href="/commonStatic/css/animate.min.css">
 <style>
 
     .animate-left{position:absolute;top:0;bottom:0;left:0;right:50%;background:#333;transition:right 1s;}
@@ -30,7 +30,7 @@
     </div>
 </div>
 <div>
-    登录成功！
+    {% include 'part/loginSuccess.html' %}
 </div>
 {% endblock %}
 
@@ -91,7 +91,14 @@
         setTimeout(()=>{
             $('.animate-left').css('right','100%');
             $('.animate-right').css('left','100%');
+            window.history.pushState('', '', 'navigation');
         },1000);
+        setTimeout(()=>{
+            setInterval(function(){
+                Flower.Init();
+            },600);
+            Work();
+        },1500);
     };
 </script>
 {% endblock %}

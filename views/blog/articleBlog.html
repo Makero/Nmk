@@ -3,12 +3,12 @@
 <link type="text/css" rel="stylesheet" href="/blogStatic/css/articleBlog.css">
 {% endblock %}
 {% block content_left %}
-<h2>{{blog.title}}</h2>
+<h2>{{article.title}}</h2>
 <div class="artMess clear">
-    <span>发表时间：<time>{{blog.time|date('Y-m-d', -480)}}</time></span>
-    <span>编辑：Maker</span>
+    <span>发表时间：<time>{{article.create_time|date('Y-m-d', -480)}}</time></span>
+    <span>编辑：{{article.author}}</span>
 </div>
-{{ data.content|safe }}
+{{ article.content|safe }}
 {% endblock %}
 {% block content_right %}
 <div class="newList">
