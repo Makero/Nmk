@@ -100,7 +100,7 @@ router.get('/play/music/:id', async (ctx) => {
 /** 语音合成 **/
 router.get('/play/speech', async (ctx) => {
     try{
-        const result = await client.text2audio(ctx.query.talk, {pit: 8, per: 4});
+        const result = await client.text2audio(ctx.query.talk, {pit: ctx.query.pit||8, per: ctx.query.per||4, spd: ctx.query.spd||5, vol: 15});
         ctx.status = 200;ctx.type = 'mp3';ctx.body = result.data;
     }catch(error){
         console.error("网络异常");

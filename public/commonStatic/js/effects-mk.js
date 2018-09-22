@@ -1,4 +1,4 @@
-$.fn.MKtypewriter = function(time) {
+$.fn.MKtypewriter = function(time, callback) {
     this.each(function() {
         var $ele = $(this), str = $ele.html(), progress = 0, timer = null;
         $ele.html('');
@@ -14,6 +14,8 @@ $.fn.MKtypewriter = function(time) {
             if (progress >= str.length) {
                 clearInterval(timer);
                 $ele.html(str.substring(0, progress - 1));
+                if(callback)
+                    callback();
             }
         }, time);
     });

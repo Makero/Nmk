@@ -12,6 +12,7 @@ module.exports = {
 	'/wechat/auth'				: './routes/wechat/auth_route',
 	'/wechat/home'				: './routes/wechat/home_route',
     '/wechat/tools'				: './routes/wechat/tools_route',
+	'/wechat/gift'				: './routes/wechat/gift_route',
 
     '/mall'				: './routes/blog/mall_route',
 	'/blog'				: './routes/blog/index_blog_route',
