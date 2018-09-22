@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}开心{% endblock %}
+{% block title %}沉睡的小猪{% endblock %}
 {% block css %}
 
 <style>
@@ -86,7 +86,7 @@
         <p>嘻嘻，试着把小猪唤醒吧</p>
         <p>小猪醒来后就可以陪你玩了哦~</p>
         <p>告诉你一个小秘密</p>
-        <p>摸摸小猪的舌头会有惊喜哦~</p>
+        <p>摸摸小猪的舌头有惊喜哦~</p>
     </div>
 
     <div class="talk hide">
@@ -127,7 +127,11 @@
 <script src="/blogStatic/js/navigation/myFunc.js"></script>
 <script>
 wxCheckConfig('gift', ['startRecord', 'stopRecord', 'translateVoice']);
-
+document.body.addEventListener('touchstart', function () { });
+window.ontouchstart = function(e) {
+    const event = e || window.event;
+    event.preventDefault();
+};
 
 const tag = $("#start")[0];
 
@@ -145,6 +149,7 @@ function touch (eve){
             wx.stopRecord({
                 success: function (res) {
                     localId = res.localId;
+                    $("#write").show().html("<p>正在理解中，稍等哈~~</p>");
                     wx.translateVoice({
                         localId: localId, // 需要识别的音频的本地Id，由录音相关接口获得
                         isShowProgressTips: 1, // 默认为1，显示进度提示
@@ -154,6 +159,7 @@ function touch (eve){
                                 type: 'post',
                                 data: {talk:res.translateResult},   // 语音识别的结果
                                 success: function(result){
+                                    $("#write").show().html(result);
                                     $("#audio").attr("src","/play/speech?pit=4&talk="+result);
                                     audioPlay.play();
                                     $(".mouth,.tongue").addClass("hide");
@@ -173,7 +179,10 @@ let timer, clickCount = 0;
 const arr = [2,3,4,5,6],pigEyeOpen = [3, 4, 5, 5, 4, 8];
 const audioPlay = $("#audio")[0];
 const jump = Math.floor(Math.random()*6);
-$(".noseBtn").click(function(){
+const noseClick = $(".noseBtn")[0];
+
+noseClick.addEventListener('touchstart',noseFunc, false);
+function noseFunc(){
     clickCount++;
     let n = 0, m = Math.floor(Math.random()*5);
     clearInterval(timer);
@@ -208,7 +217,7 @@ $(".noseBtn").click(function(){
             }
         },400);
     },600);
-});
+}
 
 let animateTimer;
 function eyeAnimate(){
@@ -221,10 +230,8 @@ function eyeAnimate(){
         let eye_timer = setInterval(function(){
             time_count++;
             $(".eye").addClass("eye_hover");
-            //$(".mouth,.tongue").removeClass("hide");
             setTimeout(function(){
                 $(".eye").removeClass("eye_hover");
-                //$(".mouth,.tongue").addClass("hide");
                 if(time_count === tn+1){
                     clearInterval(eye_timer);
                     $(".eye").addClass("eye_hover");
@@ -245,14 +252,17 @@ const talk = [
     "哈哈，你猜我在干什么？",
     "好想你啊，你有在想我吗？",
     "今天工作累不累，要好好休息。",
-    "记得要早睡早起哈，晚上睡觉要盖好被子，不要感冒了",
+    "记得要早睡早起，晚上睡觉要盖好被子，不要感冒了",
     "来，和我一起笑一个嘛：嘻嘻嘻嘻，呵呵呵呵，哈哈哈哈"
 ];
 
+const talkShow = $(".tongue")[0];
+talkShow.addEventListener('touchstart', talkFunc, false);
+
 //点击舌头，显示对话按钮
-$(".pig").on("click", '.jumpPage', function(){
+function talkFunc(){
     let i = Math.floor(Math.random()*10);
-    $(this).addClass("hide");
+    $(".tongue").addClass("hide");
     const html = $(".talk").html();
     $("#write").html(html).MKtypewriter(100, function(){
         setTimeout(function(){
@@ -262,12 +272,15 @@ $(".pig").on("click", '.jumpPage', function(){
             audioPlay.play();
         },1000);
     });
-
     eyeAnimate();
-});
+    noseClick.removeEventListener('touchstart', noseFunc, false);
+}
+
+const l_eyeClick = $(".l_eye")[0];
+l_eyeClick.addEventListener('touchstart', eyeFunc, false);
 
 //点击左眼直接进入语音对话
-$(".l_eye").click(function(){
+function eyeFunc(){
     let i = Math.floor(Math.random()*10);
     $("#start").show();
     $(".mess").hide();
@@ -275,10 +288,14 @@ $(".l_eye").click(function(){
     $(".noseBtn").unbind("click");
     $("#audio").attr("src","/play/speech?pit=3&talk="+talk[i]).removeAttr("loop");
     audioPlay.play();
-});
+    noseClick.removeEventListener('touchstart', noseFunc, false);
+}
+
+const r_eyeClick = $(".r_eye")[0];
+r_eyeClick.addEventListener('touchstart',eyeFunc2, false);
 //点击右眼进入
 let flowerTimer = 0;
-$(".r_eye").click(function(){
+function eyeFunc2(){
     $(".flower").show();
     flowerTimer = setInterval(function(){
         Flower.Init("/commonStatic/images/snowflake");
@@ -290,16 +307,17 @@ $(".r_eye").click(function(){
     $("#tellWrite").MKtypewriter(100, function(){
         $("#back").show();
     });
+}
 
-});
-
-$("#back").click(function(){
+const backClick = $("#back")[0];
+backClick.addEventListener('touchstart',back, false);
+function back(){
     clearInterval(flowerTimer);
     $(".tell").hide();
     $(".gift").show();
     $("#music")[0].pause();
     $(".flower,#back").hide();
-})
+}
 
 </script>
 {% endblock %}
