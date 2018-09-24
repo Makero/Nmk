@@ -91,10 +91,9 @@
 
     <div class="talk hide">
         <p>哈哈哈</p>
-        <p>现在可以和小猪说话了哦~</p>
-        <p>不开心的时候</p>
-        <p>让小猪陪你度过吧</p>
-        <p>笑口常开哦^_^</p>
+        <p>现在可以和我说话了哦~</p>
+        <p>虽然我还很弱智</p>
+        <p>不过你要笑哦</p>
     </div>
 
     <div id="start" class="talkBtn hide"></div>
@@ -107,7 +106,7 @@
         <p>如果</p>
         <p>不开心了</p>
         <p>就和小猪对话哦~</p>
-        <p>相信她能把你逗乐的</p>
+        <p>相信她能把你逗乐</p>
         <p>也可以拿出小屋看看</p>
         <p>想像一下:</p>
         <p>经历一天的奔波</p>
@@ -132,47 +131,6 @@ window.ontouchstart = function(e) {
     const event = e || window.event;
     event.preventDefault();
 };
-
-const tag = $("#start")[0];
-
-tag.addEventListener('touchstart',touch, false);
-tag.addEventListener('touchend',touch, false);
-
-function touch (eve){
-    const event = eve || window.event;
-    switch(event.type){
-        case "touchstart":
-            $(".mouth,.tongue").removeClass("hide");
-            wx.startRecord();
-            break;
-        case "touchend":
-            wx.stopRecord({
-                success: function (res) {
-                    localId = res.localId;
-                    $("#write").show().html("<p>正在理解中，稍等哈~~</p>");
-                    wx.translateVoice({
-                        localId: localId, // 需要识别的音频的本地Id，由录音相关接口获得
-                        isShowProgressTips: 1, // 默认为1，显示进度提示
-                        success: function (res) {
-                            $.ajax({
-                                url: "/wechat/talk/ajax/qyk",
-                                type: 'post',
-                                data: {talk:res.translateResult},   // 语音识别的结果
-                                success: function(result){
-                                    $("#write").show().html(result);
-                                    $("#audio").attr("src","/play/speech?pit=4&talk="+result);
-                                    audioPlay.play();
-                                    $(".mouth,.tongue").addClass("hide");
-                                }
-                            });
-                        }
-                    });
-                }
-            });
-            break;
-    }
-
-}
 
 
 let timer, clickCount = 0;
@@ -264,12 +222,12 @@ function talkFunc(){
     let i = Math.floor(Math.random()*10);
     $(".tongue").addClass("hide");
     const html = $(".talk").html();
+    $("#audio").attr("src","/play/speech?pit=4&talk=哈哈哈，现在可以和我说话啦~，虽然我很弱智，不过你要笑啊，学我一样，哈哈哈哈哈哈额").removeAttr("loop");
+    audioPlay.play();
     $("#write").html(html).MKtypewriter(100, function(){
         setTimeout(function(){
             $("#write").html("");
             $(".talkBtn").show();
-            $("#audio").attr("src","/play/speech?pit=4&talk="+talk[i]).removeAttr("loop");
-            audioPlay.play();
         },1000);
     });
     eyeAnimate();
@@ -319,5 +277,46 @@ function back(){
     $(".flower,#back").hide();
 }
 
+const tag = $("#start")[0];
+
+tag.addEventListener('touchstart',touch, false);
+tag.addEventListener('touchend',touch, false);
+
+function touch (eve){
+    const event = eve || window.event;
+    switch(event.type){
+        case "touchstart":
+            talkShow.removeEventListener('touchstart', talkFunc, false);
+            $(".mouth,.tongue").removeClass("hide");
+            wx.startRecord();
+            break;
+        case "touchend":
+            wx.stopRecord({
+                success: function (res) {
+                    localId = res.localId;
+                    $("#write").show().html("<p>正在理解中，稍等哈~~</p>");
+                    wx.translateVoice({
+                        localId: localId, // 需要识别的音频的本地Id，由录音相关接口获得
+                        isShowProgressTips: 1, // 默认为1，显示进度提示
+                        success: function (res) {
+                            $.ajax({
+                                url: "/wechat/talk/ajax/qyk",
+                                type: 'post',
+                                data: {talk:res.translateResult},   // 语音识别的结果
+                                success: function(result){
+                                    $("#write").show().html(result);
+                                    $("#audio").attr("src","/play/speech?pit=4&talk="+result);
+                                    audioPlay.play();
+                                    $(".mouth,.tongue").addClass("hide");
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+            break;
+    }
+
+}
 </script>
 {% endblock %}
