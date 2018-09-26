@@ -2,16 +2,15 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block css %}
-<link type="text/css" rel="stylesheet" href="/wechatStatic/css/common/animate.min.css" />
-<link type="text/css" rel="stylesheet" href="/wechatStatic/css/FSVS.css" />
-<link type="text/css" rel="stylesheet" href="/wechatStatic/css/invitation.css" />
+<link type="text/css" rel="stylesheet" href="{{common_static}}/css/FSVS.min.css" />
+<link type="text/css" rel="stylesheet" href="{{wechat_static}}/css/invitation.css" />
 {% endblock %}
 
 {% block body %}
 <div id="fsvs-body">
     <div class="slide">
         <div class="animated" data-animate="zoomInDown">
-            <img class="dis imgInv" src="/wechatStatic/images/inv-bg.png" width="100%" />
+            <img class="dis imgInv" src="{{wechat_static}}/images/inv-bg.png" width="100%" />
             <div class="dis describe" id="write">
                 <p style="color:#fff">在这有着重大意义的一年</p>
                 <p style="color:#D66AB4">让我们一起放手一搏</p>
@@ -86,6 +85,6 @@
 {% endblock %}
 
 {% block script %}
-<script src="/wechatStatic/js/common/FSVS.js"></script>
-<script src="/wechatStatic/js/invitation.js"></script>
+<script src="{{common_static}}/js/FSVS.min.js"></script>
+<script src="{{wechat_static}}/js/invitation.js"></script>
 {% endblock %}

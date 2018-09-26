@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block css %}
+<link type="text/css" rel="stylesheet" href="{{zone_static}}/css/article.css">
+{% endblock %}
+{% block content_left %}
+<h2>{{article.title}}</h2>
+<div class="artMess clear">
+    <span>发表时间：<time>{{article.create_time|date('Y-m-d', -480)}}</time></span>
+    <span>编辑：{{article.author}}</span>
+</div>
+{{ article.content|safe }}
+{% endblock %}
+{% block content_right %}
+<div class="newList">
+    <h6>最新<em>文章</em></h6>
+    {% if newart.length == 0 %}
+    <p>暂无内容！</p>
+    {% else %}
+    <ul>
+        {% for art in newart %}
+        <li><a href="/{% if art.type == '1' %}lway{% else %}life{% endif %}/blog?id={{art.Id}}">{{art.title}}</a></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+
+<div class="photoList">
+    <h6>最新<em>照片</em></h6>
+    {% if photos.length == 0 %}
+    <p>暂无照片！</p>
+    {% else %}
+    {% for obj in photos %}
+    {% if  loop.index % len == 1 || len == 1 %}
+    {% if loop.index != 1 %}</ul>{% endif %}<ul>
+    {% endif %}
+    <li><a href="/recollect/photo"><img  src="{{obj.path}}"></a></li>
+    {% endfor %}
+</ul>
+    {% endif %}
+</div>
+{% endblock %}

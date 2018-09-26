@@ -14,12 +14,12 @@ module.exports = {
     '/wechat/tools'				: './routes/wechat/tools_route',
 	'/wechat/gift'				: './routes/wechat/gift_route',
 
-    '/mall'				: './routes/blog/mall_route',
-	'/blog'				: './routes/blog/index_blog_route',
-	'/blog/mood'		: './routes/blog/mood_blog_route',
-	'/blog/recollect'	: './routes/blog/recollect_blog_route',
-	'/blog/personal'	: './routes/blog/about_blog_route',
-	'/blog/article'		: './routes/blog/article_blog_route',
-	'/blog/way'			: './routes/blog/way_blog_route',
+    '/mall'				: './routes/zone/mall_route',
+	'/zone'				: './routes/zone/index_route',
+	'/zone/mood'		: './routes/zone/mood_route',
+	'/zone/recollect'	: './routes/zone/recollect_route',
+	'/zone/personal'	: './routes/zone/about_route',
+	'/zone/article'		: './routes/zone/article_route',
+	'/zone/way'			: './routes/zone/way_route',
 
 };

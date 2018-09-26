@@ -31,7 +31,7 @@
     .pig .nose:before{left:20%;}
     .pig .nose:after{right:20%;}
     .pig .mouth{width:100px;height:40px;border-bottom:6px solid #000;border-top:transparent;border-left:transparent;border-right:transparent;border-radius:50%/50%;margin-left:-50px;position:absolute;left:50%;bottom:20%;}
-    .pig .tongue{width:80px;height:60px;background:url(/wechatStatic/images/tongue.png) no-repeat;position:absolute;left:50%;margin-left:-40px;bottom:-60px;}
+    .pig .tongue{width:80px;height:60px;background:url({{wechat_static}}/images/tongue.png) no-repeat;position:absolute;left:50%;margin-left:-40px;bottom:-60px;}
     .hide{display:none;}
 
     .mess p{font-size:20px;text-align:center;color:#fff;margin-top:20px;}
@@ -50,8 +50,8 @@
         80%{background:#F5E5AA;}
         100%{background:#F5AAE8;}
     }
-    .flower{width:100%;height:100%;background:url(/commonStatic/images/three.png) no-repeat;overflow:hidden;position:absolute;z-index:1;background-size:auto 100%;}
-     .flower li{width:40px;height:40px;background-image:url(blogStatic/images/navigation/snowflake1.png);background-repeat: no-repeat;background-position: left top;
+    .flower{width:100%;height:100%;background:url({{common_static}}/images/three.png) no-repeat;overflow:hidden;position:absolute;z-index:1;background-size:auto 100%;}
+     .flower li{width:40px;height:40px;background-image:url({{common_static}}/images/snowflake1.png);background-repeat: no-repeat;background-position: left top;
          animation:flower 2s linear infinite;position:absolute;left:0;top:0;}
      @keyframes flower{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
     .back{width:100%;height:60px;line-height:60px;font-size:16px;color:#333;text-align:center;background:rgba(255,255,255,.2);position:absolute;bottom:0;z-index:2;}
@@ -60,8 +60,8 @@
 
 {% block body %}
 
-<audio id="audio" src="/audio/pig.mp3" loop></audio>
-<audio id="music" src="/audio/sky.ogg" ></audio>
+<audio id="audio" src="{{root_url}}/audio/pig.mp3" loop></audio>
+<audio id="music" src="{{root_url}}/audio/sky.ogg" ></audio>
 
 <div class="flower hide">
     <ul></ul>
@@ -123,7 +123,7 @@
 {% endblock %}
 
 {% block script %}
-<script src="/blogStatic/js/navigation/myFunc.js"></script>
+<script src="{{common_static}}/js/myFunc.js"></script>
 <script>
 wxCheckConfig('gift', ['startRecord', 'stopRecord', 'translateVoice']);
 document.body.addEventListener('touchstart', function () { });
@@ -256,7 +256,7 @@ let flowerTimer = 0;
 function eyeFunc2(){
     $(".flower").show();
     flowerTimer = setInterval(function(){
-        Flower.Init("/commonStatic/images/snowflake");
+        Flower.Init("{{common_static}}/images/snowflake");
     },600);
     $("#music")[0].currentTime = 0;
     $("#music")[0].play();

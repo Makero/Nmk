@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}{{title}}{% endblock %}
+{% block css %}
+<link type="text/css" rel="stylesheet" href="{{zone_static}}/css/way.css">
+{% endblock %}
+
+{% block body %}
+    {% include 'part/loginSuccess.html' %}
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+    setInterval(function(){
+        Flower.Init("{{zone_static}}/images/navigation/snowflake");
+    },600);
+    Work();
+</script>
+{% endblock %}

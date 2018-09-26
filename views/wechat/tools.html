@@ -5,8 +5,8 @@
     body{background:#fff;}
     .tools li{width:80px;height:80px;float:left;margin:20px;border-radius:10px;box-shadow: 0 0 4px rgba(0,0,0,.6)}
     .tools li a{color:#333;display:block;width:100%;height:100%;text-align:center;line-height:200px;}
-    .qrcode{background:url("/wechatStatic/images/qrcode_ico.jpg") no-repeat center;background-size: 80px;}
-    .talk{background:url("/wechatStatic/images/girl.png") no-repeat center;background-size: 120px;}
+    .qrcode{background:url("{{wechat_static}}/images/qrcode_ico.jpg") no-repeat center;background-size: 80px;}
+    .talk{background:url("{{wechat_static}}/images/girl.png") no-repeat center;background-size: 120px;}
 </style>
 {% endblock %}
 {% block body %}
@@ -19,7 +19,7 @@
 {% endblock %}
 
 {% block script %}
-<script type="text/javascript" src="/wechatStatic/js/handle.qrcode.js"></script>
+<script type="text/javascript" src="{{wechat_static}}/js/handle.qrcode.js"></script>
 <script>
     const openID = getCookie('openID');
     if(!openID){

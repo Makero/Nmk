@@ -7,6 +7,7 @@ const session = require('koa-session');
 const bodyparser = require('koa-bodyparser')();
 const koa_logger = require('koa-logger');
 const logger = require('./utils/logger');
+const staticPath = require('./config/static_config');
 const urls = require('./urls');
 
 
@@ -41,6 +42,7 @@ app.use(session(CONFIG, app));
 
 // logger **
 app.use(async (ctx, next) => {
+    ctx.state = Object.assign(ctx.state, staticPath);
   const start = new Date();//响应开始时间
   let ms;//响应间隔时间
   try {

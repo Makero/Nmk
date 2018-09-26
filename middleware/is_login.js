@@ -2,7 +2,6 @@ const checkController = require('../controllers/check_controller');
 
 
 module.exports = async (ctx, next)=>{
-    console.log(ctx.session);
     const authToken = ctx.cookies.get('authToken');
     if(!authToken){
         ctx.redirect("/login?redirectURL=" + ctx.originalUrl);

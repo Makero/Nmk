@@ -1,0 +1,77 @@
+<style>
+    body{min-width:1366px;min-height:768px;background:url({{zone_static}}/images/navigation/bg.jpg) no-repeat;background-size:100% 100%;overflow:hidden;}
+    .flower li{width:40px;height:40px;background-image:url({{zone_static}}/images/navigation/snowflake1.png);background-repeat: no-repeat;background-position: left top;
+        animation:flower 2s linear infinite;position:absolute;left:0;top:0;
+    }
+    @keyframes flower{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+
+    .wrapper{ position: relative; width: 1300px; margin: 0 auto;}
+    .poabs{ position: absolute;}
+    .cus{cursor: pointer;}
+    .faqbox{opacity:0; z-index: 1; background: url({{zone_static}}/images/navigation/room.png) no-repeat; width: 218px; height: 88px; top: 55px; left: 100px;}
+    .faqbox:hover{ background: url({{zone_static}}/images/navigation/room_hover.png) no-repeat 0 -1px;}
+    .titl{opacity:0; top: 55px; left:0; width: 1300px; text-align: center;}
+    .video{opacity:0; z-index: 1; background: url({{zone_static}}/images/navigation/mall.png) no-repeat; width: 218px; height: 88px; top: 55px; right: 100px;}
+    .video:hover{ background: url({{zone_static}}/images/navigation/mall_hover.png) no-repeat;}
+    .zi{z-index: 1;}
+    .cp{ top:1400px; left: 210px;}
+    .cpdap{ top: 1400px; left: 50px;}
+    .yu{opacity:0; top: 795px; left: 290px;}
+    .ui{ top:1400px; left: 600px;}
+    .uidap{ top:1400px; left: 520px;}
+    .qd{ top:1400px; right: 155px;}
+    .qddap{ top:1400px; right: 55px;}
+    .ht{ top:1400px; left: 380px;}
+    .htdap{ top:1400px; left: 200px;}
+    .cs{ top:1400px; right: 210px;}
+    .csdap{ top:1400px; right: 200px;}
+</style>
+<div class="flower">
+    <ul></ul>
+</div>
+
+<!-- 干活篇 -->
+<div class="work ">
+    <div class="wrapper">
+        <a class="faqbox poabs cus" href="/zone"></a>
+        <div class="titl poabs"><img src="{{zone_static}}/images/navigation/struggle.png"></div>
+        <a class="video poabs cus" href="/mall"></a>
+        <div class="yu poabs"><img src="{{zone_static}}/images/navigation/jingy.png"></div>
+
+        <!---心情-->
+        <div class="dai cus cpBlk">
+            <div class="zi poabs cp"><img src="{{zone_static}}/images/navigation/mood.png"></div>
+            <div class="dao poabs cpdap"><img src="{{zone_static}}/images/navigation/mood_isle.png"></div>
+        </div>
+
+        <!--分享-->
+        <div class="dai cus uiBlk">
+            <div class="zi poabs ui"><img src="{{zone_static}}/images/navigation/share.png"></div>
+            <div class="dao poabs uidap"><img src="{{zone_static}}/images/navigation/share_isle.png"></div>
+        </div>
+
+        <!--前端-->
+        <div class="dai cus qdBlk">
+            <div class="zi poabs qd"><img src="{{zone_static}}/images/navigation/activity.png"></div>
+            <div class="dao poabs qddap"><img src="{{zone_static}}/images/navigation/activity_isle.png"></div>
+        </div>
+
+        <!--笔记-->
+        <div class="dai cus kfBlk">
+            <div class="zi poabs ht"><img src="{{zone_static}}/images/navigation/note.png"></div>
+            <div class="dao poabs htdap"><img src="{{zone_static}}/images/navigation/note_isle.png"></div>
+        </div>
+
+        <!--测试-->
+        <div class="dai cus csBlk">
+            <div class="zi poabs cs"><img src="{{zone_static}}/images/navigation/QA.png"></div>
+            <div class="dao poabs csdap"><img src="{{zone_static}}/images/navigation/QA_isle.png"></div>
+        </div>
+    </div>
+</div>
+
+<script src="{{common_static}}/js/myFunc.js"></script>
+<script src="{{common_static}}/js/move.js"></script>
+<script >
+    function Work(){move(".faqbox").set("opacity","1").set("left","30px").duration(".8s").end(),move(".video").set("opacity","1").set("right","30px").duration(".8s").end(),move(".titl").set("opacity","1").duration("1.2s").end(function(){move(".cp").set("top","228px").duration(".6s").end(),move(".cpdap").set("top","228px").duration(".6s").end(function(){move(".ht").set("top","440px").duration("1s").end(),move(".htdap").set("top","440px").duration("1s").end(),move(".cs").set("top","480px").duration("1.8s").end(),move(".csdap").set("top","480px").duration("1.8s").end(function(){move(".yu").rotate(180).end(function(){move(".yu").set("opacity","1").duration(".5s").end(),move(".yu").set("left","1100px").duration("1s").end(function(){move(".yu").rotate(90).set("top","450px").duration("1s").end(function(){move(".yu").rotate(0).duration(".8s").end(),$(".yu").animate({top:"355px",left:"290px"},"slow")})})})})}),move(".ui").set("top","238px").duration("1.4s").end(),move(".uidap").set("top","228px").duration("1.4s").end(),move(".qd").set("top","218px").duration("2.2s").end(),move(".qddap").set("top","228px").duration("2.2s").end()}),$(".cus").on("mouseenter",function(){move(this).scale(1.05).duration(".2s").end()}),$(".cus").on("mouseleave",function(){move(this).scale(1).duration(".2s").end()}),$(".yu").on("mouseenter",function(){move(this).rotate(180).end()}),$(".yu").on("mouseleave",function(){move(this).rotate(0).end()})}
+</script>

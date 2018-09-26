@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}聊天{% endblock %}
 {% block css %}
-<link type="text/css" rel="stylesheet" href="/wechatStatic/css/talk.css"/>
+<link type="text/css" rel="stylesheet" href="{{wechat_static}}/css/talk.css"/>
 {% endblock %}
 
 {% block body %}
@@ -15,5 +15,5 @@
 {% endblock %}
 
 {% block script %}
-<script src="/wechatStatic/js/talk.js"></script>
+<script src="{{wechat_static}}/js/talk.js"></script>
 {% endblock %}

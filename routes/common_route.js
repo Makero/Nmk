@@ -34,7 +34,7 @@ router.get('/', async (ctx) => {
         status = 0;
         ctx.redirect('/navigation');
     }
-    await ctx.render('blog/welcome', {status});
+    await ctx.render('zone/welcome', {status});
 });
 
 
@@ -44,13 +44,13 @@ router.get('/login', async (ctx) => {
     if(authToken){
         ctx.redirect('/navigation');
     }
-    await ctx.render('blog/login');
+    await ctx.render('zone/login');
 });
 
 
 /** 导航 **/
 router.get('/navigation', async (ctx) => {
-    await ctx.render('blog/navigation');
+    await ctx.render('zone/navigation');
 });
 
 

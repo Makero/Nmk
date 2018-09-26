@@ -5,17 +5,17 @@
 *
 -->
 
-<link rel="stylesheet" type="text/css" href="/plugin/simditor/css/simditor.css" />
-<link rel="stylesheet" type="text/css" href="/plugin/simditor/css/simditor-emoji.css" />
-<script type="text/javascript" src="/plugin/simditor/js/module.min.js"></script>
-<script type="text/javascript" src="/plugin/simditor/js/hotkeys.min.js"></script>
-<script type="text/javascript" src="/plugin/simditor/js/uploader.min.js"></script>
-<script type="text/javascript" src="/plugin/simditor/js/simditor.min.js"></script>
-<script type="text/javascript" src="/plugin/simditor/js/simditor-emoji.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{{root_url}}/plugin/simditor/css/simditor.css" />
+<link rel="stylesheet" type="text/css" href="{{root_url}}/plugin/simditor/css/simditor-emoji.css" />
+<script type="text/javascript" src="{{root_url}}/plugin/simditor/js/module.min.js"></script>
+<script type="text/javascript" src="{{root_url}}/plugin/simditor/js/hotkeys.min.js"></script>
+<script type="text/javascript" src="{{root_url}}/plugin/simditor/js/uploader.min.js"></script>
+<script type="text/javascript" src="{{root_url}}/plugin/simditor/js/simditor.min.js"></script>
+<script type="text/javascript" src="{{root_url}}/plugin/simditor/js/simditor-emoji.min.js"></script>
 {% set btnName = name or '提交' %}
 {% set bgColor = color or '#52BCAA' %}
 {% if type == 'article' %}<!-- 文章 -->
-    <script type="text/javascript" src="/plugin/simditor/js/autosave.min.js"></script>
+    <script type="text/javascript" src="{{root_url}}/plugin/simditor/js/autosave.min.js"></script>
     <input id="messType" type="hidden" value="article"/>
     <div class="simditor-editor-float">
         <div class="simditor-textarea fn-clearfix" style="border-color:{{bgColor}}">
@@ -61,7 +61,7 @@
             leaveConfirm: '正在上传文件'
         },
         emoji: {
-            imagePath: '/plugin/simditor/images/emoji/'
+            imagePath: '{{root_url}}/plugin/simditor/images/emoji/'
         }
     });
     $(".simditor-toolbar li a").click(function(){

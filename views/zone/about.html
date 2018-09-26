@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<link type="text/css" rel="stylesheet" href="{{zone_static}}/css/about.css">
+{% endblock %}
+
+{% block content_left %}
+<h3 class="f24 w300 mb20">Just about me</h3>
+<p style="height:580px;">{{mess.introduction}}</p>
+
+<h3 class="f24 w300 mt20 mb20">About my blog</h3>
+<span class="f14">网站名：{{data.title}} &nbsp;&nbsp; 创建于 {{mess.jointime|date("Y 年 m 月 d 日", -480)}}</span><br/><br/>
+<span class="f14">程序：node.js</span><br/><br/>
+<span class="f14 talk">技术交流：<a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=lccm722@yahoo.com" target="_bank">lccm722@yahoo.com</a></span>
+{% endblock %}
+
+{% block content_right %}
+<ul class="f14">
+    <li><label>网名：</label>{{mess.username}}</li>
+    <li><label>姓名：</label>{{mess.fullname}}</li>
+    <li><label>籍贯：</label>{{mess.birthplace}}</li>
+    <li><label>现居：</label>{{mess.addr}}</li>
+    <li><label>职业：</label>{{mess.occupation}}</li>
+    <li><label>爱好：</label>{{mess.enjoy}}</li>
+    <li><label>喜欢的音乐：</label>{{mess.enjoymusic}}</li>
+    <li><label>联系我：</label><a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email={{mess.email}}" target="_bank">{{mess.email}}</a></li>
+</ul>
+<div class="imgMe"></div>
+{% endblock %}
+
+
+{% block script %}
+<script type="text/javascript" src="{{zone_static}}/js/indexBlog.js"></script>
+{% endblock %}
