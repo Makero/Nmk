@@ -34,7 +34,7 @@ router.get('/', async (ctx) => {
         status = 0;
         ctx.redirect('/navigation');
     }
-    await ctx.render('blog/index', {status});
+    await ctx.render('blog/welcome', {status});
 });
 
 
