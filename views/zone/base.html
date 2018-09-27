@@ -19,12 +19,13 @@
     {% block nav %}
     <nav class="top">
         <ul>
-            <li><a href="/zone">主页</a></li>
+            <li><a href="/navigation">导航</a></li>
             <li><a {% if data.index == 4 %} class="cur" {% endif %} href="/zone/personal">个人中心</a></li>
             <li><a {% if data.index == 3 %} class="cur" {% endif %} href="/zone/way">长路漫漫</a></li>
             <li><a {% if data.index == 2 %} class="cur" {% endif %} href="/zone/life">慢生活</a></li>
             <li><a {% if data.index == 1 %} class="cur" {% endif %} href="/zone/recollect">记·忆</a></li>
             <li><a {% if data.index == 0 %} class="cur" {% endif %} href="/zone/mood">碎言碎语</a></li>
+            <li><a href="/zone">主页</a></li>
         </ul>
     </nav>
     <div class="clearFix"></div>
