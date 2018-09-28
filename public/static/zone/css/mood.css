@@ -5,7 +5,7 @@ canvas{position:fixed;}
 .wrapper .content .date p.time{margin-top:20px;width:160px;text-indent:.5em;line-height:26px;color:#fff;background:#D53D26;}
 .wrapper .content .date p.weather{width:160px;line-height:60px;font-size:26px;text-align:center;}
 .wrapper .content .moodTop{position: relative;padding-top: 20px;}
-.wrapper .content header{width:560px;background:url(../images/line.png);}
+.wrapper .content header{width:560px;height:160px;background:url(../images/line.png);}
 .wrapper .content header i{font-size:120px;color:#61B6E8;}
 .wrapper .content header span{margin: 50px 0 0 20px;}
 .wrapper .content .cat{width:180px;height:180px;background:url(../images/cat/tiantiansifangmao-10-1.png) no-repeat center;top:50px;left:360px;}

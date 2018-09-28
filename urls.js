@@ -14,6 +14,7 @@ module.exports = {
     '/wechat/tools'				: './routes/wechat/tools_route',
 	'/wechat/gift'				: './routes/wechat/gift_route',
 
+	'/struggle'			: './routes/zone/struggle_route',
     '/mall'				: './routes/zone/mall_route',
 	'/zone'				: './routes/zone/index_route',
 	'/zone/mood'		: './routes/zone/mood_route',

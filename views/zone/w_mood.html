@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}写心情{% endblock %}
+{% block css %}
+<style>
+    .look{height:100px;padding-top:40px;background:url({{zone_static}}/images/mood/w-mood-title-ico.png) no-repeat;}
+    .look li{float:left;}
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="look">
+<ol>
+    <li>开心</li>
+    <li>得意</li>
+    <li>无聊</li>
+    <li>郁闷</li>
+    <li>伤心</li>
+    <li>狂喜</li>
+    <li>偷笑</li>
+    <li>无感</li>
+    <li>纠结</li>
+    <li>抓狂</li>
+</ol>
+</div>
+
+{% include '../plugin/simditor.html' with {url:'/struggle/mood_create', type:'mood', name: '发布心情', color:'#5bbaec'} %}
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

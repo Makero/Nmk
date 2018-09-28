@@ -10,9 +10,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="author" content="Maker" />
-    <link type="text/css" rel="stylesheet" href="{{zone_static}}/css/base.css">
+    <link type="text/css" rel="stylesheet" href="{{common_static}}/css/base.css">
     <link type="text/css" rel="stylesheet" href="{{zone_static}}/css/common.css">
     {% block css %}{% endblock %}
+    <script type="text/javascript" src="{{common_static}}/js/jquery-1.12.4.min.js"></script>
 </head>
 <body>
 {% block body %}
@@ -101,7 +102,6 @@
         本网站由 <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=lccm722@yahoo.com" target="_bank">lccm722@yahoo.com</a> 提供技术支持
     </div>
 {% endblock %}
-<script type="text/javascript" src="{{common_static}}/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="{{common_static}}/js/common.js"></script>
 <script type="text/javascript" src="{{common_static}}/js/constant.js"></script>
 {% block script %}{% endblock %}

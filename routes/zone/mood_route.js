@@ -16,7 +16,7 @@ router.get('/', async (ctx, next) => {
     await moodController.getMood({
         ctx,
         token:ctx.session.token,
-        params:{page_size:10, page: 1}//, min_date: date.toLocaleDateString()
+        params:{page_size:10, page: 1, min_date: date.toLocaleDateString()}//, min_date: date.toLocaleDateString()
     });
     console.log(ctx.api);
     await ctx.render('zone/mood',{data:data,dat:ctx.api.results,date:date,week:week[dt],sear:0});

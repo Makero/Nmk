@@ -10,5 +10,6 @@
 .simditor-textarea{width:1000px;padding:20px;margin:20px auto;background:#fff;border-top:6px solid #52BCAA;}
 .simditor-textarea h1.title{font-size: 24px;font-weight: 700;padding:10px 0;text-align:center;margin-bottom:20px}
 .simditor-textarea h1.title input{width:600px;border:0;border-bottom:1px solid #eee;text-align:center}
-.simditor-submit{margin:20px 20px 0 0;float:right;width: 112px;font-size: 16px;line-height: 34px;height: 34px;text-shadow: none;color: #fff;border: 0;border-radius:4px;cursor:pointer;}
+.simditor-submit{margin:20px 20px 0 0;float:right;width: 112px;font-size: 16px;line-height: 40px;height: 40px;text-shadow: none;color: #fff;border: 0;border-radius:4px;cursor:pointer;}
 .simditor-submit:active{background:#999!important;}
+.power{float:right;margin:20px 20px 0 0;border:0;background:none;}

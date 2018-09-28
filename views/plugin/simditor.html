@@ -19,22 +19,29 @@
     <input id="messType" type="hidden" value="article"/>
     <div class="simditor-editor-float">
         <div class="simditor-textarea fn-clearfix" style="border-color:{{bgColor}}">
-            <h1 class="title"><input type="text" placeholder="请输入标题" name="title" maxlength="100"/></h1>
+            <h1 class="title"><input placeholder="请输入标题" name="title" maxlength="100"/></h1>
             <textarea id="editor" placeholder="请输入文章内容" autofocus></textarea>
-            <button id="submit" class="simditor-submit" style="background:{{bgColor}}">{{btnName}}</button>
+            <button id="editorSubmit" class="simditor-submit" style="background:{{bgColor}}">{{btnName}}</button>
         </div>
     </div>
 {% elseif type == 'comment' %}<!-- 评论 -->
     <input id="messType" type="hidden" value="comment"/>
     <textarea id="editor" placeholder="你想说点什么" autofocus></textarea>
-    <button id="submit" class="simditor-submit" style="background:{{bgColor}}">{{btnName}}</button>
+    <button id="editorSubmit" class="simditor-submit" style="background:{{bgColor}}">{{btnName}}</button>
 {% elseif type == 'mood' %}<!-- 心情 -->
     <input id="messType" type="hidden" value="mood"/>
-    <textarea id="editor" placeholder="此刻心情如何？" autofocus></textarea>
-    <button id="submit" class="simditor-submit" style="background:{{bgColor}}">{{btnName}}</button>
+    <textarea id="editor" placeholder="此刻心情如何？" autofocus maxlength="300"></textarea>
+    <div>
+        <button id="editorSubmit" class="simditor-submit" style="background:{{bgColor}}">{{btnName}}</button>
+        <select class="power" id="power">
+            <option value="0">公开</option>
+            <option value="1">匿名</option>
+            <option value="2">私密</option>
+        </select>
+    </div>
 {% else %}
     <textarea id="editor" placeholder="请输入文字内容" autofocus></textarea>
-    <button id="submit" class="simditor-submit" style="background:{{bgColor}}">{{btnName}}</button>
+    <button id="editorSubmit" class="simditor-submit" style="background:{{bgColor}}">{{btnName}}</button>
 {% endif %}
 <script>
 
@@ -67,15 +74,17 @@
     $(".simditor-toolbar li a").click(function(){
         $(".simditor-body").focus();
     });
-    $("#submit").click(function(){
+    $("#editorSubmit").click(function(){
         const title = $("input[name='title']").val();
         const content = editor.getValue();
         if(content.length === 0){
             return;
         }
         if(title === undefined){
+            const power = $('#power option:selected') .val();
             submit({
-                content: content
+                content: content,
+                power: power
             });
         }else{
 
@@ -85,12 +94,46 @@
 
     function submit(data){
         $.ajax({
-            url: $("#simditorUrl").val(),
+            url: '{{url}}',
             type: 'post',
             data: data,
             success: function(result){
-
+                alert(result);
             }
         })
     }
+
+    document.addEventListener("paste", function (e){
+        if ( !(e.clipboardData && e.clipboardData.items) ) {
+            return;
+        }
+        e.preventDefault();
+        var html,text;
+        var clp = (e.originalEvent || e).clipboardData;
+        if (clp === undefined || clp === null) {
+            text = window.clipboardData.getData("text") || "";
+            if (text !== "") {
+                if (window.getSelection) {
+                    var newNode = document.createElement("span");
+                    newNode.innerHTML = text;
+                    window.getSelection().getRangeAt(0).insertNode(newNode);
+                } else {
+                    document.selection.createRange().pasteHTML(text);
+                }
+            }
+        } else {
+            html = clp.getData('text/html');
+            alert(html);
+            if(html.search("data-emoji")>0){
+                document.execCommand('insertHtml', false, html);
+            }else{
+                text = clp.getData('text/plain') || "";
+                if (text !== "") {
+                    document.execCommand('insertText', false, text);
+                }
+            }
+
+        }
+
+    });
 </script>
