@@ -12,12 +12,13 @@
 <script type="text/javascript" src="{{root_url}}/plugin/simditor/js/uploader.min.js"></script>
 <script type="text/javascript" src="{{root_url}}/plugin/simditor/js/simditor.min.js"></script>
 <script type="text/javascript" src="{{root_url}}/plugin/simditor/js/simditor-emoji.min.js"></script>
+
 {% set btnName = name or '提交' %}
 {% set bgColor = color or '#52BCAA' %}
 {% if type == 'article' %}<!-- 文章 -->
     <script type="text/javascript" src="{{root_url}}/plugin/simditor/js/autosave.min.js"></script>
     <input id="messType" type="hidden" value="article"/>
-    <div class="simditor-editor-float">
+    <div class="article simditor-editor-float">
         <div class="simditor-textarea fn-clearfix" style="border-color:{{bgColor}}">
             <h1 class="title"><input placeholder="请输入标题" name="title" maxlength="100"/></h1>
             <textarea id="editor" placeholder="请输入文章内容" autofocus></textarea>
@@ -25,12 +26,16 @@
         </div>
     </div>
 {% elseif type == 'comment' %}<!-- 评论 -->
-    <input id="messType" type="hidden" value="comment"/>
-    <textarea id="editor" placeholder="你想说点什么" autofocus></textarea>
-    <button id="editorSubmit" class="simditor-submit" style="background:{{bgColor}}">{{btnName}}</button>
+    <div class="comment">
+        <input id="messType" type="hidden" value="comment"/>
+        <textarea id="editor" placeholder="你想说点什么" autofocus></textarea>
+        <button id="editorSubmit" class="simditor-submit" style="background:{{bgColor}}">{{btnName}}</button>
+    </div>
 {% elseif type == 'mood' %}<!-- 心情 -->
-    <input id="messType" type="hidden" value="mood"/>
-    <textarea id="editor" placeholder="此刻心情如何？" autofocus maxlength="300"></textarea>
+    <div class="mood">
+        <input id="messType" type="hidden" value="mood"/>
+        <textarea id="editor" placeholder="此刻心情如何？" autofocus maxlength="10"></textarea>
+    </div>
     <div>
         <button id="editorSubmit" class="simditor-submit" style="background:{{bgColor}}">{{btnName}}</button>
         <select class="power" id="power">
@@ -39,27 +44,31 @@
             <option value="2">私密</option>
         </select>
     </div>
+
 {% else %}
-    <textarea id="editor" placeholder="请输入文字内容" autofocus></textarea>
-    <button id="editorSubmit" class="simditor-submit" style="background:{{bgColor}}">{{btnName}}</button>
+    <div>
+        <textarea id="editor" placeholder="请输入文字内容" autofocus></textarea>
+        <button id="editorSubmit" class="simditor-submit" style="background:{{bgColor}}">{{btnName}}</button>
+    </div>
 {% endif %}
 <script>
-
+    let stylePaste = true;
     let tools = ['bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'emoji', 'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment'];
     if($("#device").val() === "wx"){
         tools = ['bold', 'italic', 'underline', 'color', '|', 'emoji', 'link'];
     }
     const type = $("#messType").val();
     switch(type){
-        case 'article': tools = ['bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment'];break;
-        case 'comment': tools = ['bold', 'italic', 'underline', 'color', '|', 'emoji', 'link'];break;
-        case 'mood':    tools = ['emoji', 'bold', 'color', 'link'];break;
+        case 'article': tools = ['bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment'];stylePaste=false;break;
+        case 'comment': tools = ['bold', 'italic', 'underline', 'color', '|', 'emoji'];break;
+        case 'mood':    tools = ['emoji', 'bold', 'color'];break;
     }
     const editor = new Simditor({
         textarea: $('#editor'),
         autosave: 'editor-content',
         toolbar:  tools, //工具条都包含哪些内容
         pasteimage: false,
+        cleanPaste: stylePaste,
         upload : {
             url : 'richtext_img_upload.do', //文件上传的接口地址
             params: null, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交
@@ -81,7 +90,7 @@
             return;
         }
         if(title === undefined){
-            const power = $('#power option:selected') .val();
+            const power = $('#power option:selected').val();
             submit({
                 content: content,
                 power: power
@@ -102,38 +111,4 @@
             }
         })
     }
-
-    document.addEventListener("paste", function (e){
-        if ( !(e.clipboardData && e.clipboardData.items) ) {
-            return;
-        }
-        e.preventDefault();
-        var html,text;
-        var clp = (e.originalEvent || e).clipboardData;
-        if (clp === undefined || clp === null) {
-            text = window.clipboardData.getData("text") || "";
-            if (text !== "") {
-                if (window.getSelection) {
-                    var newNode = document.createElement("span");
-                    newNode.innerHTML = text;
-                    window.getSelection().getRangeAt(0).insertNode(newNode);
-                } else {
-                    document.selection.createRange().pasteHTML(text);
-                }
-            }
-        } else {
-            html = clp.getData('text/html');
-            alert(html);
-            if(html.search("data-emoji")>0){
-                document.execCommand('insertHtml', false, html);
-            }else{
-                text = clp.getData('text/plain') || "";
-                if (text !== "") {
-                    document.execCommand('insertText', false, text);
-                }
-            }
-
-        }
-
-    });
 </script>

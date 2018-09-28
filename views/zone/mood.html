@@ -43,7 +43,7 @@
                         <span>{% if n < 10 or n > 12 and n < 22 %}0{{hour}}{% elseif n == 12 %}{{n}}{%else%}{{hour}}{% endif %}:{{obj.create_time|date('i')}}<small>{% if n < 12 %}AM{% else %}PM{% endif %}</small></span>
                         <i>关键词&nbsp;&nbsp;&nbsp;<strong>{{obj.keyword}}</strong></i>
                     </time>
-                    <em>{{obj.content}}</em>
+                    <em>{{obj.content|safe}}</em>
                 </p>
                 <p class="img"><img src="{{zone_static}}/images/mood/c-02.jpg"></p>
             </li>
