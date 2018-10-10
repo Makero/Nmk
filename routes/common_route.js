@@ -1,6 +1,7 @@
 const router = require('koa-router')();
 const request = require('request');
-const client = require('../utils/speech');
+const speech = require('../utils/speech');
+const wordRec = require('../utils/word_recognition');
 const fs = require('fs');
 const isLogin = require('../middleware/is_login');
 const wechatController = require('../controllers/wechat_controller');
@@ -100,7 +101,7 @@ router.get('/play/music/:id', async (ctx) => {
 /** 语音合成 **/
 router.get('/play/speech', async (ctx) => {
     try{
-        const result = await client.text2audio(ctx.query.talk, {pit: ctx.query.pit||8, per: ctx.query.per||4, spd: ctx.query.spd||5, vol: 15});
+        const result = await speech.text2audio(ctx.query.talk, {pit: ctx.query.pit||8, per: ctx.query.per||4, spd: ctx.query.spd||5, vol: 15});
         ctx.status = 200;ctx.type = 'mp3';ctx.body = result.data;
     }catch(error){
         console.error("网络异常");
@@ -112,5 +113,13 @@ router.get('/play/speech', async (ctx) => {
     }
 });
 
+router.post('/word/recognition', async (ctx) => {
+
+    const image = ctx.request.body.base64;
+
+    // 调用通用文字识别, 图片参数为本地图片
+    const result = await wordRec.generalBasic(image);
+    ctx.body = JSON.stringify(result);
+});
 
 module.exports = router;

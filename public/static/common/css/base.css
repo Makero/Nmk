@@ -29,7 +29,7 @@ audio,canvas,video {
 
 /* 要注意表单元素并不继承父级 font 的问题 */
 body,button,input,select,textarea{
-    font:12px/1.5 "Microsoft Yahei",\5b8b\4f53,arial;
+    font-family: "Microsoft Yahei",\5b8b\4f53,arial;
     outline: none;
 }
 input,select,textarea{
@@ -102,10 +102,6 @@ sub, sup {
 sup {top: -0.5em;}
 sub {bottom: -0.25em;}
 
-/* 让链接在 hover 状态下显示下划线 */
-a:hover {
-    text-decoration:underline;
-}
 /* 弹出窗口里不显示下划线 */
 .ui-dialog-close{
     text-decoration:none !important;

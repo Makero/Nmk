@@ -1,37 +1,86 @@
-<header class="spring">
-	<div class="title abs">
-		<h1>{{data.title}}</h1>
-		<p class="motto">{{data.motto}}</p>
-	</div>
-	<div style="width:100%;height:265px;"><canvas id="animate" style="position: absolute;left: 50%;margin-left: -388px;"></canvas></div>
-	<!--<embed id="ls" class="willow abs" src="/blogStatic/images/flash/willow.swf" width="600" height="400" wmode=transparent type='application/x-shockwave-flash'></embed>
+<style>
+	.modelTwo .spring{width:100%;height:auto;background:url({{zone_static}}/images/page1.jpg) no-repeat center top;background-size:1500px;}
+	.modelTwo .spring .title{color:#79A0A5;top:2%;left:20%;text-shadow: 2px 2px 6px rgba(0,0,0,.3);font-family: myFont;font-size:18px;}
+	.modelTwo .spring .motto{width:300px;}
+	.modelTwo .spring:before{content:"";position:absolute;width:100%;height:433px;z-index:2;}
+	.modelTwo .spring .listBar{width:800px;height:200px;margin:-5px auto 0 auto;background:#F7FAF3 url({{zone_static}}/images/sakola.png) no-repeat;border-radius:16px 16px 0 0;}
+	.modelTwo .spring .listBar .cat{width:128px;height:128px;z-index:11;}
+	.modelTwo .spring .listBar .cat1{top:-90px;left:60px;}
+	.modelTwo .spring .listBar .cat2{bottom:-50px;right:160px;}
+	.modelTwo .spring .listBar .cat3{bottom:-22px;left:160px;}
+	.modelTwo .spring .listBar .personal{top:40px;left:40px;text-align:center;z-index:10;}
+	.modelTwo .spring .listBar .personal .portrait{display:inline-block;width:120px;height:120px;border-radius:64px;border:3px solid #ccc;overflow:hidden;margin-bottom:6px;}
+	.modelTwo .spring .listBar .personal .portrait img{width:100%;height:100%;}
+	.modelTwo .spring .listBar .personal .portrait .name{width:100%;left:0;bottom:-40px;height:30px;line-height:30px;color:#fff;background:rgba(0,0,0,.6);transition: bottom .5s ease-out;}
+	.modelTwo .spring .listBar .personal .portrait:hover .name{bottom:0;}
+	.modelTwo .spring .listBar ul{width:100%;z-index:2;}
+	.modelTwo .spring .listBar li{float:right;width:80px;height:68px;line-height:60px;margin-right:36px;margin-top:-6px;text-align:center;background:url({{zone_static}}/images/tag.png) no-repeat;cursor:pointer;}
+	.modelTwo .spring .listBar li a{color:#fff;font-size:14px;float:left;width:100%;}
+	.modelTwo .spring .listBar li a.four{padding-top:10px;line-height:20px;}
+	.modelTwo .spring .listBar li:nth-child(1){background-position:6px 0;}
+	.modelTwo .spring .listBar li:nth-child(2){background-position:-86px 0;}
+	.modelTwo .spring .listBar li:nth-child(3){background-position:-176px 0;}
+	.modelTwo .spring .listBar li:nth-child(4){background-position:-266px 0;}
+	.modelTwo .spring .listBar li:nth-child(5){background-position:-356px 0;}
 
-	<embed id="swf" src="/blogStatic/images/flash/top.swf" width="100%" height="265" wmode=transparent type='application/x-shockwave-flash'></embed>-->
-	<div class="listBar rel">
-		<p class="cat cat1 abs"><img src="{{zone_static}}/images/cat/tiantiansifangmao-06.png"></p>
-		<p class="cat cat2 abs"><img src="{{zone_static}}/images/cat/tiantiansifangmao-14.png"></p>
-		<p class="cat cat3 abs"><img src="{{zone_static}}/images/cat/tiantiansifangmao-15.png"></p>
-		<div class="personal abs">
-			<a class="portrait rel" href="/zone/personal"><img src="{{zone_static}}/images/mood/c-02.jpg"><span class="name abs">Maker</span></a>
+	/*公路*/
+	.modelTwo .road{width:100%;height:220px;background:#434343;position:relative;}
+	.modelTwo .line{width:100%;height:6px;position:absolute;top:100px;
+		background:linear-gradient(#fff, #fff) 20px 10%, linear-gradient(#fff, #fff) 140px 10%, linear-gradient(#fff, #fff) 260px 10%,
+		linear-gradient(#fff, #fff) 380px 10%, linear-gradient(#fff, #fff) 500px 10%, linear-gradient(#fff, #fff) 620px 10%,
+		linear-gradient(#fff, #fff) 740px 10%, linear-gradient(#fff, #fff) 860px 10%, linear-gradient(#fff, #fff) 980px 10%,
+		linear-gradient(#fff, #fff) 1100px 10%, linear-gradient(#fff, #fff) 1220px 10%, linear-gradient(#fff, #fff) 1340px 10%,
+		linear-gradient(#fff, #fff) 1460px 10%, linear-gradient(#fff, #fff) 1580px 10%, linear-gradient(#fff, #fff) 1700px 10%,
+		linear-gradient(#fff, #fff) 1820px 10%, linear-gradient(#fff, #fff) 1940px 10%, linear-gradient(#fff, #fff) 2060px 10%,
+		linear-gradient(#fff, #fff) 2180px 10%, linear-gradient(#fff, #fff) 2300px 10%, linear-gradient(#fff, #fff) 2420px 10%;
+		background-repeat:no-repeat;background-size:80px 4px;
+	}
+	/*树*/
+	.modelTwo .tree{width:120px;height:180px;background-image:url({{zone_static}}/images/tree.png);background-repeat:no-repeat;position:absolute;z-index:10;}
+	.modelTwo .tree1{top:-160px;left:10%;background-position:0 0;}
+	.modelTwo .tree2{top:-146px;left:50%;background-position:-140px -180px;}
+	.modelTwo .tree3{top:-146px;left:85%;background-position:-380px -180px;}
+	/*车*/
+	.modelTwo .car{width:510px;height:232px;background:url({{zone_static}}/images/car.png) no-repeat left center;position:absolute;z-index:100;bottom:30px;left:-10px;transition: left 10s;}
+	.modelTwo .car:before{content:"";position:absolute;background:url({{zone_static}}/images/car_lun.png) no-repeat center;width:66px;height:66px;left:64px;bottom:15px;transform: rotate(0deg);transition: transform 10s;}
+	.modelTwo .car:after{content:"";position:absolute;background:url({{zone_static}}/images/car_lun.png) no-repeat center;width:66px;height:66px;right:69px;bottom:15px;transform: rotate(0deg);transition: transform 10s;}
+	.modelTwo .road:hover .car{left:100%;}
+	.modelTwo .road:hover .car:before{transform: rotate(1640deg);}
+	.modelTwo .road:hover .car:after{transform: rotate(1640deg);}
+</style>
+<div class="modelTwo">
+	<header class="spring">
+		<div class="title abs">
+			<h1>{{data.title}}</h1>
+			<p class="motto">{{data.motto}}</p>
 		</div>
-
-		<ul class="abs">
-			<li><a class="four" href="/zone/personal">个人<br/>中心</a></li>
-			<li><a class="four" href="/zone/way">长路<br/>漫漫</a></li>
-			<li><a href="/zone/life">慢生活</a></li>
-			<li><a href="/zone/recollect">记·忆</a></li>
-			<li><a class="four" href="/zone/mood">碎言<br/>碎语</a></li>
+		<div style="width:100%;height:265px;"><canvas id="animate" style="position: absolute;left: 50%;margin-left: -388px;"></canvas></div>
+		<div class="listBar rel">
+			<p class="cat cat1 abs"><img src="{{zone_static}}/images/cat/tiantiansifangmao-06.png"></p>
+			<p class="cat cat2 abs"><img src="{{zone_static}}/images/cat/tiantiansifangmao-14.png"></p>
+			<p class="cat cat3 abs"><img src="{{zone_static}}/images/cat/tiantiansifangmao-15.png"></p>
+			<div class="personal abs">
+				<a class="portrait rel" href="/zone/personal"><img src="{{zone_static}}/images/mood/c-02.jpg"><span class="name abs">Maker</span></a>
+			</div>
+	
+			<ul class="abs">
+				<li><a class="four" href="/zone/personal">个人<br/>中心</a></li>
+				<li><a class="four" href="/zone/way">长路<br/>漫漫</a></li>
+				<li><a href="/zone/life">慢生活</a></li>
+				<li><a href="/zone/recollect">记·忆</a></li>
+				<li><a class="four" href="/zone/mood">碎言<br/>碎语</a></li>
+			</ul>
+		</div><!--listBar 结束-->
+	</header>
+	<div class="road">
+		<ul>
+			<li class="line"></li>
+			<li class="tree tree1"></li>
+			<li class="tree tree2"></li>
+			<li class="tree tree3"></li>
+			<li class="car"></li>
 		</ul>
-	</div><!--listBar 结束-->
-</header>
-<div class="road">
-	<ul>
-		<li class="line"></li>
-		<li class="tree tree1"></li>
-		<li class="tree tree2"></li>
-		<li class="tree tree3"></li>
-		<li class="car"></li>
-	</ul>
+	</div>
 </div>
 <script src="{{root_url}}/plugin/swfToCanvas/fanvas3-min.js"></script>
 <script src="{{root_url}}/plugin/swfToCanvas/swfData.js"></script>
