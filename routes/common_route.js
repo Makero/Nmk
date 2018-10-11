@@ -115,11 +115,12 @@ router.get('/play/speech', async (ctx) => {
 
 router.post('/word/recognition', async (ctx) => {
 
-    const image = ctx.request.body.base64;
+    const url = ctx.request.body.url;
 
     // 调用通用文字识别, 图片参数为本地图片
-    const result = await wordRec.generalBasic(image);
-    ctx.body = JSON.stringify(result);
+    const result = await wordRec.generalBasicUrl(url);
+    console.log(result);
+    ctx.body = result;
 });
 
 module.exports = router;

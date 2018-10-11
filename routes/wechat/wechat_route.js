@@ -1,6 +1,6 @@
 const router = require('koa-router')();
 const message = require('../../utils/wechat_msg');
-const wechatControl = require('../../controllers/wechat_controller');
+const wechatController = require('../../controllers/wechat_controller');
 
 
 router.get('/', async (ctx) => {
@@ -9,7 +9,7 @@ router.get('/', async (ctx) => {
         ctx.body = "访问不正确！";
         return;
     }
-    await wechatControl.validateToken({
+    await wechatController.validateToken({
         ctx,
         params: ctx.query
     });
@@ -25,7 +25,7 @@ router.get('/', async (ctx) => {
 router.post('/', async (ctx) => {
 
     const msg = await message.get(ctx);
-    await wechatControl.msgHandle({
+    await wechatController.msgHandle({
         ctx,
         params: msg
     });
@@ -36,6 +36,16 @@ router.post('/', async (ctx) => {
         console.error(`状态码：${ctx.api.code}`);
         ctx.body = 'success';
     }
+});
+
+
+router.get('/saveImg', async (ctx) => {
+    console.log(ctx.query);
+    await wechatController.saveImage({
+        ctx,
+        params: ctx.query
+    });
+    ctx.body = ctx.api.data.url;
 });
 
 

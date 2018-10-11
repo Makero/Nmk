@@ -7,6 +7,7 @@
     .tools li a{color:#333;display:block;width:100%;height:100%;text-align:center;line-height:200px;}
     .qrcode{background:url("{{wechat_static}}/images/qrcode_ico.jpg") no-repeat center;background-size: 80px;}
     .talk{background:url("{{wechat_static}}/images/girl.png") no-repeat center;background-size: 120px;}
+    textarea{width:80%;height:300px;margin:0 auto;}
 </style>
 {% endblock %}
 {% block body %}
@@ -14,15 +15,17 @@
     <ol>
         <li class="qrcode"><a id="qrcode">扫码</a></li>
         <li class="talk"><a href="/wechat/talk">语音对话</a></li>
+        <li class="wordRec"><a id="rec">文字识别</a></li>
     </ol>
 </div>
+<div id="mess"><textarea id="content"></textarea></div>
 {% endblock %}
 
 {% block script %}
 <script type="text/javascript" src="{{wechat_static}}/js/handle.qrcode.js"></script>
 <script>
     const openID = getCookie('openID');
-    if(!openID){
+    if(openID){
         spop({
             template: "没有身份认证哦，即将跳转认证页面~",
             position: 'bottom-center',
@@ -36,7 +39,7 @@
             }
         });
     }else {
-        wxCheckConfig('tools', ['scanQRCode']);
+        wxCheckConfig('tools', ['scanQRCode', 'chooseImage', 'uploadImage']);
         $("#qrcode").click(function () {
             wx.scanQRCode({
                 needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
@@ -48,6 +51,52 @@
                 }
             });
         });
+
+        $("#rec").click(function(){
+            wx.chooseImage({
+                count: 1, // 默认9
+                sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
+                sourceType: ['camera'], // 可以指定来源是相册还是相机，默认二者都有
+                success: function (res) {
+                    const localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+
+                    wx.uploadImage({
+                        localId: localIds[0], // 需要上传的图片的本地ID，由chooseImage接口获得
+                        isShowProgressTips: 1, // 默认为1，显示进度提示
+                        success: function (res) {
+                            const serverId = res.serverId; // 返回图片的服务器端ID
+
+                            $.ajax({
+                                url: "/wechat/saveImg",
+                                type: "get",
+                                data: {serverId:serverId},
+                                success: function(result){
+                                    $.ajax({
+                                        url: "/word/recognition",
+                                        type: "post",
+                                        data: {url:result},
+                                        success: function(result){
+                                            if(result.error_code){
+                                                alert("图片识别超时！");
+                                            }else{
+                                                let str = "";
+                                                for(var n in result.words_result){
+                                                    str += result.words_result[n].words;
+                                                }
+                                                $("#content").val(str);
+                                            }
+                                        },
+                                        error: function(){
+                                            alert("出错啦");
+                                        }
+                                    })
+                                }
+                            })
+                        }
+                    });
+                }
+            });
+        })
     }
 </script>
 {% endblock %}

@@ -20,5 +20,7 @@ module.exports = {
     loginCheck: async(opt) => {
         await request.POST_API("web", "/login_check", opt)
     },
-
+    saveImage: async(opt) => {
+        await request.GET_API("wechat", "/save_image", opt)
+    }
 };
