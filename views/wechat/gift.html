@@ -84,15 +84,16 @@
 
     <div id="write" class="smile hide">
         <p>嘻嘻，试着把小猪唤醒吧</p>
-        <p>小猪醒来后就可以陪你玩了哦~</p>
+        <p>小猪醒来后就会吐舌头哦~</p>
         <p>告诉你一个小秘密</p>
         <p>摸摸小猪的舌头有惊喜哦~</p>
-        <p>或者摸摸眼睛看看~~</p>
     </div>
 
     <div class="talk hide">
         <p>哈哈哈</p>
         <p>现在可以和我说话了哦~</p>
+        <p>以后可以直接戳我左眼就能和我说话啦</p>
+        <p>不要戳我右眼哦，会痛的呢</p>
         <p>虽然我还很笨</p>
         <p>不过你要开心哦</p>
     </div>
@@ -101,7 +102,7 @@
 </div>
 
 <div class="tell hide">
-    <div id="tellWrite" style="margin-top:150px;">
+    <div id="tellWrite" style="margin-top:150px;font-size:14px;">
         <p>做了这个小屋送给你</p>
         <p>还有这只可爱的小猪</p>
         <p>如果</p>
@@ -135,7 +136,7 @@ window.ontouchstart = function(e) {
 
 
 let timer, clickCount = 0;
-const arr = [2,3,4,5,6],pigEyeOpen = [3, 4, 5, 5, 4, 8];
+const arr = [2,3,4,5],pigEyeOpen = [3, 4, 5, 5, 4, 8];
 const audioPlay = $("#audio")[0];
 const jump = Math.floor(Math.random()*6);
 const noseClick = $(".noseBtn")[0];
@@ -143,7 +144,7 @@ const noseClick = $(".noseBtn")[0];
 noseClick.addEventListener('touchstart',noseFunc, false);
 function noseFunc(){
     clickCount++;
-    let n = 0, m = Math.floor(Math.random()*5);
+    let n = 0, m = Math.floor(Math.random()*4);
     clearInterval(timer);
 
     $(".mess").hide();
@@ -223,7 +224,7 @@ function talkFunc(){
     let i = Math.floor(Math.random()*10);
     $(".tongue").addClass("hide");
     const html = $(".talk").html();
-    $("#audio").attr("src","/play/speech?pit=4&talk=哈哈哈，现在可以和我说话啦~，虽然我很弱智，不过你要笑啊，学我一样，哈哈哈哈哈哈额").removeAttr("loop");
+    $("#audio").attr("src","/play/speech?pit=4&talk=哈哈哈，现在可以和我说话啦~，虽然我很笨，不过你要开心啊，学我一样，哈哈哈哈哈哈额").removeAttr("loop");
     audioPlay.play();
     $("#write").html(html).MKtypewriter(100, function(){
         setTimeout(function(){

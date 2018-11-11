@@ -8,7 +8,7 @@ router.get('/w_mood', async (ctx, next) => {
     await ctx.render('zone/w_mood');
 });
 
-//
+//发布心情
 router.post('/mood_create', async (ctx, next) => {
     console.log(ctx.request.body);
     const data = {
