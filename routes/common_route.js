@@ -38,6 +38,10 @@ router.get('/', async (ctx) => {
     await ctx.render('zone/welcome', {status});
 });
 
+/** 后台管理 **/
+router.get('/admin', async (ctx) => {
+  await ctx.render('admin');
+});
 
 /** 网站登录 **/
 router.get('/login', async (ctx) => {
